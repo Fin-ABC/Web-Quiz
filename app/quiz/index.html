@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Quiz</title>
+    <link rel="stylesheet" href="../src/output.css" />
+  </head>
+  <body>
+    <h1>Test Page</h1>
+    <p id="id"></p>
+    <p id="judul"></p>
+    <p id="author"></p>
+    <p id="like"></p>
+
+    <script src="../style/js/script.js"></script>
+    <script>
+      // Detail Level
+      const params = new URLSearchParams(window.location.search);
+      const idLvl = params.get("id");
+
+      const dt_level = data_quiz.find(lvl => lvl.id === idLvl);
+      if (dt_level) {
+        const id = document.getElementById("id");
+        const jdl = document.getElementById("judul");
+        const author = document.getElementById("author");
+        const like = document.getElementById("like");
+
+        id.textContent = `ID: ${dt_level.id}`;
+        jdl.textContent = `Judul: ${dt_level.judul}`;
+        author.textContent = `Author: ${dt_level.author}`;
+        like.textContent = `Like: ${dt_level.like} ❤️`;
+      }
+    </script>
+  </body>
+</html>

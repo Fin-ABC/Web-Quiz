@@ -30,7 +30,7 @@
   </head>
   <body
     id="body"
-    class="center bg-maomao-dark relative bg-[url('../style/img/light_bg_quiz.avif')] bg-repeat"
+    class="center bg-maomao-dark relative bg-[url('../style/img/light_bg_quiz.avif')] bg-repeat font-sour"
   >
     <!-- Main Page -->
     <div id="main" class="">
@@ -38,6 +38,14 @@
       <nav class="flex items-center justify-between px-3 py-2 text-white">
         <h4 class="font-dyna text-xl font-bold">Web Quiz Kami</h4>
         <button
+        id="btn-main-profile"
+          onclick=""
+          class="font-sour mx-3 my-1 cursor-pointer rounded-full bg-emerald-600/80 px-3 py-1 text-center shadow-lg shadow-black/60 transition-shadow duration-400 ease-in-out hover:shadow-none active:bg-emerald-800/70 md:w-22"
+        >
+          FinJr
+        </button>
+        <button
+        id="btn-main-login"
           onclick="window.location.href='login/'"
           class="font-sour mx-3 my-1 cursor-pointer rounded-full bg-emerald-600/80 px-3 py-1 text-center shadow-lg shadow-black/60 transition-shadow duration-400 ease-in-out hover:shadow-none active:bg-emerald-800/70 md:w-22"
         >
@@ -381,6 +389,27 @@
       </div>
     </div>
 
+    <!-- Profile Page -->
+    <div id="page-profie" class="min-h-screen flex items-center justify-center p-4">
+      <div class="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+         <div class="h-32 bg-radial-[at_90%_25%] from-maomao-light to-maomao-dark text-white p-5">
+             <h2 class="font-dyna text-2xl">@<span>Refaldino</span></h2>
+             <p class="font-dyna ml-2">ID : <span>001</span></p>
+        </div>
+        
+         <div class="pt-8 px-6 pb-6 text-center">
+            <p class="text-maomao-dark font-medium">Jumlah Kuis yang Dibuat : <span>15</span></p>
+            <div class="border border-maomao-dark bg-maomao-light text-maomao-dark rounded-lg p-4 mb-6 shadow">
+              <h3 class="font-bold text-lg mb-2">Kuis MyKisah</h3>
+              <p class="mb-1">10 Soal</p>
+              <p class="mb-3">7 Like</p>
+              <button class="w-full rounded-md bg-emerald-700 py-2 font-bold text-white transition hover:bg-emerald-800 mb-2">Edit</button>
+              <button class="w-full rounded-md bg-red-600 py-2 font-bold text-white transition hover:bg-red-700">Hapus</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
     <!-- This is the end -->
 
     <script src="style/js/script.js"></script>
@@ -419,6 +448,13 @@
           lvl_custom.appendChild(card);
         }
       });
+
+      const btnLogin = document.getElementById("btn-main-login");
+      const btnProfile = document.getElementById("btn-main-profile");
+
+      function showProfile(){
+
+      }
 
       // const apiUrl = "http://localhost:3000/kuis";
 

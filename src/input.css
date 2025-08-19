@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme{
+    --color-maomao-light: #beedc8;
+    --color-maomao-dark: #365b61;
+}
+
+.btn{
+    @apply py-2 rounded-xl border-1 border-slate-800 shadow-lg shadow-black/100 hover:shadow-none text-white transition-shadow duration-400 ease-in-out cursor-pointer;
+}

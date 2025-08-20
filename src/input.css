@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wdth,wght@75..100,400..700&family=Sour+Gummy:ital,wdth,wght@0,100..125,100..900;1,100..125,100..900&display=swap');
 @import "tailwindcss";
 
 @theme{
     --color-maomao-light: #beedc8;
     --color-maomao-dark: #365b61;
+    --font-dyna: 'DynaPuff', Tahoma;
+    --font-sour: 'Sour Gummy', Arial;
 }
 
 .btn{
-    @apply py-2 border-1 border-slate-800 shadow-lg shadow-black/100 hover:shadow-none text-white transition-shadow duration-400 ease-in-out cursor-pointer select-none flex justify-center items-center;
+    @apply font-sour py-2 border-1 border-slate-800 shadow-lg shadow-black/100 hover:shadow-none text-white transition-shadow duration-400 ease-in-out cursor-pointer select-none flex justify-center items-center;
 }

@@ -9,5 +9,5 @@
 }
 
 .btn{
-    @apply font-sour py-2 border-1 border-slate-800 shadow-lg shadow-black/100 hover:shadow-none text-white transition-shadow duration-400 ease-in-out cursor-pointer select-none flex justify-center items-center;
+    @apply font-sour py-2 border-1 border-slate-800 shadow-lg shadow-black/100 hover:shadow-none text-white transition-shadow duration-400 ease-in-out cursor-pointer select-none flex justify-center items-center focus:outline-2 outline-offset-1 outline-maomao-light;
 }

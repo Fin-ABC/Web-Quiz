@@ -9,5 +9,22 @@
 }
 
 .btn{
-    @apply font-sour py-2 border-1 border-slate-800 shadow-lg shadow-black/100 hover:shadow-none text-white transition-shadow duration-400 ease-in-out cursor-pointer select-none flex justify-center items-center focus:outline-2 outline-offset-1 outline-maomao-light;
+    @apply font-sour py-2 border-1 border-slate-800 shadow-lg shadow-black/100 hover:shadow-none text-white transition-shadow duration-400 ease-in-out cursor-pointer select-none flex justify-center items-center focus:outline-2 outline-offset-1 outline-maomao-light md:text-lg text-base;
+}
+
+.grid-level{
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 
+}
+
+.card-level{
+    @apply bg-white/80 rounded-lg p-4 shadow-lg relative 
+}
+.title-card-level{
+    @apply font-dyna text-xl font-bold 
+}
+.author-card-level{
+    @apply text-gray-700
+}
+.btn-like-card-level{
+    @apply text-red-600 bg-red-400/70 rounded-full absolute py-1 px-2 top-1 right-1
 }

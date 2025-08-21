@@ -1,0 +1,35 @@
+// Start  Button
+const start = document.getElementById("startBtn");
+const b_lvl = document.getElementById("back-level");
+const level = document.getElementById("level");
+const main = document.getElementById("main");
+
+start.addEventListener("click", function () {
+  level.classList.toggle("hidden");
+  main.classList.toggle("hidden");
+});
+
+b_lvl.addEventListener("click", function () {
+  level.classList.toggle("hidden");
+  main.classList.toggle("hidden");
+});
+
+// Level Official
+const quiz_official = [
+  { judul: "Test Level Pertama", author: "Fin", like:'12'},
+  { judul: "Test Level Kedua", author: "Fin", like:'12' },
+  { judul: "Test Level Ketiga", author: "Haruu", like:'12' },
+  { judul: "Test Level Keempat", author: "Fin", like:'12' },
+  { judul: "Test Level Kelima", author: "Fin", like:'12' },
+];
+const lvl_offcial = document.getElementById("official-level");
+
+quiz_official.forEach((lvl) => {
+  lvl_offcial.innerHTML += `
+    <div class="card-level group">
+      <h2 class="title-card-level">${lvl.judul}</h2>
+      <p class="author-card-level">by ${lvl.author} </p>
+      <button id="btn-like" class="btn-like-card-level">${lvl.like} &#10084;</button>
+    </div>
+  `;
+});

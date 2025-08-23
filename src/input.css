@@ -17,14 +17,17 @@
 }
 
 .card-level{
-    @apply bg-white/80 rounded-lg p-4 shadow-lg relative 
+    @apply bg-white/80 rounded-lg p-4 shadow-lg relative select-none cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-white/90
 }
 .title-card-level{
-    @apply font-dyna text-xl font-bold 
+    @apply font-dyna text-xl font-bold
 }
 .author-card-level{
     @apply text-gray-700
 }
 .btn-like-card-level{
-    @apply text-red-600 bg-red-400/70 rounded-full absolute py-1 px-2 top-1 right-1
+    @apply text-red-600 bg-red-600/40 border border-red-600 rounded-full absolute py-1 px-2 top-1 right-1 shadow-lg shadow-black/60
+}
+.btn-like-card-level-active{
+    @apply text-white bg-red-600 rounded-full absolute py-1 px-2 top-1 right-1 shadow-lg shadow-black/60
 }

@@ -3,6 +3,8 @@
 
   - sebelah nama author 'by' ganti jadi icon user
   - icon hati 'like' ubah jadi svg
+  - cek mobile version
+  - buat desktop version
 -->
 
 <!DOCTYPE html>
@@ -11,13 +13,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web Quizz</title>
-    <link rel="stylesheet" href="style/css/output.css" />
+    <link rel="stylesheet" href="../src/output.css" />
+    <!-- <link rel="stylesheet" href="style/css/final.css"> -->
   </head>
   <body
     class="bg-[url('../img/light_bg_quiz.avif')] bg-repeat center bg-maomao-dark relative"
   >
     <!-- Main Page -->
-    <div id="main" class="hidden">
+    <div id="main" class="">
       <!-- Navbar Section -->
       <nav class="text-white flex justify-between items-center px-3 py-2">
         <h4 class="text-xl font-bold font-dyna">Web Quiz Kami</h4>
@@ -59,7 +62,7 @@
     </div>
 
     <!-- Level Selection -->
-    <div id="level" class="visible absolute top-0 left-0 w-full h-full">
+    <div id="level" class="hidden absolute top-0 left-0 w-full h-full">
       <div
         class="flex justify-center items-center bg-maomao-dark/60 backdrop-blur-sm mx-5 my-5 rounded-xl"
       >
@@ -68,7 +71,7 @@
           <div class="text-white flex justify-between items-center mt-2">
             <button
               id="back-level"
-              class="bg-red-600 px-3 py-1 rounded-xl font-sour"
+              class="bg-red-600 px-3 py-1 rounded-xl font-sour hover:bg-red-700 transition-colors duration-300 ease-in-out active:bg-red-800 shadow-lg shadow-black/60"
             >
               &#11013; Close
             </button>
@@ -78,7 +81,7 @@
           <!-- Content -->
           <!-- Search Bar -->
           <div class="my-8">
-            <form action="/search" class="max-w-[480px] w-full px-4">
+            <form action="/search" class="max-w-[480px] w-full px-4 mx-auto">
               <input
                 type="text"
                 name="search"
@@ -98,11 +101,29 @@
               <div class="card-level group">
                 <h2 class="title-card-level">Official Level 3</h2>
                 <p class="author-card-level">Description of level 3.</p>
-                <button id="btn-like" class="btn-like-card-level">0 &#10084;</button>
+                <button id="btn-like" class="btn-like-card-level-active">
+                  0 &#10084;
+                </button>
               </div>
             </div>
           </div>
           <!-- Official Level End -->
+
+          <!-- Custom Level Start -->
+          <div class="mt-8">
+            <h1 class="font-dyna text-2xl font-bold text-white mb-4">
+              Custom Level
+            </h1>
+            <div id="custom-level" class="grid-level">
+              <div class="card-level group">
+                <h2 class="title-card-level">Custom Level 1</h2>
+                <p class="author-card-level">User 1</p>
+                <button id="btn-like" class="btn-like-card-level">
+                  0 &#10084;
+                </button>
+              </div>
+            </div>
+          <!-- Custom Level End -->
         </div>
       </div>
     </div>

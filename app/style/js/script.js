@@ -17,9 +17,6 @@ b_lvl.addEventListener("click", function () {
 // Level Official
 const quiz_official = [
   { judul: "Test Level Pertama", author: "Fin", like:'12'},
-  { judul: "Test Level Kedua", author: "Fin", like:'12' },
-  { judul: "Test Level Ketiga", author: "Haruu", like:'12' },
-  { judul: "Test Level Keempat", author: "Fin", like:'12' },
   { judul: "Test Level Kelima", author: "Fin", like:'12' },
 ];
 const lvl_offcial = document.getElementById("official-level");

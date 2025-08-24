@@ -6,12 +6,55 @@
     <title>Web Quiz</title>
     <link rel="stylesheet" href="../src/output.css" />
   </head>
-  <body>
-    <h1>Test Page</h1>
+  <body class="font-sour bg-slate-800 text-white">
+    <!-- Header -->
+    <div
+      class="bg-maomao-dark m-1 rounded-2xl flex flex-col items-center justify-center gap-4 pt-3.5 pb-2.5 border-maomao-light/50 border mb-8"
+    >
+      <h1 class="font-bold text-4xl text-maomao-light font-dyna">MyQuizz</h1>
+      <button
+        onclick="window.location.href='../'"
+        class="py-2 px-3 border border-maomao-light rounded-full text-sm"
+      >
+        Back to Game
+      </button>
+    </div>
+
+    <!-- Content Level -->
+    <div class="center-center flex-col gap-3">
+      <!-- Judul & Subjudul -->
+      <div
+        class="bg-maomao-dark/80 backdrop-blur-sm m-1 rounded-2xl gap-4 border-maomao-light/50 border w-19/20 pl-3"
+      >
+        <h2 id="judul" class=" text-2xl font-bold"></h2>
+        <p id="subjudul" class=""></p>
+      </div>
+
+      <button
+        class="text-2xl font-bold bg-emerald-600 w-19/20 rounded-lg py-2"
+      >
+        PLAY
+      </button>
+
+      <div class="center-center flex-col gap-2">
+
+        <div class="card-detail center-center flex-col">
+          <p >icon jumlah</p>
+          <p id="jml-soal"></p>
+          <p>SOAL</p>
+        </div>
+        
+        <div class="card-detail center-center flex-col">
+          <p>icon Like</p>
+          <p id="like"></p>
+          <p>LIKE</p>
+        </div>
+      </div>
+    </div>
+
     <p id="id"></p>
     <p id="judul"></p>
     <p id="author"></p>
-    <p id="like"></p>
 
     <script src="../style/js/script.js"></script>
     <script>
@@ -19,17 +62,21 @@
       const params = new URLSearchParams(window.location.search);
       const idLvl = params.get("id");
 
-      const dt_level = data_quiz.find(lvl => lvl.id === idLvl);
+      const dt_level = data_quiz.find((lvl) => lvl.id === idLvl);
       if (dt_level) {
         const id = document.getElementById("id");
         const jdl = document.getElementById("judul");
+        const sub_jdl = document.getElementById("subjudul");
         const author = document.getElementById("author");
+        const jml_soal = document.getElementById("jml-soal");
         const like = document.getElementById("like");
 
         id.textContent = `ID: ${dt_level.id}`;
-        jdl.textContent = `Judul: ${dt_level.judul}`;
+        jdl.textContent = `${dt_level.judul}`;
+        sub_jdl.textContent = `${dt_level.subjudul}`;
         author.textContent = `Author: ${dt_level.author}`;
-        like.textContent = `Like: ${dt_level.like} ❤️`;
+        jml_soal.textContent = `${dt_level.jml_soal}`;
+        like.textContent = `${dt_level.like}`;
       }
     </script>
   </body>

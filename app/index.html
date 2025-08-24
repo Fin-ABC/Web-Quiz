@@ -123,7 +123,8 @@
                 </button>
               </div>
             </div>
-          <!-- Custom Level End -->
+            <!-- Custom Level End -->
+          </div>
         </div>
       </div>
     </div>
@@ -157,14 +158,13 @@
           <p class="author-card-level">by ${lvl.author} </p>
           <button id="btn-like" class="btn-like-card-level">${lvl.like} &#10084;</button>
         `;
-      
+
         card.addEventListener("click", () => {
           window.location.href = `quiz/?id=${lvl.id}`;
         });
-      
+
         lvl_offcial.appendChild(card);
       });
-
     </script>
   </body>
 </html>

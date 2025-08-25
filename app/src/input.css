@@ -17,7 +17,7 @@
 }
 
 .card-level{
-    @apply bg-white/80 rounded-lg p-4 shadow-lg relative select-none cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105 hover:bg-white/90;
+    @apply bg-white/80 rounded-lg p-4 shadow-lg relative select-none cursor-pointer transition-transform duration-300 ease-in-out hover:scale-102 hover:bg-white/90;
 }
 .title-card-level{
     @apply font-dyna text-xl font-bold;
@@ -36,5 +36,8 @@
     @apply flex justify-center items-center;
 }
 .card-detail{
-    @apply bg-maomao-dark/90 w-55 rounded-lg shadow-lg select-none cursor-pointer hover:-translate-y-5;
+    @apply bg-maomao-dark/90 rounded-lg shadow-lg border-maomao-light/50 border;
+}
+.card-w-full{
+    @apply w-19/20 md:w-39/40 lg:w-79/80
 }

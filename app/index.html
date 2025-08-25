@@ -61,26 +61,26 @@
       </div>
     </div>
 
-    <!-- Level Selection -->
+    <!-- Level Page -->
     <div id="level" class="hidden absolute top-0 left-0 w-full h-full">
       <div
-        class="flex justify-center items-center bg-maomao-dark/60 backdrop-blur-sm mx-5 my-5 rounded-xl"
+        class="flex justify-center items-center bg-maomao-dark/60 backdrop-blur-sm mx-5 my-5 rounded-xl py-3"
       >
         <div class="w-5/6 md:my-auto mx-auto">
           <!-- Header -->
           <div class="text-white flex justify-between items-center mt-2">
             <button
               id="back-level"
-              class="bg-red-600 px-3 py-1 rounded-xl font-sour hover:bg-red-700 transition-colors duration-300 ease-in-out active:bg-red-800 shadow-lg shadow-black/60"
+              class="bg-red-600 px-3 py-1 rounded-xl font-sour hover:bg-red-700 transition-colors duration-300 ease-in-out active:bg-red-800 shadow-lg shadow-black/60 md:text-lg"
             >
               &#11013; Close
             </button>
-            <h1 class="font-dyna font-bold text-2xl">Quiz</h1>
+            <h1 class="font-dyna font-bold text-2xl md:text-4xl">Quiz</h1>
           </div>
 
           <!-- Content -->
           <!-- Search Bar -->
-          <div class="my-8">
+          <div class="mt-8">
             <form action="/search" class="max-w-[480px] w-full px-4 mx-auto">
               <input
                 type="text"
@@ -93,7 +93,7 @@
           <!-- Search Bar End -->
 
           <!-- Official Level Start -->
-          <div class="">
+          <div class="mt-8">
             <h1 class="font-dyna text-2xl font-bold text-white mb-4">
               Official Level
             </h1>
@@ -149,6 +149,7 @@
 
       // Level Official
       const lvl_offcial = document.getElementById("official-level");
+      const lvl_custom = document.getElementById("custom-level");
 
       data_quiz.forEach((lvl) => {
         const card = document.createElement("div");
@@ -163,7 +164,12 @@
           window.location.href = `quiz/?id=${lvl.id}`;
         });
 
-        lvl_offcial.appendChild(card);
+        if(lvl.kategori == "official"){
+          lvl_offcial.appendChild(card);
+        } else if(lvl.kategori == "custom"){
+          lvl_custom.appendChild(card);
+        }
+
       });
     </script>
   </body>

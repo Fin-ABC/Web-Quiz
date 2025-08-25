@@ -1,7 +1,8 @@
 const data_quiz = [
   {
     id: "1",
-    judul: "Test Level Pertama",
+    kategori: "official",
+    judul: "Test Offcial Pertama",
     subjudul: "Ini adalah subjudul untuk level pertama",
     jml_soal:"5",
     author: "Fin",
@@ -11,11 +12,45 @@ const data_quiz = [
   },
   {
     id: "2",
-    judul: "Test Level Kelima",
+    kategori: "official",
+    judul: "Test Official Kelima",
     subjudul: "Have fun playing this level",
-    jml_soal:"10",
+    jml_soal:"22",
     author: "Fin",
     like: "12",
+    deskripsi:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi beatae vel consequatur, quae delectus minima placeat id velit ducimus, sequi sapiente unde facilis sit recusandae officiis saepe! Est ab eaque voluptates doloribus possimus eveniet fuga repellat similique hic mollitia nesciunt molestias sit accusamus nemo ratione, adipisci expedita suscipit excepturi totam, natus quae reiciendis, velit cupiditate. Distinctio eius maxime harum tempore?",
+  },
+  {
+    id: "3",
+    kategori: "custom",
+    judul: "My Kisah",
+    subjudul: "Have fun playing this level",
+    jml_soal:"100",
+    author: "Fin",
+    like: "12",
+    deskripsi:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi beatae vel consequatur, quae delectus minima placeat id velit ducimus, sequi sapiente unde facilis sit recusandae officiis saepe! Est ab eaque voluptates doloribus possimus eveniet fuga repellat similique hic mollitia nesciunt molestias sit accusamus nemo ratione, adipisci expedita suscipit excepturi totam, natus quae reiciendis, velit cupiditate. Distinctio eius maxime harum tempore?",
+  },
+  {
+    id: "4",
+    kategori: "custom",
+    judul: "Seberapa .... Kamu??",
+    subjudul: "Have fun playing this level",
+    jml_soal:"20",
+    author: "Niii",
+    like: "1084",
+    deskripsi:
+      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi beatae vel consequatur, quae delectus minima placeat id velit ducimus, sequi sapiente unde facilis sit recusandae officiis saepe! Est ab eaque voluptates doloribus possimus eveniet fuga repellat similique hic mollitia nesciunt molestias sit accusamus nemo ratione, adipisci expedita suscipit excepturi totam, natus quae reiciendis, velit cupiditate. Distinctio eius maxime harum tempore?",
+  },
+  {
+    id: "5",
+    kategori: "custom",
+    judul: "Kamu tim yg mana, lorem ipsum dolor sit amet",
+    subjudul: "Have fun playing this level",
+    jml_soal:"15",
+    author: "Fin",
+    like: "162",
     deskripsi:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi beatae vel consequatur, quae delectus minima placeat id velit ducimus, sequi sapiente unde facilis sit recusandae officiis saepe! Est ab eaque voluptates doloribus possimus eveniet fuga repellat similique hic mollitia nesciunt molestias sit accusamus nemo ratione, adipisci expedita suscipit excepturi totam, natus quae reiciendis, velit cupiditate. Distinctio eius maxime harum tempore?",
   },

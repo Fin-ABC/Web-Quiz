@@ -132,22 +132,75 @@
     </div>
 
     <!-- About Page -->
-    <div id="about" class="text-white">
-      <div class="mt-4 mx-6 space-y-6">
-        <button class="btn font-semibold text-sm px-6 bg-emerald-800/80 rounded-full"
-        onclick="changePage('main','about')">Balik</button>
-        <div class="bg-emerald-500/80 text-center space-y-3 px-5 py-6 rounded-xl">
-          <h1 class="text-3xl font-dyna font-bold text-left text-shadow-black text-shadow-md">About Quiss</h1>
-          <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur vitae eaque adipisci cumque delectus accusamus, ad exercitationem repellat ex natus nemo quod, obcaecati unde.</p>
-          <p class="text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio minima atque ab corporis ad, assumenda alias nulla temporibus consectetur sed facilis quod. Nesciunt officiis necessitatibus repudiandae temporibus tenetur quod reiciendis aliquam dicta laudantium.</p>
+    <div id="about" class="text-white hidden">
+      <div class="mt-4 mx-6 space-y-16">
+        <button
+          class="btn font-semibold text-sm px-6 bg-emerald-800/80 rounded-full"
+          onclick="changePage('main','about')"
+        >
+          Balik
+        </button>
+        <div class="w-full h-full">
+          <div
+            class="bg-emerald-500/80 text-center m-auto space-y-3 px-5 py-6 rounded-xl my-auto relative max-w-200"
+          >
+            <h1
+              class="text-3xl font-dyna font-bold text-left text-shadow-black text-shadow-md"
+            >
+              About Quiss
+            </h1>
+            <p class="text-sm md:text-base">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Consequuntur vitae eaque adipisci cumque delectus accusamus, ad
+              exercitationem repellat ex natus nemo quod, obcaecati unde.
+            </p>
+            <p class="text-sm md:text-base">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Distinctio minima atque ab corporis ad, assumenda alias nulla
+              temporibus consectetur sed facilis quod. Nesciunt officiis
+              necessitatibus repudiandae temporibus tenetur quod reiciendis
+              aliquam dicta laudantium.
+            </p>
+            <img
+              src="style/img/lamp.svg"
+              alt="icon_lamp"
+              class="icon-about left-0 -rotate-30"
+            />
+            <img
+              src="style/img/trophy.svg"
+              alt="icon_lamp"
+              class="icon-about right-0 rotate-30"
+            />
+          </div>
         </div>
       </div>
     </div>
 
     <!-- How to Play Page -->
-    <div id="how-to-play" class="hidden text-white">
-      Page ini belum dibuat karena devnya sedang sibuk (scroll fesnuk)
-      <button onclick="changePage('main','how-to-play')">Balik</button>
+    <div id="how-to-play" class=" text-white">
+      <div class="mt-4 mx-6 space-y-16">
+        <button
+          class="btn font-semibold text-sm px-6 bg-emerald-800/80 rounded-full"
+          onclick="changePage('main','how-to-play')"
+        >
+          Balik
+        </button>
+        <div class="w-full h-full">
+          <div
+            class="bg-emerald-500/80 text-center m-auto space-y-3 px-5 py-6 rounded-xl my-auto relative max-w-200"
+          >
+            <h1
+              class="text-3xl font-dyna font-bold text-left text-shadow-black text-shadow-md"
+            >
+              Cara Bermain
+            </h1>
+            <!-- <p class="text-sm md:text-base"> -->
+            <p class="text-base md:text-lg text-maomao-light">
+              Dikarenakan devnya sedang <span class="line-through">scroll fesnuk</span> sibuk dengan berbagai tugas, jadi para user diharapkan belajar sendiri dan beradaptasi tentang bagaimana cara memainkan game ini. Sekian, Terima Kasih.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="style/js/script.js"></script>

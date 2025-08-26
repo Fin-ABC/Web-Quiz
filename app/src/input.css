@@ -32,6 +32,7 @@
     @apply text-white bg-red-600 rounded-full absolute py-1 px-2 top-1 right-1 shadow-lg shadow-black/60;
 }
 
+/* Detail Page */
 .center-center{
     @apply flex justify-center items-center;
 }
@@ -39,5 +40,10 @@
     @apply bg-maomao-dark/90 rounded-lg shadow-lg border-maomao-light/50 border;
 }
 .card-w-full{
-    @apply w-19/20 md:w-39/40 lg:w-79/80
+    @apply w-19/20 md:w-39/40 lg:w-79/80;
+}
+
+/* About Page */
+.icon-about{
+    @apply absolute size-15 hover:rotate-0 top-18/20 md:top-17/20;
 }

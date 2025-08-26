@@ -17,7 +17,7 @@
 }
 
 .card-level{
-    @apply bg-white/80 rounded-lg p-4 shadow-lg relative select-none cursor-pointer transition-transform duration-300 ease-in-out hover:scale-102 hover:bg-white/90;
+    @apply bg-white/80 flex-col rounded-lg p-4 shadow-lg relative select-none cursor-pointer transition-transform duration-300 ease-in-out hover:scale-102 hover:bg-white/90;
 }
 .title-card-level{
     @apply font-dyna text-xl font-bold;

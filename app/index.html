@@ -20,7 +20,7 @@
     class="bg-[url('../style/img/light_bg_quiz.avif')] bg-repeat center bg-maomao-dark relative"
   >
     <!-- Main Page -->
-    <div id="main" class="">
+    <div id="main" class="hidden">
       <!-- Navbar Section -->
       <nav class="text-white flex justify-between items-center px-3 py-2">
         <h4 class="text-xl font-bold font-dyna">Web Quiz Kami</h4>
@@ -41,18 +41,20 @@
             class="mx-auto flex flex-col md:flex-row md:justify-center md:items-center mt-4 md:mt-6 gap-4"
           >
             <button
-              id="startBtn"
+              onclick="changePage('level','main')"
               class="bg-emerald-900/70 hover:bg-emerald-950/80 btn md:w-1/5 md:h-20 rounded-xl md:rounded-3xl active:bg-lime-800/70"
             >
               Start
             </button>
             <button
+              onclick="changePage('main','how-to-play')"
               class="bg-emerald-700/70 hover:bg-emerald-800/80 btn md:h-1/10 md:w-1/5 rounded-xl md:rounded-full active:bg-emerald-600"
             >
               How to Play
             </button>
           </div>
           <button
+            onclick="changePage('main','about')"
             class="bg-emerald-700/70 hover:bg-emerald-800/70 btn w-1/3 mx-auto mt-4 md:w-1/8 md:h-12 rounded-xl md:rounded-full active:bg-emerald-700"
           >
             About
@@ -70,7 +72,7 @@
           <!-- Header -->
           <div class="text-white flex justify-between items-center mt-2">
             <button
-              id="back-level"
+              onclick="changePage('level','main')"
               class="bg-red-600 px-3 py-1 rounded-xl font-sour hover:bg-red-700 transition-colors duration-300 ease-in-out active:bg-red-800 shadow-lg shadow-black/60 md:text-lg"
             >
               &#11013; Close
@@ -129,24 +131,27 @@
       </div>
     </div>
 
+    <!-- About Page -->
+    <div id="about" class="text-white">
+      <div class="mt-4 mx-6 space-y-6">
+        <button class="btn font-semibold text-sm px-6 bg-emerald-800/80 rounded-full"
+        onclick="changePage('main','about')">Balik</button>
+        <div class="bg-emerald-500/80 text-center space-y-3 px-5 py-6 rounded-xl">
+          <h1 class="text-3xl font-dyna font-bold text-left text-shadow-black text-shadow-md">About Quiss</h1>
+          <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur vitae eaque adipisci cumque delectus accusamus, ad exercitationem repellat ex natus nemo quod, obcaecati unde.</p>
+          <p class="text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio minima atque ab corporis ad, assumenda alias nulla temporibus consectetur sed facilis quod. Nesciunt officiis necessitatibus repudiandae temporibus tenetur quod reiciendis aliquam dicta laudantium.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Play Page -->
+    <div id="how-to-play" class="hidden text-white">
+      Page ini belum dibuat karena devnya sedang sibuk (scroll fesnuk)
+      <button onclick="changePage('main','how-to-play')">Balik</button>
+    </div>
+
     <script src="style/js/script.js"></script>
     <script>
-      // Start  Button
-      const start = document.getElementById("startBtn");
-      const b_lvl = document.getElementById("back-level");
-      const lvl_section = document.getElementById("level");
-      const main = document.getElementById("main");
-
-      start.addEventListener("click", function () {
-        lvl_section.classList.toggle("hidden");
-        main.classList.toggle("hidden");
-      });
-
-      b_lvl.addEventListener("click", function () {
-        lvl_section.classList.toggle("hidden");
-        main.classList.toggle("hidden");
-      });
-
       // Level Official
       const lvl_offcial = document.getElementById("official-level");
       const lvl_custom = document.getElementById("custom-level");
@@ -164,12 +169,11 @@
           window.location.href = `quiz/?id=${lvl.id}`;
         });
 
-        if(lvl.kategori == "official"){
+        if (lvl.kategori == "official") {
           lvl_offcial.appendChild(card);
-        } else if(lvl.kategori == "custom"){
+        } else if (lvl.kategori == "custom") {
           lvl_custom.appendChild(card);
         }
-
       });
     </script>
   </body>

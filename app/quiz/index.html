@@ -31,6 +31,7 @@
         </div>
         <!-- Button Play -->
         <button
+          onclick="changePage('detail-page','gameplay-page')"
           class="card-w-full cursor-pointer text-2xl font-bold bg-emerald-600 rounded-lg py-2"
         >
           PLAY
@@ -70,6 +71,11 @@
     </div>
     <!-- Detail Page End -->
 
+    <div id="gameplay-page" class="hidden">
+      <button onclick="changePage('detail-page','gameplay-page')">Balik</button>
+      <h1 class="text-lg">Gameplay</h1>
+    </div>
+
     <p id="id" class="hidden"></p>
 
     <script src="../style/js/script.js"></script>
@@ -96,6 +102,7 @@
         like.textContent = `${dt_level.like}`;
         deskripsi.textContent = `${dt_level.deskripsi}`;
       }
+
     </script>
   </body>
 </html>

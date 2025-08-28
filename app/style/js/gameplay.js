@@ -29,6 +29,7 @@ if (dt_level) {
   soal.textContent = `${dt_level.pertanyaan[0]}`;
   pg.textContent = `${dt_level.pilihan_ganda[0]}`;
   jwb.textContent = `${dt_level.jawaban[0]}`;
+
 }
 
 //   Gameplay Kuis
@@ -42,6 +43,7 @@ const g_soalke = document.getElementById("gameplay-soalke");
 const g_soal = document.getElementById("gameplay-soal");
 const g_pilihan = document.getElementById("gameplay-pilihan");
 const g_hasil = document.getElementById("gameplay-hasil");
+const btn_leaderboard = document.getElementById('btn-leaderboard')
 const total_soal = dt_level.pertanyaan.length;
 
 function loadSoal() {
@@ -79,12 +81,14 @@ function cekJawaban(pilihan) {
 }
 
 function tampilHasil() {
-  const point = jumlahBenar * 10;
+  const persen = 100 / dt_level.pertanyaan.length;
+  const point = jumlahBenar * persen;
 
-  textContent("total", `Total Soal: ${total_soal}`);
-  textContent("benar", `Total Benar: ${jumlahBenar}`);
-  textContent("salah", `Total Salah: ${jumlahSalah}`);
-  textContent("nilai", `Nilai: ${point}`);
+  textContent("total", `Jumlah Soal : ${total_soal}`);
+  textContent("benar", `Jawaban Benar : ${jumlahBenar}`);
+  textContent("salah", `Jawaban Salah : ${jumlahSalah}`);
+  textContent("nilai", `${point}%`);
+
   afterQuiz();
 }
 

@@ -80,7 +80,7 @@
       </button>
 
       <!-- Konten Soal dan Pilihan Ganda -->
-      <div class="" id="gameplay-soal-page">
+      <div class="hidden" id="gameplay-soal-page">
         <!-- Konten Kuis (Soal) -->
         <div
           class="bg-maomao-light/70 border-2 border-maomao-dark rounded-xl w-17/20 max-w-100 mx-auto mb-14 relative h-50"
@@ -93,47 +93,59 @@
           </div>
           <div
             id="gameplay-judul"
-            class="rounded-2xl bg-gray-600 text-maomao-light px-4 py-1 mt-1 mx-1 text-center text-sm "
+            class="rounded-2xl bg-gray-600 text-maomao-light px-4 py-1 mt-1 mx-1 text-center text-sm md:text-base"
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, incidunt?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi,
+            incidunt?
           </div>
 
           <div>
-            <p id="gameplay-soal" class="text-maomao-dark text-center my-4 text-sm md:text-base">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit, hic?</p>
+            <p
+              id="gameplay-soal"
+              class="text-maomao-dark text-center my-4 text-sm md:text-xl"
+            >
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit,
+              hic?
+            </p>
           </div>
         </div>
 
         <!-- Konten Kuis (Pilihan Ganda) -->
-        <div id="gameplay-pilihan" class="grid md:grid-cols-2 gap-3">
-          <div class="gameplay-card ">
-            pilihan A
-          </div>
-          <div class="gameplay-card">
-            pilihan B
-          </div>
-          <div class="gameplay-card">
-            pilihan C
-          </div>
-          <div class="gameplay-card">
-            pilihan D
-          </div>
+        <div
+          id="gameplay-pilihan"
+          class="grid md:grid-cols-2 gap-3 md:gap-5 md:w-1/2 mx-auto"
+        >
+          <div class="gameplay-card">pilihan A</div>
+          <div class="gameplay-card">pilihan B</div>
+          <div class="gameplay-card">pilihan C</div>
+          <div class="gameplay-card">pilihan D</div>
         </div>
       </div>
 
       <!-- konten Hasil Kuis -->
       <div
         id="gameplay-hasil"
-        class="hidden bg-slate-600/70 border-1 border-black rounded-xl mx-auto"
+        class=" bg-slate-600/70 border-1 border-black rounded-xl mx-auto"
       >
-        <p id="total">Jumlah soal</p>
-        <p id="benar">Benar</p>
-        <p id="salah">Salah</p>
-        <p id="nilai">Point</p>
+        <div class="mx-auto text-center font-dyna">
+          <p class="text-2xl font-bold">SKOR</p>
+          <p id="nilai" class="text-4xl font-black">100%</p>
+        </div>
+
+        <div class="bg-maomao-dark/60 text-center border border-black rounded-xl text-lg">Analisis Jawaban :</div>
+
+        <div class="bg-maomao-dark/60 text-center border border-black rounded-xl text-md">
+          <p id="total">Jumlah soal : 5</p>
+          <p id="benar" class="">Jawaban Benar : 5</p>
+          <p id="salah">Jawaban Salah : 5</p>
+        </div>
+
+        <div id="btn-leaderboard" class="rounded-xl bg-lime-600">Leaderboard</div>        
       </div>
     </div>
 
     <div class="hidden">
-      <p id="id" class="hidden"></p>
+      <p id="id"></p>
       <p id="soal"></p>
       <p id="pg"></p>
       <p id="jwb"></p>

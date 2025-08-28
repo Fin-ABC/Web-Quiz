@@ -751,6 +751,11 @@
       height: calc(var(--spacing) * 20);
     }
   }
+  .md\:w-1\/2 {
+    @media (width >= 48rem) {
+      width: calc(1/2 * 100%);
+    }
+  }
   .md\:w-1\/5 {
     @media (width >= 48rem) {
       width: calc(1/5 * 100%);
@@ -786,6 +791,11 @@
       justify-content: center;
     }
   }
+  .md\:gap-5 {
+    @media (width >= 48rem) {
+      gap: calc(var(--spacing) * 5);
+    }
+  }
   .md\:rounded-3xl {
     @media (width >= 48rem) {
       border-radius: var(--radius-3xl);
@@ -818,6 +828,12 @@
     @media (width >= 48rem) {
       font-size: var(--text-lg);
       line-height: var(--tw-leading, var(--text-lg--line-height));
+    }
+  }
+  .md\:text-xl {
+    @media (width >= 48rem) {
+      font-size: var(--text-xl);
+      line-height: var(--tw-leading, var(--text-xl--line-height));
     }
   }
 }
@@ -1040,7 +1056,8 @@
 }
 .gameplay-card {
   margin-inline: auto;
-  width: calc(var(--spacing) * 50);
+  width: calc(var(--spacing) * 70);
+  min-width: calc(var(--spacing) * 50);
   border-radius: var(--radius-xl);
   border-style: var(--tw-border-style);
   border-width: 1px;
@@ -1054,6 +1071,10 @@
   font-size: var(--text-lg);
   line-height: var(--tw-leading, var(--text-lg--line-height));
   color: var(--color-maomao-dark);
+  @media (width >= 48rem) {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
 }
 @property --tw-space-y-reverse {
   syntax: "*";

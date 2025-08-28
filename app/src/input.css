@@ -53,5 +53,5 @@
 }
 
 .gameplay-card{
-    @apply bg-maomao-light/70 border-1 border-maomao-dark rounded-xl text-maomao-dark text-center text-lg py-4 w-50 mx-auto;
+    @apply bg-maomao-light/70 border-1 border-maomao-dark rounded-xl text-maomao-dark text-center text-lg py-4 w-70 min-w-50 mx-auto md:text-2xl;
 }

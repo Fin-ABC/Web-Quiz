@@ -10,7 +10,7 @@ const data_quiz = [
   {
     id: "1",
     kategori: "official",
-    judul: "Test Offcial Pertama",
+    judul: "Test Offcial Lengkap",
     subjudul: "Ini adalah subjudul untuk level pertama",
     jml_soal: "5",
     author: "Fin",
@@ -36,7 +36,7 @@ const data_quiz = [
         "Alexander Graham Bell",
       ],
     ],
-    jawaban: ["B", "C", "B", "C", "C"],
+    jawaban: ["Tidak", "Everest", "Tokyo", "90", "Thomas Alva Edison"],
   },
   {
     id: "2",

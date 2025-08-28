@@ -5,6 +5,9 @@
   - icon hati 'like' ubah jadi svg
   - cek mobile version
   - buat desktop version
+
+  Opsional
+  - Design mouse ganti
 -->
 
 <!DOCTYPE html>
@@ -20,7 +23,7 @@
     class="bg-[url('../style/img/light_bg_quiz.avif')] bg-repeat center bg-maomao-dark relative"
   >
     <!-- Main Page -->
-    <div id="main" class="hidden">
+    <div id="main" class="">
       <!-- Navbar Section -->
       <nav class="text-white flex justify-between items-center px-3 py-2">
         <h4 class="text-xl font-bold font-dyna">Web Quiz Kami</h4>
@@ -73,7 +76,7 @@
           <div class="text-white flex justify-between items-center mt-2">
             <button
               onclick="changePage('level','main')"
-              class="bg-red-600 px-3 py-1 rounded-xl font-sour hover:bg-red-700 transition-colors duration-300 ease-in-out active:bg-red-800 shadow-lg shadow-black/60 md:text-lg"
+              class="btn-back"
             >
               &#11013; Close
             </button>
@@ -135,10 +138,10 @@
     <div id="about" class="text-white hidden">
       <div class="mt-4 mx-6 space-y-16">
         <button
-          class="btn font-semibold text-sm px-6 bg-emerald-800/80 rounded-full"
+          class="btn-back"
           onclick="changePage('main','about')"
         >
-          Balik
+          &#11013; Balik
         </button>
         <div class="w-full h-full">
           <div
@@ -161,15 +164,18 @@
               necessitatibus repudiandae temporibus tenetur quod reiciendis
               aliquam dicta laudantium.
             </p>
+
+            <!-- Tambah animasi saat hover setelah 1 detik bakal turun dikit trus keluar efek, untuk lampu bakal keluar efek garis2 sebagai cahaya, sedangkan untuk piala bakal keluar item dari dalam piala -->
+             <!-- Opsional: Pas dihover warna piala sama lampunya juga berubah, jadi ganti dari img ke svg inline  -->
             <img
               src="style/img/lamp.svg"
               alt="icon_lamp"
-              class="icon-about left-0 -rotate-30"
+              class="icon-about left-0 -rotate-30 transition-transform duration-1000 ease-in"
             />
             <img
               src="style/img/trophy.svg"
               alt="icon_lamp"
-              class="icon-about right-0 rotate-30"
+              class="icon-about right-0 rotate-30 transition-transform duration-1000 ease-in"
             />
           </div>
         </div>
@@ -177,13 +183,13 @@
     </div>
 
     <!-- How to Play Page -->
-    <div id="how-to-play" class=" text-white">
+    <div id="how-to-play" class="hidden text-white">
       <div class="mt-4 mx-6 space-y-16">
         <button
-          class="btn font-semibold text-sm px-6 bg-emerald-800/80 rounded-full"
+          class="btn-back"
           onclick="changePage('main','how-to-play')"
         >
-          Balik
+          &#11013; Balik
         </button>
         <div class="w-full h-full">
           <div
@@ -196,7 +202,11 @@
             </h1>
             <!-- <p class="text-sm md:text-base"> -->
             <p class="text-base md:text-lg text-maomao-light">
-              Dikarenakan devnya sedang <span class="line-through">scroll fesnuk</span> sibuk dengan berbagai tugas, jadi para user diharapkan belajar sendiri dan beradaptasi tentang bagaimana cara memainkan game ini. Sekian, Terima Kasih.
+              Dikarenakan devnya sedang
+              <span class="line-through">scroll fesnuk</span> sibuk dengan
+              berbagai tugas, jadi para user diharapkan belajar sendiri dan
+              beradaptasi tentang bagaimana cara memainkan game ini. Sekian,
+              Terima Kasih.
             </p>
           </div>
         </div>

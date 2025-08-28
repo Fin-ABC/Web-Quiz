@@ -8,7 +8,7 @@
   </head>
   <body class="font-sour bg-slate-800 text-white">
     <!-- Detail Page Start -->
-    <div id="detail-page" class="">
+    <div id="detail-page" class="hidden">
       <!-- Header -->
       <div
         class="card-detail card-w-full my-1 mx-auto flex flex-col items-center justify-center gap-4 pt-3.5 pb-2.5 mb-8"
@@ -31,7 +31,7 @@
         </div>
         <!-- Button Play -->
         <button
-          onclick="changePage('detail-page','gameplay-page')"
+          onclick="changePage('detail-page','gameplay-page'); loadSoal(); resetSoal();"
           class="card-w-full cursor-pointer text-2xl font-bold bg-emerald-600 rounded-lg py-2"
         >
           PLAY
@@ -69,40 +69,78 @@
       </div>
       <!-- Content Level End -->
     </div>
-    <!-- Detail Page End -->
 
-    <div id="gameplay-page" class="hidden">
-      <button onclick="changePage('detail-page','gameplay-page')">Balik</button>
-      <h1 class="text-lg">Gameplay</h1>
+    <!-- Gameplay Page -->
+    <div id="gameplay-page" class="">
+      <button
+        class="btn-back my-6 ml-4"
+        onclick="changePage('detail-page','gameplay-page'); resetSoal();"
+      >
+        Balik
+      </button>
+
+      <!-- Konten Soal dan Pilihan Ganda -->
+      <div class="" id="gameplay-soal-page">
+        <!-- Konten Kuis (Soal) -->
+        <div
+          class="bg-maomao-light/70 border-2 border-maomao-dark rounded-xl w-17/20 max-w-100 mx-auto mb-14 relative h-50"
+        >
+          <div
+            id="gameplay-soalke"
+            class="rounded-full bg-gray-600 text-maomao-light px-4 absolute bottom-1 right-1"
+          >
+            1/5
+          </div>
+          <div
+            id="gameplay-judul"
+            class="rounded-2xl bg-gray-600 text-maomao-light px-4 py-1 mt-1 mx-1 text-center text-sm "
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, incidunt?
+          </div>
+
+          <div>
+            <p id="gameplay-soal" class="text-maomao-dark text-center my-4 text-sm md:text-base">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit, hic?</p>
+          </div>
+        </div>
+
+        <!-- Konten Kuis (Pilihan Ganda) -->
+        <div id="gameplay-pilihan" class="grid md:grid-cols-2 gap-3">
+          <div class="gameplay-card ">
+            pilihan A
+          </div>
+          <div class="gameplay-card">
+            pilihan B
+          </div>
+          <div class="gameplay-card">
+            pilihan C
+          </div>
+          <div class="gameplay-card">
+            pilihan D
+          </div>
+        </div>
+      </div>
+
+      <!-- konten Hasil Kuis -->
+      <div
+        id="gameplay-hasil"
+        class="hidden bg-slate-600/70 border-1 border-black rounded-xl mx-auto"
+      >
+        <p id="total">Jumlah soal</p>
+        <p id="benar">Benar</p>
+        <p id="salah">Salah</p>
+        <p id="nilai">Point</p>
+      </div>
     </div>
 
-    <p id="id" class="hidden"></p>
+    <div class="hidden">
+      <p id="id" class="hidden"></p>
+      <p id="soal"></p>
+      <p id="pg"></p>
+      <p id="jwb"></p>
+      <p id="test"></p>
+    </div>
 
     <script src="../style/js/script.js"></script>
-    <script>
-      // Detail Level
-      const params = new URLSearchParams(window.location.search);
-      const idLvl = params.get("id");
-
-      const dt_level = data_quiz.find((lvl) => lvl.id === idLvl);
-      if (dt_level) {
-        const id = document.getElementById("id");
-        const jdl = document.getElementById("judul");
-        const sub_jdl = document.getElementById("subjudul");
-        const author = document.getElementById("author");
-        const jml_soal = document.getElementById("jml-soal");
-        const like = document.getElementById("like");
-        const deskripsi = document.getElementById("desc");
-
-        id.textContent = `ID: ${dt_level.id}`;
-        jdl.textContent = `${dt_level.judul}`;
-        sub_jdl.textContent = `${dt_level.subjudul}`;
-        author.textContent = `${dt_level.author}`;
-        jml_soal.textContent = `${dt_level.jml_soal}`;
-        like.textContent = `${dt_level.like}`;
-        deskripsi.textContent = `${dt_level.deskripsi}`;
-      }
-
-    </script>
+    <script src="../style/js/gameplay.js"></script>
   </body>
 </html>

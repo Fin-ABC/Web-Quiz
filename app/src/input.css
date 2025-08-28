@@ -11,6 +11,9 @@
 .btn{
     @apply font-sour py-2 border-1 border-slate-800 shadow-lg shadow-black/100 hover:shadow-none text-white transition-shadow duration-400 ease-in-out cursor-pointer select-none flex justify-center items-center focus:outline-2 outline-offset-1 outline-maomao-light md:text-lg text-base;
 }
+.btn-back{
+    @apply bg-red-600 px-3 py-1 rounded-xl font-sour hover:bg-red-700 transition-colors duration-300 ease-in-out active:bg-red-800 shadow-lg shadow-black/60 md:text-lg;
+}
 
 .grid-level{
     @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
@@ -32,6 +35,12 @@
     @apply text-white bg-red-600 rounded-full absolute py-1 px-2 top-1 right-1 shadow-lg shadow-black/60;
 }
 
+/* About Page */
+.icon-about{
+    @apply absolute size-15 hover:rotate-0 top-18/20 md:top-17/20 ;
+}
+
+
 /* Detail Page */
 .center-center{
     @apply flex justify-center items-center;
@@ -43,7 +52,6 @@
     @apply w-19/20 md:w-39/40 lg:w-79/80;
 }
 
-/* About Page */
-.icon-about{
-    @apply absolute size-15 hover:rotate-0 top-18/20 md:top-17/20;
+.gameplay-card{
+    @apply bg-maomao-light/70 border-1 border-maomao-dark rounded-xl text-maomao-dark text-center text-lg py-4 w-50 mx-auto;
 }

@@ -43,7 +43,6 @@ const g_soalke = document.getElementById("gameplay-soalke");
 const g_soal = document.getElementById("gameplay-soal");
 const g_pilihan = document.getElementById("gameplay-pilihan");
 const g_hasil = document.getElementById("gameplay-hasil");
-const btn_leaderboard = document.getElementById('btn-leaderboard')
 const total_soal = dt_level.pertanyaan.length;
 
 function loadSoal() {
@@ -84,9 +83,9 @@ function tampilHasil() {
   const persen = 100 / dt_level.pertanyaan.length;
   const point = jumlahBenar * persen;
 
-  textContent("total", `Jumlah Soal : ${total_soal}`);
-  textContent("benar", `Jawaban Benar : ${jumlahBenar}`);
-  textContent("salah", `Jawaban Salah : ${jumlahSalah}`);
+  textContent("total", `${total_soal}`);
+  textContent("benar", `${jumlahBenar}`);
+  textContent("salah", `${jumlahSalah}`);
   textContent("nilai", `${point}%`);
 
   afterQuiz();

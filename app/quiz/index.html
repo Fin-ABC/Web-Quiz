@@ -6,7 +6,7 @@
     <title>Web Quiz</title>
     <link rel="stylesheet" href="../src/output.css" />
   </head>
-  <body class="font-sour bg-slate-800 text-white">
+  <body class="font-sour bg-slate-800 text-white bg-quiz-light">
     <!-- Detail Page Start -->
     <div id="detail-page" class="hidden">
       <!-- Header -->
@@ -125,22 +125,43 @@
       <!-- konten Hasil Kuis -->
       <div
         id="gameplay-hasil"
-        class=" bg-slate-600/70 border-1 border-black rounded-xl mx-auto"
+        class="bg-slate-600/70 border-1 border-black rounded-xl mx-auto center-center flex-col"
       >
-        <div class="mx-auto text-center font-dyna">
+        <div class="mx-auto text-center font-dyna mt-8">
           <p class="text-2xl font-bold">SKOR</p>
           <p id="nilai" class="text-4xl font-black">100%</p>
         </div>
 
-        <div class="bg-maomao-dark/60 text-center border border-black rounded-xl text-lg">Analisis Jawaban :</div>
-
-        <div class="bg-maomao-dark/60 text-center border border-black rounded-xl text-md">
-          <p id="total">Jumlah soal : 5</p>
-          <p id="benar" class="">Jawaban Benar : 5</p>
-          <p id="salah">Jawaban Salah : 5</p>
+        <div
+          class="bg-emerald-500/60 text-center border border-black rounded-xl text-xl w-4/6 mt-10"
+        >
+          Analisis Jawaban :
         </div>
 
-        <div id="btn-leaderboard" class="rounded-xl bg-lime-600">Leaderboard</div>        
+        <div
+          class="bg-emerald-500/70 border border-black rounded-xl text-md w-3/6 center-center flex-col py-3 px-5 mt-4"
+        >
+          <div class="flex gap-1 w-full">
+            <p class="flex-1">Jumlah Soal</p>
+            <p class="">:</p>
+            <p id="total">5</p>
+          </div>
+          <div class="flex gap-1 w-full">
+            <p class="flex-1">Jumlah Benar</p>
+            <p>:</p>
+            <p id="benar">5</p>
+          </div>
+          <div class="flex gap-1 w-full">
+            <p class="flex-1 ">Jumlah Salah</p>
+            <p>:</p>
+            <p id="salah">5</p>
+          </div>
+        </div>
+
+        <div class="center-center gap-15 mt-20 mb-10">
+          <button onclick="changePage('detail-page','gameplay-page'); resetSoal();" class="btn rounded-lg w-30 bg-green-700/45">Back</button>
+          <button class="btn rounded-lg w-30 bg-lime-500/60">Leaderboard</button>
+        </div>
       </div>
     </div>
 

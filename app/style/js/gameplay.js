@@ -107,10 +107,10 @@ function resetSoal() {
     g_page_soal.classList.remove("hidden");
   }
 
-  textContent("total", "Total Soal: 0");
-  textContent("benar", "Total Benar: 0");
-  textContent("salah", "Total Salah: 0");
-  textContent("nilai", "Nilai: 0");
+  textContent("total", "0");
+  textContent("benar", "0");
+  textContent("salah", "0");
+  textContent("nilai", "0");
 }
 
 // Public Funcion

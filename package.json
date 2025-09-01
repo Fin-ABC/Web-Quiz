@@ -7,5 +7,9 @@
   "scripts": {
     "dev": "npx @tailwindcss/cli -i ./app/src/input.css -o ./app/src/output.css --watch",
     "build": "npx @tailwindcss/cli -i ./src/input.css -o ./app/style/css/final.css --minify"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14"
   }
 }

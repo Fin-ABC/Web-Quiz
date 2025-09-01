@@ -164,3 +164,56 @@ const data_quiz = [
     jawaban: ["Tidak", "Everest", "Tokyo", "90", "Thomas Alva Edison"],
   },
 ];
+
+const leader = [
+  {
+    id_lb: "1",
+    name: "Fin_1",
+    score: 100,
+  },
+  {
+    id_lb: "1",
+    name: "Funixxxxx72_1",
+    score: 95,
+  },
+  {
+    id_lb: "2",
+    name: "BakwanJagung42_2",
+    score: 90,
+  },
+  {
+    id_lb: "5",
+    name: "HengkerProTzy_5",
+    score: 85,
+  },
+  {
+    id_lb: "5",
+    name: "Hello_World_5",
+    score: 80,
+  },
+  {
+    id_lb: "4",
+    name: "Haruu_4",
+    score: 75,
+  },
+  {
+    id_lb: "3",
+    name: "Ama_3",
+    score: 80,
+  },
+  {
+    id_lb: "4",
+    name: "Kanaya_4",
+    score: 87,
+  },
+  {
+    id_lb: "2",
+    name: "MyIstrii_2",
+    score: 92,
+  },
+  {
+    id_lb: "3",
+    name: "FinJr_3",
+    score: 94,
+  },
+];

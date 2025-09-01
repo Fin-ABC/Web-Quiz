@@ -29,7 +29,6 @@ if (dt_level) {
   soal.textContent = `${dt_level.pertanyaan[0]}`;
   pg.textContent = `${dt_level.pilihan_ganda[0]}`;
   jwb.textContent = `${dt_level.jawaban[0]}`;
-
 }
 
 //   Gameplay Kuis
@@ -43,6 +42,7 @@ const g_soalke = document.getElementById("gameplay-soalke");
 const g_soal = document.getElementById("gameplay-soal");
 const g_pilihan = document.getElementById("gameplay-pilihan");
 const g_hasil = document.getElementById("gameplay-hasil");
+const g_ldb = document.getElementById("gameplay-leaderboard");
 const total_soal = dt_level.pertanyaan.length;
 
 // Load data untuk card soal dan card pilihan ganda
@@ -104,6 +104,9 @@ function resetSoal() {
   if (!g_hasil.classList.contains("hidden")) {
     g_hasil.classList.add("hidden");
   }
+  if (!g_ldb.classList.contains("hidden")) {
+    g_ldb.classList.add("hidden");
+  }
   if (g_page_soal.classList.contains("hidden")) {
     g_page_soal.classList.remove("hidden");
   }
@@ -112,6 +115,23 @@ function resetSoal() {
   textContent("benar", "0");
   textContent("salah", "0");
   textContent("nilai", "0");
+}
+
+function loadLeaderboard() {
+  const lb_list = document.getElementById("leaderboard-list");
+  const data_leader = leader.filter((lb) => lb.id_lb === idLvl);
+  lb_list.innerHTML = "";
+
+  data_leader.forEach((player, i) => {
+    const div = document.createElement("div");
+    div.className = "leaderboard-items";
+    div.innerHTML = `
+      <span class="leaderboard-items-rank">${i + 1}</span>
+      <span class="leaderboard-items-name">${player.name}</span>
+      <span class="leaderboard-items-skor">${player.score}</span>
+    `;
+    lb_list.appendChild(div);
+  });
 }
 
 // Public Funcion

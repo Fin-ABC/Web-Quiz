@@ -16,7 +16,7 @@
     @apply font-sour py-2 border-1 border-slate-800 shadow-lg shadow-black/100 hover:shadow-none text-white transition-shadow duration-400 ease-in-out cursor-pointer select-none flex justify-center items-center focus:outline-2 outline-offset-1 outline-maomao-light md:text-lg text-base;
 }
 .btn-back{
-    @apply bg-red-600 px-3 py-1 rounded-xl font-sour hover:bg-red-700 transition-colors duration-300 ease-in-out active:bg-red-800 shadow-lg shadow-black/60 md:text-lg;
+    @apply bg-red-600 px-3 py-1 rounded-xl font-sour hover:bg-red-700 transition-all duration-300 hover:shadow-none ease-in-out active:bg-red-800 shadow-lg shadow-black/60 md:text-lg cursor-pointer;
 }
 
 .grid-level{
@@ -24,19 +24,25 @@
 }
 
 .card-level{
-    @apply bg-white/80 flex-col rounded-lg p-4 shadow-lg relative select-none cursor-pointer transition-transform duration-300 ease-in-out hover:scale-102 hover:bg-white/90;
+    @apply bg-white/80 flex-col rounded-lg p-4 shadow-lg relative select-none cursor-pointer transition-transform duration-300 ease-in-out hover:scale-102 hover:bg-white/90 pb-10;
 }
 .title-card-level{
-    @apply font-dyna text-xl font-bold;
+    @apply font-dyna text-xl font-bold max-w-5/6;
+}
+.icon-card-level{
+    @apply size-5; 
 }
 .author-card-level{
-    @apply text-gray-700;
+    @apply text-gray-700 flex absolute bottom-2 left-1;
 }
 .btn-like-card-level{
     @apply text-red-600 bg-red-600/40 border border-red-600 rounded-full absolute py-1 px-2 top-1 right-1 shadow-lg shadow-black/60;
 }
 .btn-like-card-level-active{
     @apply text-white bg-red-600 rounded-full absolute py-1 px-2 top-1 right-1 shadow-lg shadow-black/60;
+}
+.total-card-level{
+    @apply absolute flex right-1 bottom-2;
 }
 
 /* About Page */
@@ -57,5 +63,5 @@
 }
 
 .gameplay-card{
-    @apply bg-maomao-light/70 border-1 border-maomao-dark rounded-xl text-maomao-dark text-center text-lg py-4 w-70 min-w-50 mx-auto md:text-2xl;
+    @apply bg-maomao-light/70 border-1 border-maomao-dark rounded-xl text-maomao-dark text-center text-lg py-4 w-70 min-w-50 mx-auto md:text-2xl cursor-pointer select-none;
 }

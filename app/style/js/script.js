@@ -1,10 +1,11 @@
+// fungsi untuk toggle hidden page a dan page b
 function changePage(page_a, page_b) {
-        const page_1 = document.getElementById(page_a);
-        const page_2 = document.getElementById(page_b);
+  const page_1 = document.getElementById(page_a);
+  const page_2 = document.getElementById(page_b);
 
-        page_1.classList.toggle("hidden");
-        page_2.classList.toggle("hidden");
-      }
+  page_1.classList.toggle("hidden");
+  page_2.classList.toggle("hidden");
+}
 
 const data_quiz = [
   {
@@ -44,10 +45,30 @@ const data_quiz = [
     judul: "Test Official Kelima",
     subjudul: "Have fun playing this level",
     jml_soal: "22",
-    author: "Fin",
+    author: "KuwaciNiku67125",
     like: "12",
     deskripsi:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi beatae vel consequatur, quae delectus minima placeat id velit ducimus, sequi sapiente unde facilis sit recusandae officiis saepe! Est ab eaque voluptates doloribus possimus eveniet fuga repellat similique hic mollitia nesciunt molestias sit accusamus nemo ratione, adipisci expedita suscipit excepturi totam, natus quae reiciendis, velit cupiditate. Distinctio eius maxime harum tempore?",
+    pertanyaan: [
+      "Apakah bumi itu datar?",
+      "Gunung tertinggi di dunia adalah..",
+      "Ibukota Jepang adalah..",
+      "Hasil dari 15 x 6 adalah..",
+      "Siapa penemu lampu pijar?",
+    ],
+    pilihan_ganda: [
+      ["Ya", "Tidak", "Mungkin", "AKu tidak tau"],
+      ["Kilimanjaro", "Elbrus", "Everest", "Fuji"],
+      ["Beijing", "Tokyo", "Seoul", "Kyoto"],
+      ["80", "85", "90", "95"],
+      [
+        "Nikola Tesla",
+        "Albert Einstein",
+        "Thomas Alva Edison",
+        "Alexander Graham Bell",
+      ],
+    ],
+    jawaban: ["Tidak", "Everest", "Tokyo", "90", "Thomas Alva Edison"],
   },
   {
     id: "3",
@@ -55,10 +76,30 @@ const data_quiz = [
     judul: "My Kisah",
     subjudul: "Have fun playing this level",
     jml_soal: "100",
-    author: "Fin",
+    author: "Funixxxxxxxxx72",
     like: "12",
     deskripsi:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi beatae vel consequatur, quae delectus minima placeat id velit ducimus, sequi sapiente unde facilis sit recusandae officiis saepe! Est ab eaque voluptates doloribus possimus eveniet fuga repellat similique hic mollitia nesciunt molestias sit accusamus nemo ratione, adipisci expedita suscipit excepturi totam, natus quae reiciendis, velit cupiditate. Distinctio eius maxime harum tempore?",
+    pertanyaan: [
+      "Apakah bumi itu datar?",
+      "Gunung tertinggi di dunia adalah..",
+      "Ibukota Jepang adalah..",
+      "Hasil dari 15 x 6 adalah..",
+      "Siapa penemu lampu pijar?",
+    ],
+    pilihan_ganda: [
+      ["Ya", "Tidak", "Mungkin", "AKu tidak tau"],
+      ["Kilimanjaro", "Elbrus", "Everest", "Fuji"],
+      ["Beijing", "Tokyo", "Seoul", "Kyoto"],
+      ["80", "85", "90", "95"],
+      [
+        "Nikola Tesla",
+        "Albert Einstein",
+        "Thomas Alva Edison",
+        "Alexander Graham Bell",
+      ],
+    ],
+    jawaban: ["Tidak", "Everest", "Tokyo", "90", "Thomas Alva Edison"],
   },
   {
     id: "4",
@@ -70,6 +111,26 @@ const data_quiz = [
     like: "1084",
     deskripsi:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi beatae vel consequatur, quae delectus minima placeat id velit ducimus, sequi sapiente unde facilis sit recusandae officiis saepe! Est ab eaque voluptates doloribus possimus eveniet fuga repellat similique hic mollitia nesciunt molestias sit accusamus nemo ratione, adipisci expedita suscipit excepturi totam, natus quae reiciendis, velit cupiditate. Distinctio eius maxime harum tempore?",
+    pertanyaan: [
+      "Apakah bumi itu datar?",
+      "Gunung tertinggi di dunia adalah..",
+      "Ibukota Jepang adalah..",
+      "Hasil dari 15 x 6 adalah..",
+      "Siapa penemu lampu pijar?",
+    ],
+    pilihan_ganda: [
+      ["Ya", "Tidak", "Mungkin", "AKu tidak tau"],
+      ["Kilimanjaro", "Elbrus", "Everest", "Fuji"],
+      ["Beijing", "Tokyo", "Seoul", "Kyoto"],
+      ["80", "85", "90", "95"],
+      [
+        "Nikola Tesla",
+        "Albert Einstein",
+        "Thomas Alva Edison",
+        "Alexander Graham Bell",
+      ],
+    ],
+    jawaban: ["Tidak", "Everest", "Tokyo", "90", "Thomas Alva Edison"],
   },
   {
     id: "5",
@@ -81,5 +142,25 @@ const data_quiz = [
     like: "162",
     deskripsi:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi beatae vel consequatur, quae delectus minima placeat id velit ducimus, sequi sapiente unde facilis sit recusandae officiis saepe! Est ab eaque voluptates doloribus possimus eveniet fuga repellat similique hic mollitia nesciunt molestias sit accusamus nemo ratione, adipisci expedita suscipit excepturi totam, natus quae reiciendis, velit cupiditate. Distinctio eius maxime harum tempore?",
+    pertanyaan: [
+      "Apakah bumi itu datar?",
+      "Gunung tertinggi di dunia adalah..",
+      "Ibukota Jepang adalah..",
+      "Hasil dari 15 x 6 adalah..",
+      "Siapa penemu lampu pijar?",
+    ],
+    pilihan_ganda: [
+      ["Ya", "Tidak", "Mungkin", "AKu tidak tau"],
+      ["Kilimanjaro", "Elbrus", "Everest", "Fuji"],
+      ["Beijing", "Tokyo", "Seoul", "Kyoto"],
+      ["80", "85", "90", "95"],
+      [
+        "Nikola Tesla",
+        "Albert Einstein",
+        "Thomas Alva Edison",
+        "Alexander Graham Bell",
+      ],
+    ],
+    jawaban: ["Tidak", "Everest", "Tokyo", "90", "Thomas Alva Edison"],
   },
 ];

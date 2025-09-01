@@ -45,7 +45,9 @@ const g_pilihan = document.getElementById("gameplay-pilihan");
 const g_hasil = document.getElementById("gameplay-hasil");
 const total_soal = dt_level.pertanyaan.length;
 
+// Load data untuk card soal dan card pilihan ganda
 function loadSoal() {
+  // Untuk ngecek jika user sudah menjawab lebih dari jumlah pertanyaan maka return tampilHasil
   if (indexSoal >= dt_level.pertanyaan.length) {
     return tampilHasil();
   }
@@ -66,6 +68,7 @@ function loadSoal() {
   });
 }
 
+// Untuk memeriksa jawaban user
 function cekJawaban(pilihan) {
   const jawaban_benar = dt_level.jawaban[indexSoal];
 
@@ -79,6 +82,7 @@ function cekJawaban(pilihan) {
   loadSoal();
 }
 
+// Fungsi untuk menghitung dan menampilkan hasil dari kuis yg dimainkan user
 function tampilHasil() {
   const persen = 100 / dt_level.pertanyaan.length;
   const point = jumlahBenar * persen;
@@ -88,14 +92,11 @@ function tampilHasil() {
   textContent("salah", `${jumlahSalah}`);
   textContent("nilai", `${point}%`);
 
-  afterQuiz();
-}
-
-function afterQuiz() {
   g_hasil.classList.remove("hidden");
   g_page_soal.classList.add("hidden");
 }
 
+// Fungsi untuk mengreset page hasil dan pertanyaan
 function resetSoal() {
   indexSoal = 0;
   jumlahBenar = 0;

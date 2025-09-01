@@ -13,7 +13,6 @@
     --color-red-800: oklch(44.4% 0.177 26.899);
     --color-lime-500: oklch(76.8% 0.233 130.85);
     --color-lime-800: oklch(45.3% 0.124 130.933);
-    --color-green-700: oklch(52.7% 0.154 150.069);
     --color-emerald-500: oklch(69.6% 0.17 162.48);
     --color-emerald-600: oklch(59.6% 0.145 163.225);
     --color-emerald-700: oklch(50.8% 0.118 165.612);
@@ -46,8 +45,6 @@
     --text-5xl--line-height: 1;
     --text-6xl: 3.75rem;
     --text-6xl--line-height: 1;
-    --text-8xl: 6rem;
-    --text-8xl--line-height: 1;
     --font-weight-bold: 700;
     --font-weight-black: 900;
     --radius-lg: 0.5rem;
@@ -919,12 +916,6 @@
       line-height: var(--tw-leading, var(--text-lg--line-height));
     }
   }
-  .md\:text-xl {
-    @media (width >= 48rem) {
-      font-size: var(--text-xl);
-      line-height: var(--tw-leading, var(--text-xl--line-height));
-    }
-  }
 }
 .bg-quiz-light {
   background-image: url('../style/img/light_bg_quiz.avif');
@@ -975,6 +966,7 @@
   }
 }
 .btn-back {
+  cursor: pointer;
   border-radius: var(--radius-xl);
   background-color: var(--color-red-600);
   padding-inline: calc(var(--spacing) * 3);
@@ -986,7 +978,7 @@
   @supports (color: color-mix(in lab, red, red)) {
     --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-black) 60%, transparent) var(--tw-shadow-alpha), transparent);
   }
-  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-property: all;
   transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
   transition-duration: var(--tw-duration, var(--default-transition-duration));
   --tw-duration: 300ms;
@@ -996,6 +988,12 @@
   &:hover {
     @media (hover: hover) {
       background-color: var(--color-red-700);
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      --tw-shadow: 0 0 #0000;
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
     }
   }
   &:active {
@@ -1027,6 +1025,7 @@
     background-color: color-mix(in oklab, var(--color-white) 80%, transparent);
   }
   padding: calc(var(--spacing) * 4);
+  padding-bottom: calc(var(--spacing) * 10);
   --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
   box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   transition-property: transform, translate, scale, rotate;
@@ -1056,13 +1055,22 @@
   }
 }
 .title-card-level {
+  max-width: calc(5/6 * 100%);
   font-family: var(--font-dyna);
   font-size: var(--text-xl);
   line-height: var(--tw-leading, var(--text-xl--line-height));
   --tw-font-weight: var(--font-weight-bold);
   font-weight: var(--font-weight-bold);
 }
+.icon-card-level {
+  width: calc(var(--spacing) * 5);
+  height: calc(var(--spacing) * 5);
+}
 .author-card-level {
+  position: absolute;
+  bottom: calc(var(--spacing) * 2);
+  left: calc(var(--spacing) * 1);
+  display: flex;
   color: var(--color-gray-700);
 }
 .btn-like-card-level {
@@ -1102,6 +1110,12 @@
   @supports (color: color-mix(in lab, red, red)) {
     --tw-shadow-color: color-mix(in oklab, color-mix(in oklab, var(--color-black) 60%, transparent) var(--tw-shadow-alpha), transparent);
   }
+}
+.total-card-level {
+  position: absolute;
+  right: calc(var(--spacing) * 1);
+  bottom: calc(var(--spacing) * 2);
+  display: flex;
 }
 .icon-about {
   position: absolute;
@@ -1150,6 +1164,7 @@
   margin-inline: auto;
   width: calc(var(--spacing) * 70);
   min-width: calc(var(--spacing) * 50);
+  cursor: pointer;
   border-radius: var(--radius-xl);
   border-style: var(--tw-border-style);
   border-width: 1px;
@@ -1163,6 +1178,8 @@
   font-size: var(--text-lg);
   line-height: var(--tw-leading, var(--text-lg--line-height));
   color: var(--color-maomao-dark);
+  -webkit-user-select: none;
+  user-select: none;
   @media (width >= 48rem) {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));

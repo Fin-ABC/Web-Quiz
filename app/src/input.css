@@ -1,67 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wdth,wght@75..100,400..700&family=Sour+Gummy:ital,wdth,wght@0,100..125,100..900;1,100..125,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DynaPuff:wdth,wght@75..100,400..700&family=Sour+Gummy:ital,wdth,wght@0,100..125,100..900;1,100..125,100..900&display=swap");
 @import "tailwindcss";
 
-@theme{
-    --color-maomao-light: #beedc8;
-    --color-maomao-dark: #365b61;
-    --font-dyna: 'DynaPuff', Tahoma; /*Judul*/
-    --font-sour: 'Sour Gummy', Arial; /*text*/
+@theme {
+  --color-maomao-light: #beedc8;
+  --color-maomao-dark: #365b61;
+  --font-dyna: "DynaPuff", Tahoma; /*Judul*/
+  --font-sour: "Sour Gummy", Arial; /*text*/
 }
 
-.bg-quiz-light{
-    @apply bg-[url('../style/img/light_bg_quiz.avif')];
+.bg-quiz-light {
+  @apply bg-[url('../style/img/light_bg_quiz.avif')];
 }
 
-.btn{
-    @apply font-sour py-2 border-1 border-slate-800 shadow-lg shadow-black/100 hover:shadow-none text-white transition-shadow duration-400 ease-in-out cursor-pointer select-none flex justify-center items-center focus:outline-2 outline-offset-1 outline-maomao-light md:text-lg text-base;
+.btn {
+  @apply font-sour outline-maomao-light flex cursor-pointer items-center justify-center border-1 border-slate-800 py-2 text-base text-white shadow-lg shadow-black/100 outline-offset-1 transition-shadow duration-400 ease-in-out select-none hover:shadow-none focus:outline-2 md:text-lg;
 }
-.btn-back{
-    @apply bg-red-600 px-3 py-1 rounded-xl font-sour hover:bg-red-700 transition-all duration-300 hover:shadow-none ease-in-out active:bg-red-800 shadow-lg shadow-black/60 md:text-lg cursor-pointer;
-}
-
-.grid-level{
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+.btn-back {
+  @apply font-sour cursor-pointer rounded-xl bg-red-600 px-3 py-1 shadow-lg shadow-black/60 transition-all duration-300 ease-in-out hover:bg-red-700 hover:shadow-none active:bg-red-800 md:text-lg;
 }
 
-.card-level{
-    @apply bg-white/80 flex-col rounded-lg p-4 shadow-lg relative select-none cursor-pointer transition-transform duration-300 ease-in-out hover:scale-102 hover:bg-white/90 pb-10;
+.grid-level {
+  @apply grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3;
 }
-.title-card-level{
-    @apply font-dyna text-xl font-bold max-w-5/6;
+
+.card-level {
+  @apply relative cursor-pointer flex-col rounded-lg bg-white/80 p-4 pb-10 shadow-lg transition-transform duration-300 ease-in-out select-none hover:scale-102 hover:bg-white/90;
 }
-.icon-card-level{
-    @apply size-5; 
+.title-card-level {
+  @apply font-dyna max-w-5/6 text-xl font-bold;
 }
-.author-card-level{
-    @apply text-gray-700 flex absolute bottom-2 left-1;
+.icon-card-level {
+  @apply size-5;
 }
-.btn-like-card-level{
-    @apply text-red-600 bg-red-600/40 border border-red-600 rounded-full absolute py-1 px-2 top-1 right-1 shadow-lg shadow-black/60;
+.author-card-level {
+  @apply absolute bottom-2 left-1 flex text-gray-700;
 }
-.btn-like-card-level-active{
-    @apply text-white bg-red-600 rounded-full absolute py-1 px-2 top-1 right-1 shadow-lg shadow-black/60;
+.btn-like-card-level {
+  @apply absolute top-1 right-1 rounded-full border border-red-600 bg-red-600/40 px-2 py-1 text-red-600 shadow-lg shadow-black/60;
 }
-.total-card-level{
-    @apply absolute flex right-1 bottom-2;
+.btn-like-card-level-active {
+  @apply absolute top-1 right-1 rounded-full bg-red-600 px-2 py-1 text-white shadow-lg shadow-black/60;
+}
+.total-card-level {
+  @apply absolute right-1 bottom-2 flex;
 }
 
 /* About Page */
-.icon-about{
-    @apply absolute size-15 hover:rotate-0 top-18/20 md:top-17/20 ;
+.icon-about {
+  @apply absolute top-18/20 size-15 hover:rotate-0 md:top-17/20;
 }
-
 
 /* Detail Page */
-.center-center{
-    @apply flex justify-center items-center;
+.center-center {
+  @apply flex items-center justify-center;
 }
-.card-detail{
-    @apply bg-maomao-dark/90 rounded-lg shadow-lg border-maomao-light/50 border;
+.card-detail {
+  @apply bg-maomao-dark/90 border-maomao-light/50 rounded-lg border shadow-lg;
 }
-.card-w-full{
-    @apply w-19/20 md:w-39/40 lg:w-79/80;
+.card-w-full {
+  @apply w-19/20 md:w-39/40 lg:w-79/80;
 }
 
-.gameplay-card{
-    @apply bg-maomao-light/70 border-1 border-maomao-dark rounded-xl text-maomao-dark text-center text-lg py-4 w-70 min-w-50 mx-auto md:text-2xl cursor-pointer select-none;
+.gameplay-card {
+  @apply bg-maomao-light/70 border-maomao-dark text-maomao-dark mx-auto w-70 min-w-50 cursor-pointer rounded-xl border-1 py-4 text-center text-lg select-none md:text-2xl;
+}
+
+.leaderboard-items {
+  @apply flex w-full justify-around text-2xl;
+}
+.leaderboard-items-rank {
+  @apply w-1/4 text-center;
+}
+.leaderboard-items-name {
+  @apply w-1/2 text-nowrap overflow-x-scroll md:overflow-x-hidden;
+}
+.leaderboard-items-skor {
+  @apply w-1/4 text-center;
 }

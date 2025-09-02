@@ -3,7 +3,14 @@
   Letak hatinya sama kayak jumlah soal, tapi disebelah kiri
 -->
 
-<!DOCTYPE html>
+<!-- 
+detail-page rm hidden
+gameplay-page add hidden
+gameplay-page-soal add hidden (opsi)
+gameplay-leaderboard add hidden (opsi)
+  -->
+
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -11,17 +18,17 @@
     <title>Web Quiz</title>
     <link rel="stylesheet" href="../src/output.css" />
   </head>
-  <body class="font-sour bg-slate-800 text-white bg-quiz-light">
+  <body class="font-sour bg-quiz-light bg-slate-800 text-white">
     <!-- Detail Page Start -->
     <div id="detail-page" class="">
       <!-- Header -->
       <div
-        class="card-detail card-w-full my-1 mx-auto flex flex-col items-center justify-center gap-4 pt-3.5 pb-2.5 mb-8"
+        class="card-detail card-w-full mx-auto my-1 mb-8 flex flex-col items-center justify-center gap-4 pt-3.5 pb-2.5"
       >
-        <h1 class="font-bold text-4xl text-maomao-light font-dyna">MyQuizz</h1>
+        <h1 class="text-maomao-light font-dyna text-4xl font-bold">MyQuizz</h1>
         <button
           onclick="window.location.href='../'"
-          class="py-2 px-3 border border-maomao-light rounded-full text-sm cursor-pointer"
+          class="border-maomao-light cursor-pointer rounded-full border px-3 py-2 text-sm"
         >
           Back to Game
         </button>
@@ -37,34 +44,34 @@
         <!-- Button Play -->
         <button
           onclick="changePage('detail-page','gameplay-page'); resetSoal(); loadSoal();"
-          class="card-w-full cursor-pointer text-2xl font-bold bg-emerald-600 rounded-lg py-2"
+          class="card-w-full cursor-pointer rounded-lg bg-emerald-600 py-2 text-2xl font-bold"
         >
           PLAY
         </button>
 
         <!-- group card information -->
-        <div class="center-center flex-col md:flex-row gap-2">
+        <div class="center-center flex-col gap-2 md:flex-row">
           <!-- Card Jumlah Soal -->
           <div
-            class="card-detail w-55 select-none cursor-pointer hover:-translate-y-1 transition-transform center-center flex-col"
+            class="card-detail center-center w-55 cursor-pointer flex-col transition-transform select-none hover:-translate-y-1"
           >
             <p class="text-4xl">icon jumlah</p>
-            <p id="jml-soal" class="font-black text-lg"></p>
+            <p id="jml-soal" class="text-lg font-black"></p>
             <p>SOAL</p>
           </div>
           <!-- Card Like -->
           <div
-            class="card-detail w-55 select-none cursor-pointer hover:-translate-y-1 transition-transform center-center flex-col"
+            class="card-detail center-center w-55 cursor-pointer flex-col transition-transform select-none hover:-translate-y-1"
           >
-            <p class="text-red-600 text-4xl">&#10084;</p>
-            <p id="like" class="font-black text-lg"></p>
+            <p class="text-4xl text-red-600">&#10084;</p>
+            <p id="like" class="text-lg font-black"></p>
             <p>LIKE</p>
           </div>
         </div>
         <!-- Group Card End -->
 
         <!-- Card About -->
-        <div class="card-detail card-w-full px-2 py-3 flex flex-col gap-2">
+        <div class="card-detail card-w-full flex flex-col gap-2 px-2 py-3">
           <h2 class="text-2xl font-bold">About this level</h2>
           <p class="text-sm" id="desc"></p>
           <hr />
@@ -76,7 +83,7 @@
     </div>
 
     <!-- Gameplay Page -->
-     <!-- Dimana user menjawab pertanyaan dengan menekan salah satu dari 4 pilihan ganda -->
+    <!-- Dimana user menjawab pertanyaan dengan menekan salah satu dari 4 pilihan ganda -->
     <div id="gameplay-page" class="hidden">
       <button
         class="btn-back my-6 ml-4"
@@ -86,20 +93,20 @@
       </button>
 
       <!-- Konten Soal dan Pilihan Ganda -->
-      <div class="" id="gameplay-soal-page">
+      <div class="hidden" id="gameplay-soal-page">
         <!-- Konten Kuis (Soal) -->
         <div
-          class="bg-maomao-light/70 border-2 border-maomao-dark rounded-xl w-17/20 max-w-100 mx-auto mb-14 relative h-50"
+          class="bg-maomao-light/70 border-maomao-dark relative mx-auto mb-14 h-50 w-17/20 max-w-100 rounded-xl border-2"
         >
           <div
             id="gameplay-soalke"
-            class="rounded-full bg-gray-600 text-maomao-light px-4 absolute bottom-1 right-1"
+            class="text-maomao-light absolute right-1 bottom-1 rounded-full bg-gray-600 px-4"
           >
             1/5
           </div>
           <div
             id="gameplay-judul"
-            class="rounded-2xl bg-gray-600 text-maomao-light px-4 py-1 mt-1 mx-1 text-center text-sm md:text-base"
+            class="text-maomao-light mx-1 mt-1 rounded-2xl bg-gray-600 px-4 py-1 text-center text-sm md:text-base"
           >
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi,
             incidunt?
@@ -108,7 +115,7 @@
           <div>
             <p
               id="gameplay-soal"
-              class="text-maomao-dark text-center my-4 text-lg md:text-2xl select-none"
+              class="text-maomao-dark my-4 text-center text-lg select-none md:text-2xl"
             >
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit,
               hic?
@@ -119,7 +126,7 @@
         <!-- Konten Kuis (Pilihan Ganda) -->
         <div
           id="gameplay-pilihan"
-          class="grid md:grid-cols-2 gap-3 md:gap-5 md:w-1/2 mx-auto"
+          class="mx-auto grid gap-3 md:w-1/2 md:grid-cols-2 md:gap-5"
         >
           <div class="gameplay-card">pilihan A</div>
           <div class="gameplay-card">pilihan B</div>
@@ -131,49 +138,81 @@
       <!-- konten Hasil Kuis -->
       <div id="gameplay-hasil" class="hidden">
         <div
-          class="bg-slate-600/70 border-1 border-black rounded-xl mx-auto center-center flex-col md:w-1/2"
+          class="center-center mx-auto flex-col rounded-xl border-1 border-black bg-slate-600/70 md:w-1/2"
         >
-        <!-- Skor -->
-          <div class="mx-auto text-center font-dyna mt-8">
+          <!-- Skor -->
+          <div class="font-dyna mx-auto mt-8 text-center">
             <p class="text-2xl font-bold md:text-4xl">SKOR</p>
             <p id="nilai" class="text-4xl font-black md:text-6xl">100%</p>
           </div>
 
           <div
-            class="bg-emerald-500/60 text-center border border-black rounded-xl text-xl w-4/6 md:w-1/3 md:text-2xl py-1 mt-10"
+            class="mt-10 w-4/6 rounded-xl border border-black bg-emerald-500/60 py-1 text-center text-xl md:w-1/3 md:text-2xl"
           >
             Analisis Jawaban :
           </div>
-
+          <!-- Card Statistik -->
           <div
-            class="bg-emerald-500/70 border border-black rounded-xl text-md w-3/6 md:w-3/8 md:text-lg center-center flex-col py-3 px-5 mt-4"
+            class="text-md center-center mt-4 w-3/6 flex-col rounded-xl border border-black bg-emerald-500/70 px-5 py-3 md:w-3/8 md:text-lg"
           >
-            <div class="gap-1 w-full center-center">
-              <p class="flex-1 md:flex-none md:w-2/3">Jumlah Soal</p>
+            <div class="center-center w-full gap-1">
+              <p class="flex-1 md:w-2/3 md:flex-none">Jumlah Soal</p>
               <p class="">:</p>
               <p id="total">5</p>
             </div>
-            <div class="gap-1 w-full center-center">
-              <p class="flex-1 md:flex-none md:w-2/3">Jumlah Benar</p>
+            <div class="center-center w-full gap-1">
+              <p class="flex-1 md:w-2/3 md:flex-none">Jumlah Benar</p>
               <p>:</p>
               <p id="benar">5</p>
             </div>
-            <div class="gap-1 w-full center-center">
-              <p class="flex-1 md:flex-none md:w-2/3">Jumlah Salah</p>
+            <div class="center-center w-full gap-1">
+              <p class="flex-1 md:w-2/3 md:flex-none">Jumlah Salah</p>
               <p>:</p>
               <p id="salah">5</p>
             </div>
           </div>
-
-          <div class="center-center gap-15 mt-20 mb-10">
+          <!-- Button -->
+          <div class="center-center mt-20 mb-10 gap-15">
             <button
               onclick="changePage('detail-page','gameplay-page'); resetSoal();"
-              class="btn rounded-lg w-30 bg-red-700/45"
+              class="btn w-30 rounded-lg bg-red-700/45"
             >
               Back
             </button>
-            <button class="btn rounded-lg w-30 bg-lime-500/60">
+            <button
+              onclick="changePage('gameplay-hasil','gameplay-leaderboard'); loadLeaderboard();"
+              class="btn w-30 rounded-lg bg-lime-500/60"
+            >
               Leaderboard
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leaderboard Page -->
+      <div class="" id="gameplay-leaderboard">
+        <div class="center-center flex-col gap-6">
+          <h2 class="font-dyna text-3xl">Leaderboard</h2>
+          <!-- Card Table -->
+          <div class="w-9/10 rounded-xl bg-lime-500/70 px-2 py-4 md:w-2/5">
+            <!-- Header card Table -->
+            <div class="flex justify-around text-2xl">
+              <span class="w-1/4 text-center">Rank</span>
+              <span class="w-1/2">Nama</span>
+              <span class="w-1/4 text-center">Skor</span>
+            </div>
+            <!-- Content Card Table -->
+            <div id="leaderboard-list" class="max-h-100 overflow-y-scroll scroll-m-10">
+              <!-- Isi leaderboard disini -->
+            </div>
+          </div>
+          <!-- Bawah Card Table -->
+          <div class="flex w-full justify-end px-5 md:hidden">
+            <button
+              onclick="changePage('detail-page','gameplay-page'); resetSoal();"
+              class="btn w-30 rounded-lg bg-red-700/45"
+            >
+              Back
             </button>
           </div>
         </div>

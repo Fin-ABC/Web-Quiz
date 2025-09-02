@@ -177,6 +177,31 @@ const leader = [
     score: 95,
   },
   {
+    id_lb: "1",
+    name: "KarungGoni_1",
+    score: 95,
+  },
+  {
+    id_lb: "1",
+    name: "IAmAtomic_1",
+    score: 99,
+  },
+  {
+    id_lb: "1",
+    name: "Buwung1945_1",
+    score: 75,
+  },
+  {
+    id_lb: "1",
+    name: "Gojlak_1",
+    score: 60,
+  },
+  {
+    id_lb: "1",
+    name: "LognameFinLikeShark172617G_1",
+    score: 95,
+  },
+  {
     id_lb: "2",
     name: "BakwanJagung42_2",
     score: 90,

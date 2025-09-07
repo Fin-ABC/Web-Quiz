@@ -5,12 +5,20 @@
   - cek mobile version
   - buat desktop version
 
+  Backend
+  - muncul jika user login
+  | - Button Random Quiz
+  | - Custom Level (id = page-custom-level)
+
   Opsional
   - Design mouse ganti
   - Nambah jenis soal 'Pilihan Ganda' dan 'True or False'
 
   Note
   - Max judul 40 karakter
+
+  Create Quiz Page +hidden
+  Main Page -hidden
 -->
 
 <!doctype html>
@@ -26,11 +34,12 @@
     class="center bg-maomao-dark relative bg-[url('../style/img/light_bg_quiz.avif')] bg-repeat"
   >
     <!-- Main Page -->
-    <div id="main" class="">
+    <div id="main" class="hidden">
       <!-- Navbar Section -->
       <nav class="flex items-center justify-between px-3 py-2 text-white">
         <h4 class="font-dyna text-xl font-bold">Web Quiz Kami</h4>
-        <button onclick="window.location.href='login/'"
+        <button
+          onclick="window.location.href='login/'"
           class="font-sour mx-3 my-1 cursor-pointer rounded-full bg-emerald-600/80 px-3 py-1 text-center shadow-lg shadow-black/60 transition-shadow duration-400 ease-in-out hover:shadow-none active:bg-emerald-800/70 md:w-22"
         >
           Login
@@ -53,13 +62,23 @@
             >
               Start
             </button>
-            <!-- Button How to Play -->
-            <button
-              onclick="changePage('main','how-to-play')"
-              class="btn rounded-xl bg-emerald-700/70 hover:bg-emerald-800/80 active:bg-emerald-600 md:h-1/10 md:w-1/5 md:rounded-full"
-            >
-              How to Play
-            </button>
+            <div class="flex flex-col gap-4 md:h-1/10 md:w-1/5">
+              <!-- Button Random Quiz Muncul jika user login -->
+              <button
+                id="btn-random-quiz"
+                onclick=""
+                class="btn rounded-xl bg-red-700/70 hover:bg-red-800/80 active:bg-emerald-600 md:rounded-full"
+              >
+                Random Quiz
+              </button>
+              <!-- Button How to Play -->
+              <button
+                onclick="changePage('main','how-to-play')"
+                class="btn rounded-xl bg-emerald-700/70 hover:bg-emerald-800/80 active:bg-emerald-600 md:rounded-full"
+              >
+                How to Play
+              </button>
+            </div>
           </div>
           <!-- Button About -->
           <button
@@ -84,6 +103,12 @@
               &#11013; Close
             </button>
             <h1 class="font-dyna text-2xl font-bold md:text-4xl">Quiz</h1>
+            <button
+              onclick="changePage('level','create-quiz')"
+              class="btn-back"
+            >
+              Make Quiz
+            </button>
           </div>
 
           <!-- Content -->
@@ -129,7 +154,7 @@
           <!-- Official Level End -->
 
           <!-- Custom Level Start -->
-          <div class="mt-8">
+          <div id="page-custom-level" class="mt-8">
             <h1 class="font-dyna mb-4 text-2xl font-bold text-white">
               Custom Level
             </h1>
@@ -234,6 +259,44 @@
       </div>
     </div>
 
+    <!-- Create Quiz Page -->
+    <div id="create-quiz" class=" w-full">
+      <div
+        class="bg-maomao-dark/60 mx-5 my-5 flex items-center justify-center rounded-xl py-3 backdrop-blur-sm"
+      >
+        <div class="mx-auto w-5/6 md:my-auto space-y-2.5">
+          <!-- Header -->
+          <div class="mt-2 flex items-center justify-between text-white">
+            <button onclick="changePage('level','main')" class="btn-back">
+              &#11013; Close
+            </button>
+            <h1 class="font-dyna text-2xl font-bold md:text-4xl">Make Quiz</h1>            
+            <p class="hidden md:visible"></p>
+          </div>
+
+          <!-- Card Rules -->
+           <div class="card-create">
+            <h5 class="text-xl font-bold">Rules</h5>
+            <ul class="list-disc list-inside">
+              <li>Rule 1</li>
+              <li>Rule 2</li>
+              <li>Rule 3</li>
+              <li>Rule 4</li>
+              <li>Rule 5</li>
+            </ul>
+           </div>
+
+           <!-- Basic Info -->
+            <div class="card-create">
+              <h5 class="text-xl font-bold">Basic Info</h5>
+              <form action="" method="post">
+                <input type="text">
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+
     <script src="style/js/script.js"></script>
     <script>
       const lvl_offcial = document.getElementById("official-level");
@@ -270,6 +333,16 @@
           lvl_custom.appendChild(card);
         }
       });
+
+      // const apiUrl = "http://localhost:3000/kuis";
+
+      // async function testing() {
+      //   const res = await fetch(apiUrl);
+      //   const data = await res.json();
+
+      //   console.log(data);
+      // }
+      // testing();
     </script>
   </body>
 </html>

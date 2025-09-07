@@ -7,7 +7,7 @@ const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
-app.use(cors())
+app.use(cors());
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -21,26 +21,21 @@ db.connect((err) => {
     console.log("Gagal", err);
     return;
   }
+  console.log("Database tersambung");
 });
 
-function tb_kuis() {
-  db.query("select * from tb_kuis", (err, hasil) => {
-    if (err) {
-      console.error("Error:", err);
-      return;
-    }
-    console.log("Data dari tb_kuis");
-    console.log(hasil);
-  });
-}
+app.get("/tes", (req, res) => {
+  res.send("hallo");
+});
 
-function tb_user() {
-  db.query("select * from tb_user", (err, hasil) => {
-    if (err) {
-      console.error("Error:", err);
-      return;
-    }
-    console.log("Data dari tb_kuis");
-    console.log(hasil);
+app.get("/kuis", (req, res) => {
+  const sql = "select * from tb_kuis";
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    res.json(result);
   });
-}
+});
+
+app.listen(port, () => {
+  console.log(`Jalan di http://localhost:${port}`);
+});

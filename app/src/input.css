@@ -77,3 +77,7 @@
 .leaderboard-items-skor {
   @apply w-1/4 text-center;
 }
+
+.card-create{
+  @apply text-white bg-green-950 w-9/10 md:w-3/5 rounded-xl mx-auto p-4;
+}

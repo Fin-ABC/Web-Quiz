@@ -104,7 +104,7 @@
             </button>
             <h1 class="font-dyna text-2xl font-bold md:text-4xl">Quiz</h1>
             <button
-              onclick="changePage('level','create-quiz')"
+              onclick="changePage('level','create-kuis');"
               class="btn-back"
             >
               Make Quiz
@@ -260,39 +260,114 @@
     </div>
 
     <!-- Create Quiz Page -->
-    <div id="create-quiz" class=" w-full">
+    <div id="create-kuis" class="w-full">
       <div
         class="bg-maomao-dark/60 mx-5 my-5 flex items-center justify-center rounded-xl py-3 backdrop-blur-sm"
       >
-        <div class="mx-auto w-5/6 md:my-auto space-y-2.5">
+        <div class="mx-auto w-5/6 space-y-2.5 md:my-auto">
           <!-- Header -->
           <div class="mt-2 flex items-center justify-between text-white">
-            <button onclick="changePage('level','main')" class="btn-back">
+            <button onclick="changePage('create-kuis','main')" class="btn-back">
               &#11013; Close
             </button>
-            <h1 class="font-dyna text-2xl font-bold md:text-4xl">Make Quiz</h1>            
+            <h1 class="font-dyna text-2xl font-bold md:text-4xl">Make Quiz</h1>
             <p class="hidden md:visible"></p>
           </div>
 
           <!-- Card Rules -->
-           <div class="card-create">
+          <div class="card-create">
             <h5 class="text-xl font-bold">Rules</h5>
-            <ul class="list-disc list-inside">
+            <ul class="list-inside list-disc">
               <li>Rule 1</li>
               <li>Rule 2</li>
               <li>Rule 3</li>
               <li>Rule 4</li>
               <li>Rule 5</li>
             </ul>
-           </div>
+          </div>
 
-           <!-- Basic Info -->
-            <div class="card-create">
+          <!-- Basic Info -->
+          <div class="card-create" id="basic-info">
+            <form action="" method="post" class="space-y-4">
               <h5 class="text-xl font-bold">Basic Info</h5>
-              <form action="" method="post">
-                <input type="text">
-              </form>
+              <!-- Judul -->
+              <div>
+                <label for="judul" class="mb-1 block font-semibold"
+                  >Judul</label
+                >
+                <input
+                  type="text"
+                  id="basic_info_judul"
+                  name="judul"
+                  maxlength="40"
+                  placeholder="Masukkan judul kuis"
+                  class="bg-maomao-light text-maomao-dark w-full rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                  required
+                />
+              </div>
+              <!-- Sub Judul -->
+              <div>
+                <label for="subjudul" class="mb-1 block font-semibold"
+                  >Sub Judul</label
+                >
+                <input
+                  type="text"
+                  id="basic_info_subjudul"
+                  name="subjudul"
+                  maxlength="60"
+                  placeholder="Penjelasan pendek"
+                  class="text-maomao-dark bg-maomao-light w-full rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                />
+              </div>
+              <!-- Deskripsi -->
+              <div>
+                <label for="deskripsi" class="mb-1 block font-semibold"
+                  >Deskripsi</label
+                >
+                <textarea
+                  id="basic_info_deskripsi"
+                  name="deskripsi"
+                  rows="4"
+                  placeholder="Penjelasan detail / Deskripsi level quiz"
+                  class="bg-maomao-light text-maomao-dark w-full resize-none rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                ></textarea>
+              </div>
+              <!-- Jumlah soal --><label
+                for="basic_info_jumlah_soal"
+                class="mb-1 block font-semibold"
+                >Jumlah Soal</label
+              >
+              <input
+                type="number"
+                id="basic_info_jumlah_soal"
+                name="basic_info_jumlah_soal"
+                min="5"
+                value="5"
+                class="text-maomao-dark bg-maomao-light w-full rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                required
+                oninput="if(this.value < 5) this.value = 5;"
+              />
+              <!-- Button lanjut -->
+              <button
+                name="tambah if kosong tidak bisa bisa diklik atau wajib diisi, kalo udh penuh maka bisa lanjut dan pindah page"
+                onclick="basic_info_to_pertanyaan()"
+                type="button"
+                class="w-full rounded-md bg-emerald-700 py-2 font-bold text-white transition hover:bg-emerald-800"
+              >
+                Lanjut
+              </button>
+            </form>
+          </div>
+          <!-- Basic Info End -->
+
+          <!-- Isi Pertanyaa -->
+          <div class="card-create hidden" id="form-pertanyaan">
+            <div id="card-pertanyaan" class="">
+              <!-- isi page pertanyaan ada disini -->
             </div>
+            <!-- Disini bakal muncuk button kirim -->
+          </div>
+          <!-- Isi Pertanyaan End -->
         </div>
       </div>
     </div>

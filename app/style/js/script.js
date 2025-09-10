@@ -1,3 +1,162 @@
+// Bagian Create Page Start
+function panggil_form(index) {
+  const card_pertanyaan = document.getElementById("card-pertanyaan");
+
+  card_pertanyaan.innerHTML = "";
+  for (let i = 1; i <= index; i++) {
+    card_pertanyaan.innerHTML += `
+      <div class="mb-4 p-4 border rounded-lg border-white">
+        <label for="create_kuis_pertanyaan${i}" class="mb-1 block font-semibold">Pertanyaan ${i}</label>
+        <input
+          type="text"
+          id="create_kuis_pertanyaan${i}"
+          name="create_kuis_pertanyaan${i}"
+          maxlength="60"
+          placeholder="Masukkan pertanyaan"
+          class="txt-box-pertanyaan"
+          required
+        />
+        <div class="mt-3">
+          <label class="mb-1 block font-semibold">Pilihan Ganda</label>
+          <div class="grid grid-cols-2 gap-4">
+            ${[1, 2, 3, 4]
+              .map(
+                (j) => `
+              <div class="flex items-center">
+                <input
+                  type="text"
+                  name="create_kuis_pilihan${i}_${j}"
+                  maxlength="40"
+                  placeholder="Pilihan ${j}"
+                  class="txt-box-pilgan"
+                  required
+                />
+                <input
+                  type="checkbox"
+                  name="create_kuis_benar${i}_${j}"
+                  class="ml-2 h-5 w-5 accent-emerald-700"
+                  title="Jawaban Benar"
+                />
+              </div>
+            `,
+              )
+              .join("")}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Button kirim
+  card_pertanyaan.innerHTML += `
+    <div
+      onclick="cek_form_create_kuis()"
+      class="w-full mt-3 cursor-pointer rounded-md bg-emerald-700 py-2 text-center font-bold text-white transition hover:bg-emerald-800"
+      role="button"
+      tabindex="0"
+    >
+      Kirim
+    </div>
+  `;
+}
+
+function basic_info_to_pertanyaan() {
+  document.getElementById("basic_info_judul").value = "Sample Judul";
+  document.getElementById("basic_info_subjudul").value = "Sample Subjudul";
+  document.getElementById("basic_info_deskripsi").value = "Sample Deskrisi";
+
+  const judul = document.getElementById("basic_info_judul").value.trim();
+  const subjudul = document.getElementById("basic_info_subjudul").value.trim();
+  const deskripsi = document
+    .getElementById("basic_info_deskripsi")
+    .value.trim();
+
+  if (judul === "" || subjudul === "" || deskripsi === "") {
+    alert("Form Wajib Diisi");
+    return;
+  }
+  panggil_form(document.getElementById("basic_info_jumlah_soal").value);
+  changePage("form-pertanyaan", "basic-info");
+}
+
+function validasiFormPertanyaan(jml_soal) {
+  for (let i = 1; i <= jml_soal; i++) {
+    // Cek pertanyaan
+    const pertanyaan = document.getElementById(`create_kuis_pertanyaan${i}`);
+    if (!pertanyaan || pertanyaan.value.trim() === "") {
+      alert("Kotak teks tidak boleh kosong");
+      return false;
+    }
+
+    // Cek pilihan ganda
+    let adaJawabanBenar = false;
+    for (let j = 1; j <= 4; j++) {
+      const pilihanInput = document.querySelector(`input[name="create_kuis_pilihan${i}_${j}"]`);
+      const checkboxInput = document.querySelector(`input[name="create_kuis_benar${i}_${j}"]`);
+
+      if (!pilihanInput || pilihanInput.value.trim() === "") {
+        alert("Kotak teks tidak boleh kosong");
+        return false;
+      }
+      if (checkboxInput && checkboxInput.checked) {
+        adaJawabanBenar = true;
+      }
+    }
+
+    if (!adaJawabanBenar) {
+      alert("Harus pilih setidaknya 1 jawaban benar");
+      return false;
+    }
+  }
+  return true;
+}
+
+// Contoh penggunaan di cek_form_create_kuis
+function cek_form_create_kuis() {
+  const jumlahSoal = document.getElementById("basic_info_jumlah_soal").value;
+  if (!validasiFormPertanyaan(jumlahSoal)) {
+    return;
+  }
+  hasil = getQuizFormData(jumlahSoal);
+  console.log(hasil);
+}
+
+function getQuizFormData(jml_soal) {
+  const quizData = [];
+  for (let i = 1; i <= jml_soal; i++) {
+    // Ambil pertanyaan
+    const pertanyaan = document
+      .getElementById(`create_kuis_pertanyaan${i}`)
+      .value.trim();
+
+    // Ambil pilihan ganda dan jawaban benar
+    const pilihan_ganda = [];
+    let jawaban_benar = [];
+    for (let j = 1; j <= 4; j++) {
+      const pilihanInput = document.querySelector(
+        `input[name="create_kuis_pilihan${i}_${j}"]`,
+      );
+      const checkboxInput = document.querySelector(
+        `input[name="create_kuis_benar${i}_${j}"]`,
+      );
+      const pilihanValue = pilihanInput.value.trim();
+      pilihan_ganda.push(pilihanValue);
+
+      if (checkboxInput.checked) {
+        jawaban_benar.push(pilihanValue);
+      }
+    }
+
+    quizData.push({
+      pertanyaan,
+      pilihan_ganda,
+      jawaban_benar,
+    });
+  }
+  return quizData;
+}
+// Bagian Create Page End
+
 // fungsi untuk toggle hidden page a dan page b
 function changePage(page_a, page_b) {
   const page_1 = document.getElementById(page_a);

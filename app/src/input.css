@@ -72,12 +72,18 @@
   @apply w-1/4 text-center;
 }
 .leaderboard-items-name {
-  @apply w-1/2 text-nowrap overflow-x-scroll md:overflow-x-hidden;
+  @apply w-1/2 overflow-x-scroll text-nowrap md:overflow-x-hidden;
 }
 .leaderboard-items-skor {
   @apply w-1/4 text-center;
 }
 
-.card-create{
-  @apply text-white bg-green-950 w-9/10 md:w-3/5 rounded-xl mx-auto p-4;
+.card-create {
+  @apply mx-auto w-9/10 rounded-xl bg-green-950 p-4 text-white md:w-3/5;
+}
+.txt-box-pertanyaan {
+  @apply text-maomao-dark bg-maomao-light w-full rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none;
+}
+.txt-box-pilgan {
+  @apply text-maomao-dark bg-maomao-light w-full rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none;
 }

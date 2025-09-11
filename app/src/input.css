@@ -80,7 +80,7 @@
 
 .card-create {
   @apply mx-auto w-19/20 rounded-xl bg-green-950 p-4 text-white md:w-3/5;
-}f 
+}
 .txt-box-pertanyaan {
   @apply text-maomao-dark bg-maomao-light w-full rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none;
 }

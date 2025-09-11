@@ -17,8 +17,6 @@
   Note
   - Max judul 40 karakter
 
-  Create Quiz Page +hidden
-  Main Page -hidden
 -->
 
 <!doctype html>
@@ -31,10 +29,11 @@
     <!-- <link rel="stylesheet" href="style/css/final.css"> -->
   </head>
   <body
+    id="body"
     class="center bg-maomao-dark relative bg-[url('../style/img/light_bg_quiz.avif')] bg-repeat"
   >
     <!-- Main Page -->
-    <div id="main" class="hidden">
+    <div id="main" class="">
       <!-- Navbar Section -->
       <nav class="flex items-center justify-between px-3 py-2 text-white">
         <h4 class="font-dyna text-xl font-bold">Web Quiz Kami</h4>
@@ -260,14 +259,23 @@
     </div>
 
     <!-- Create Quiz Page -->
-    <div id="create-kuis" class="w-full">
+    <div id="create-kuis" class="w-full hidden">
       <div
         class="bg-maomao-dark/60 mx-5 my-5 flex items-center justify-center rounded-xl py-3 backdrop-blur-sm"
       >
         <div class="mx-auto w-5/6 space-y-2.5 md:my-auto">
           <!-- Header -->
           <div class="mt-2 flex items-center justify-between text-white">
-            <button onclick="changePage('create-kuis','main')" class="btn-back">
+            <button id="btn-back-basic-info"
+              onclick="changePage('create-kuis','main');"
+              class="btn-back"
+            >
+              &#11013; Close</button
+            >
+            <button id="btn-back-pertanyaan"
+              onclick="changePage('basic-info', 'form-pertanyaan'); changePage('btn-back-pertanyaan','btn-back-basic-info');"
+              class="btn-back hidden"
+            >
               &#11013; Close
             </button>
             <h1 class="font-dyna text-2xl font-bold md:text-4xl">Make Quiz</h1>
@@ -332,7 +340,8 @@
                   class="bg-maomao-light text-maomao-dark w-full resize-none rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none"
                 ></textarea>
               </div>
-              <!-- Jumlah soal --><label
+              <!-- Jumlah soal -->
+               <label
                 for="basic_info_jumlah_soal"
                 class="mb-1 block font-semibold"
                 >Jumlah Soal</label
@@ -350,7 +359,7 @@
               <!-- Button lanjut -->
               <button
                 name="tambah if kosong tidak bisa bisa diklik atau wajib diisi, kalo udh penuh maka bisa lanjut dan pindah page"
-                onclick="basic_info_to_pertanyaan()"
+                onclick="basic_info_to_pertanyaan(); changePage('btn-back-pertanyaan','btn-back-basic-info');"
                 type="button"
                 class="w-full rounded-md bg-emerald-700 py-2 font-bold text-white transition hover:bg-emerald-800"
               >
@@ -371,6 +380,8 @@
         </div>
       </div>
     </div>
+
+    <!-- This is the end -->
 
     <script src="style/js/script.js"></script>
     <script>

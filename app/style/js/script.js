@@ -1,4 +1,9 @@
+/*
+di fungsi pangil_form, aku sudah membuat button kirim dengan onclick="cek_form_create_kuis()". Yang artinya kalo button itu diklik maka fungsi itu akan jalan. Di fungsi itu ada kode untuk menngcek formnya. Nah setelah dicek, aku juga nambahin kode untuk memanggil fungsi getFormQuiz trus diprintout. Tolong bikinin kode, setelah diprintout
+*/
+
 // Bagian Create Page Start
+// Fungsi yg berfungi untuk memunculkan form untuk membuat soal kuis dan pilihan gandanya sebanyak jumlah soal yg ditentuksn user
 function panggil_form(index) {
   const card_pertanyaan = document.getElementById("card-pertanyaan");
 
@@ -60,31 +65,34 @@ function panggil_form(index) {
   `;
 }
 
+// fungsi yg berfungsi untuk prosses perpindahan form basic info ke form membuat pertanyaan kuis
+// Mencakup validasi form basic info, dan perpindahan dari form Basic info ke Form Pertanyaan
 function basic_info_to_pertanyaan() {
-  document.getElementById("basic_info_judul").value = "Sample Judul";
-  document.getElementById("basic_info_subjudul").value = "Sample Subjudul";
-  document.getElementById("basic_info_deskripsi").value = "Sample Deskrisi";
-
   const judul = document.getElementById("basic_info_judul").value.trim();
   const subjudul = document.getElementById("basic_info_subjudul").value.trim();
   const deskripsi = document
     .getElementById("basic_info_deskripsi")
     .value.trim();
+  const jumlah_soal = document.getElementById("basic_info_jumlah_soal").value;
 
+  // Cek Form
   if (judul === "" || subjudul === "" || deskripsi === "") {
-    alert("Form Wajib Diisi");
+    showAlertError("Semua field harus diisi!");
     return;
   }
-  panggil_form(document.getElementById("basic_info_jumlah_soal").value);
+  // Pindah Form
+  panggil_form(jumlah_soal);
   changePage("form-pertanyaan", "basic-info");
 }
 
+// FUngsi yg berfungsi untuk mengecek apakah form kosong atau tidak.
+// Jika kosong maka system akan memunculkan alert
 function validasiFormPertanyaan(jml_soal) {
   for (let i = 1; i <= jml_soal; i++) {
     // Cek pertanyaan
     const pertanyaan = document.getElementById(`create_kuis_pertanyaan${i}`);
     if (!pertanyaan || pertanyaan.value.trim() === "") {
-      showAlertError(`Teks pertanyaan No.${i} tidak boleh kosong`)
+      showAlertError(`Teks pertanyaan No.${i} tidak boleh kosong`);
       return false;
     }
 
@@ -99,7 +107,7 @@ function validasiFormPertanyaan(jml_soal) {
       );
 
       if (!pilihanInput || pilihanInput.value.trim() === "") {
-        showAlertError(`Pertanyaan No.${i} harus memiliki 4 pilihan ganda`)
+        showAlertError(`Pertanyaan No.${i} harus memiliki 4 pilihan ganda`);
         return false;
       }
       if (checkboxInput && checkboxInput.checked) {
@@ -107,15 +115,16 @@ function validasiFormPertanyaan(jml_soal) {
       }
     }
 
+    // Cek apakah soal memiliki jawaban benar
     if (!adaJawabanBenar) {
-      showAlertError(`Pilih 1 jawaban benar untuk pertanyaan No.${i}`)
+      showAlertError(`Pilih 1 jawaban benar untuk pertanyaan No.${i}`);
       return false;
     }
   }
   return true;
 }
 
-// Contoh penggunaan di cek_form_create_kuis
+// FUngsi yg nanti akan digunakan untuk mengirim data dari form ke system lalu ke database
 function cek_form_create_kuis() {
   const jumlahSoal = document.getElementById("basic_info_jumlah_soal").value;
   if (!validasiFormPertanyaan(jumlahSoal)) {
@@ -123,10 +132,20 @@ function cek_form_create_kuis() {
   }
   hasil = getQuizFormData(jumlahSoal);
   console.log(hasil);
+
+  changePage("basic-info", "form-pertanyaan");
+  changePage("main", "create-kuis");
 }
 
+// Fungsi yg berfungsi mengambil data dari setiap form
 function getQuizFormData(jml_soal) {
   const quizData = [];
+  const dataPertanyaan = [];
+
+  const judul = document.getElementById("basic_info_judul").value;
+  const subjudul = document.getElementById("basic_info_subjudul").value;
+  const deskripsi = document.getElementById("basic_info_deskripsi").value;
+
   for (let i = 1; i <= jml_soal; i++) {
     // Ambil pertanyaan
     const pertanyaan = document
@@ -151,12 +170,18 @@ function getQuizFormData(jml_soal) {
       }
     }
 
-    quizData.push({
+    dataPertanyaan.push({
       pertanyaan,
       pilihan_ganda,
       jawaban_benar,
     });
   }
+  quizData.push({
+    judul,
+    subjudul,
+    deskripsi,
+    dataPertanyaan,
+  });
   return quizData;
 }
 // Bagian Create Page End
@@ -194,7 +219,7 @@ function showAlertInfo(message) {
   );
 }
 
-// Helper utama untuk menampilkan alert
+// Fungsi helper untuk menampilkan alert
 function showAlert(bgClass, iconSvg, message) {
   // Hapus alert lama jika ada
   const oldAlert = document.getElementById("custom-alert");
@@ -203,7 +228,7 @@ function showAlert(bgClass, iconSvg, message) {
   // Buat elemen alert
   const alertDiv = document.createElement("div");
   alertDiv.id = "custom-alert";
-  alertDiv.className = `absolute left-1/2 top-8 z-50 px-2 w-full max-w-lg -translate-x-1/2 animate-fadeIn ${bgClass}`;
+  alertDiv.className = `fixed left-1/2 top-8 z-50 px-2 w-full max-w-lg -translate-x-1/2 animate-fadeIn ${bgClass}`;
   alertDiv.innerHTML = `
     <div class="px-6 py-4 rounded-md text-lg flex items-center shadow-lg">
       ${iconSvg}
@@ -214,7 +239,7 @@ function showAlert(bgClass, iconSvg, message) {
 
   document.body.appendChild(alertDiv);
 
-  // Responsive: auto hide after 3s
+  // hide setelah 3dtk
   setTimeout(() => {
     if (alertDiv) alertDiv.classList.add("animate-fadeOut");
     setTimeout(() => {
@@ -223,7 +248,6 @@ function showAlert(bgClass, iconSvg, message) {
   }, 3000);
 }
 
-// Animasi CSS (tambahkan ke file CSS utama jika belum ada)
 const style = document.createElement("style");
 style.innerHTML = `
 @keyframes fadeIn {

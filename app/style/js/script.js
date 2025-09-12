@@ -83,6 +83,7 @@ function basic_info_to_pertanyaan() {
   // Pindah Form
   panggil_form(jumlah_soal);
   changePage("form-pertanyaan", "basic-info");
+  changePage('btn-back-pertanyaan', 'btn-back-basic-info');
 }
 
 // FUngsi yg berfungsi untuk mengecek apakah form kosong atau tidak.
@@ -184,6 +185,7 @@ function getQuizFormData(jml_soal) {
   });
   return quizData;
 }
+
 // Bagian Create Page End
 
 // Alert & Notification

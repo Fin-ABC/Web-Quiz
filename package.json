@@ -12,7 +12,7 @@
   },
   "scripts": {
     "style": "npx @tailwindcss/cli -i ./app/src/input.css -o ./app/src/output.css --watch",
-    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./app/style/css/final.css --minify",
+    "build": "npx @tailwindcss/cli -i ./app/src/input.css -o ./app/style/css/final.css --minify",
     "api": "nodemon app/style/js/app.js"
   },
   "devDependencies": {

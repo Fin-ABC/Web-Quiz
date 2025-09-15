@@ -36,6 +36,15 @@ app.get("/kuis", (req, res) => {
   });
 });
 
+app.get("/kuis/:id", (req, res) => {
+  const id = req.params.id;
+  const sql = "select * from tb_kuis where id_kuis = ?";
+  db.query(sql, [id], (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+});
+
 app.listen(port, () => {
   console.log(`Jalan di http://localhost:${port}`);
 });

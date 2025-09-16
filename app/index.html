@@ -41,7 +41,7 @@
         <button
           id="btn-main-profile"
           onclick="mainToProfile();"
-          class="font-sour mx-3 my-1 cursor-pointer rounded-full bg-emerald-600/80 px-3 py-1 text-center shadow-lg shadow-black/60 transition-shadow duration-400 ease-in-out hover:shadow-none active:bg-emerald-800/70 md:w-22"
+          class="hidden font-sour mx-3 my-1 cursor-pointer rounded-full bg-emerald-600/80 px-3 py-1 text-center shadow-lg shadow-black/60 transition-shadow duration-400 ease-in-out hover:shadow-none active:bg-emerald-800/70 md:w-22"
         >
           FinJr
         </button>
@@ -371,7 +371,7 @@
               <!-- Button lanjut -->
               <button
                 name="tambah if kosong tidak bisa bisa diklik atau wajib diisi, kalo udh penuh maka bisa lanjut dan pindah page"
-                onclick="basic_info_to_pertanyaan();"
+                onclick="basic_info_to_pertanyaan('basic_info_judul','basic_info_subjudul','basic_info_deskripsi','basic_info_jumlah_soal','form-pertanyaan', 'basic-info','btn-back-pertanyaan', 'btn-back-basic-info','create')"
                 type="button"
                 class="w-full rounded-md bg-emerald-700 py-2 font-bold text-white transition hover:bg-emerald-800"
               >

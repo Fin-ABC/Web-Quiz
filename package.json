@@ -7,12 +7,13 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.14.3",
+    "nodemon": "^3.1.10",
     "tailwindcss": "^4.1.12"
   },
   "scripts": {
     "style": "npx @tailwindcss/cli -i ./app/src/input.css -o ./app/src/output.css --watch",
-    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./app/style/css/final.css --minify",
-    "api": "node app/style/js/app.js"
+    "build": "npx @tailwindcss/cli -i ./app/src/input.css -o ./app/style/css/final.css --minify",
+    "api": "nodemon app/style/js/app.js"
   },
   "devDependencies": {
     "prettier": "^3.6.2",

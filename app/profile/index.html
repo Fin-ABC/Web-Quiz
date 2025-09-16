@@ -52,89 +52,20 @@
                 </div>
                 <div class="">
                   <button
+                    onclick="callCardEdit();"
                     class="mb-2 w-full rounded-md bg-emerald-700 py-2 font-bold text-white transition hover:bg-emerald-800"
                   >
                     Edit
                   </button>
                   <button
+                    onclick="callCardHapus();"
                     class="w-full rounded-md bg-red-600 py-2 font-bold text-white transition hover:bg-red-700"
                   >
                     Hapus
                   </button>
                 </div>
               </div>
-              <div
-                class="border-maomao-dark bg-maomao-light text-maomao-dark mt-4 mb-6 flex justify-between rounded-lg border p-4 shadow"
-              >
-                <div class="text-left">
-                  <h3 class="font-dyna mb-2 text-xl font-bold">Kuis MyKisah</h3>
-                  <div class="flex">
-                    <img src="../style/img/book.svg" class="icon-card-level" />
-                    <p class="mb-1">10 Soal</p>
-                  </div>
-                  <p class="mb-3">7 &#10084;</p>
-                </div>
-                <div class="">
-                  <button
-                    class="mb-2 w-full rounded-md bg-emerald-700 py-2 font-bold text-white transition hover:bg-emerald-800"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    class="w-full rounded-md bg-red-600 py-2 font-bold text-white transition hover:bg-red-700"
-                  >
-                    Hapus
-                  </button>
-                </div>
-              </div>
-              <div
-                class="border-maomao-dark bg-maomao-light text-maomao-dark mt-4 mb-6 flex justify-between rounded-lg border p-4 shadow"
-              >
-                <div class="text-left">
-                  <h3 class="font-dyna mb-2 text-xl font-bold">Kuis MyKisah</h3>
-                  <div class="flex">
-                    <img src="../style/img/book.svg" class="icon-card-level" />
-                    <p class="mb-1">10 Soal</p>
-                  </div>
-                  <p class="mb-3">7 &#10084;</p>
-                </div>
-                <div class="">
-                  <button
-                    class="mb-2 w-full rounded-md bg-emerald-700 py-2 font-bold text-white transition hover:bg-emerald-800"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    class="w-full rounded-md bg-red-600 py-2 font-bold text-white transition hover:bg-red-700"
-                  >
-                    Hapus
-                  </button>
-                </div>
-              </div>
-              <div
-                class="border-maomao-dark bg-maomao-light text-maomao-dark mt-4 mb-6 flex justify-between rounded-lg border p-4 shadow"
-              >
-                <div class="text-left">
-                  <h3 class="font-dyna mb-2 text-xl font-bold">Kuis MyKisah</h3>
-                  <div class="flex">
-                    <img src="../style/img/book.svg" class="icon-card-level" />
-                    <p class="mb-1">10 Soal</p>
-                  </div>
-                  <p class="mb-3">7 &#10084;</p>
-                </div>
-                <div class="">
-                  <button
-                    class="mb-2 w-full rounded-md bg-emerald-700 py-2 font-bold text-white transition hover:bg-emerald-800"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    class="w-full rounded-md bg-red-600 py-2 font-bold text-white transition hover:bg-red-700"
-                  >
-                    Hapus
-                  </button>
-                </div>
-              </div>
+
               <!-- Isi List End -->
             </div>
           </div>
@@ -143,12 +74,322 @@
     </div>
 
     <!-- Card Hapus -->
-    <div class="absolute top-0 h-screen w-screen" id="card-hapus">
+    <div class="absolute top-0 hidden h-screen w-screen" id="card-hapus">
       <div class="relative h-full w-full">
         <div
-          class="absolute top-1/2 left-1/2 h-38 w-50 -translate-x-1/2 -translate-y-1/2 bg-sky-500"
+          class="fixed inset-0 z-40 flex min-h-full items-center overflow-x-hidden overflow-y-auto transition"
         >
-          Isi card
+          <!-- overlay -->
+          <div
+            aria-hidden="true"
+            class="fixed inset-0 h-full w-full cursor-pointer bg-black/50"
+          ></div>
+
+          <!-- Modal -->
+          <div
+            class="pointer-events-none relative my-auto w-full cursor-pointer p-4 transition"
+          >
+            <div
+              class="pointer-events-auto relative mx-auto w-full max-w-sm cursor-default rounded-xl bg-white py-2 dark:bg-gray-800"
+            >
+              <!-- Button X -->
+              <button
+                onclick="callCardHapus();"
+                tabindex="-1"
+                type="button"
+                class="absolute top-2 right-2 rtl:right-auto rtl:left-2"
+              >
+                <svg
+                  title="Close"
+                  tabindex="-1"
+                  class="h-4 w-4 cursor-pointer text-gray-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only"> Close </span>
+              </button>
+
+              <!-- Konten Teks -->
+              <div class="space-y-2 p-2">
+                <div class="space-y-2 p-4 text-center dark:text-white">
+                  <h2
+                    class="text-xl font-bold tracking-tight"
+                    id="page-action.heading"
+                  >
+                    Delete John Doe
+                  </h2>
+
+                  <p class="text-gray-500">
+                    Are you sure you would like to do this?
+                  </p>
+                </div>
+              </div>
+
+              <!-- Button Action -->
+              <div class="space-y-2">
+                <div
+                  aria-hidden="true"
+                  class="border-t px-2 dark:border-gray-700"
+                ></div>
+
+                <div class="px-6 py-2">
+                  <div
+                    class="grid grid-cols-[repeat(auto-fit,minmax(0,1fr))] gap-2"
+                  >
+                    <!-- Button Hapus -->
+                    <button
+                      onclick="callCardHapus();"
+                      type="button"
+                      class="focus:ring-primary-600 focus:text-primary-600 focus:bg-primary-50 focus:border-primary-600 dark:focus:text-primary-400 dark:focus:border-primary-400 inline-flex min-h-[2.25rem] items-center justify-center gap-1 rounded-lg border border-gray-300 bg-white px-4 py-1 text-sm font-medium text-gray-800 transition-colors outline-none hover:bg-gray-50 focus:ring-2 focus:ring-offset-2 focus:ring-inset dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:border-gray-500 dark:hover:bg-gray-700 dark:focus:bg-gray-800 dark:focus:ring-offset-0"
+                    >
+                      <span class="flex items-center gap-1">
+                        <span class=""> Cancel </span>
+                      </span>
+                    </button>
+
+                    <!-- Button Kirim -->
+                    <button
+                      onclick="submitDetele();"
+                      type="submit"
+                      class="inline-flex min-h-[2.25rem] items-center justify-center gap-1 rounded-lg border border-transparent bg-red-600 px-4 py-1 text-sm font-medium text-white shadow transition-colors outline-none hover:bg-red-500 focus:bg-red-700 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-red-700 focus:ring-inset dark:focus:ring-offset-0"
+                    >
+                      <span class="flex items-center gap-1">
+                        <span class=""> Confirm </span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Edit -->
+    <div class="absolute top-0 hidden h-screen w-screen" id="card-edit">
+      <div class="relative h-full w-full">
+        <div
+          class="fixed inset-0 z-40 flex min-h-full items-center overflow-x-hidden overflow-y-auto transition"
+        >
+          <!-- overlay -->
+          <div
+            aria-hidden="true"
+            class="fixed inset-0 h-full w-full cursor-pointer bg-black/50"
+          ></div>
+
+          <!-- Modal -->
+          <div
+            class="pointer-events-none relative my-auto w-full cursor-pointer p-4 transition"
+          >
+            <div
+              class="pointer-events-auto relative mx-auto w-full max-w-sm cursor-default rounded-xl bg-white py-2 dark:bg-gray-800"
+            >
+              <!-- Button X -->
+              <button
+                onclick="callCardEdit();"
+                tabindex="-1"
+                type="button"
+                class="absolute top-2 right-2 rtl:right-auto rtl:left-2"
+              >
+                <svg
+                  title="Close"
+                  tabindex="-1"
+                  class="h-4 w-4 cursor-pointer text-gray-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="sr-only"> Close </span>
+              </button>
+
+              <!-- Konten Teks -->
+              <div class="space-y-2 p-2">
+                <div class="space-y-2 p-4 text-center dark:text-white">
+                  <h2
+                    class="text-xl font-bold tracking-tight"
+                    id="page-action.heading"
+                  >
+                    Edit John Doe
+                  </h2>
+
+                  <p class="text-gray-500">
+                    Apakah kamu ingin mengedit kuis ini?
+                  </p>
+                </div>
+              </div>
+
+              <!-- Button Action -->
+              <div class="space-y-2">
+                <div
+                  aria-hidden="true"
+                  class="border-t px-2 dark:border-gray-700"
+                ></div>
+
+                <div class="px-6 py-2">
+                  <div
+                    class="grid grid-cols-[repeat(auto-fit,minmax(0,1fr))] gap-2"
+                  >
+                    <!-- Button Edit -->
+                    <button
+                      onclick="callCardEdit();"
+                      type="button"
+                      class="focus:ring-primary-600 focus:text-primary-600 focus:bg-primary-50 focus:border-primary-600 dark:focus:text-primary-400 dark:focus:border-primary-400 inline-flex min-h-[2.25rem] items-center justify-center gap-1 rounded-lg border border-gray-300 bg-white px-4 py-1 text-sm font-medium text-gray-800 transition-colors outline-none hover:bg-gray-50 focus:ring-2 focus:ring-offset-2 focus:ring-inset dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:border-gray-500 dark:hover:bg-gray-700 dark:focus:bg-gray-800 dark:focus:ring-offset-0"
+                    >
+                      <span class="flex items-center gap-1">
+                        <span class=""> Cancel </span>
+                      </span>
+                    </button>
+
+                    <!-- Button Edit -->
+                    <button
+                      onclick="callFormEdit();"
+                      type="submit"
+                      class="inline-flex min-h-[2.25rem] items-center justify-center gap-1 rounded-lg border border-transparent bg-red-600 px-4 py-1 text-sm font-medium text-white shadow transition-colors outline-none hover:bg-red-500 focus:bg-red-700 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-red-700 focus:ring-inset dark:focus:ring-offset-0"
+                    >
+                      <span class="flex items-center gap-1">
+                        <span class=""> Confirm </span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form Edit -->
+    <div id="edit-kuis" class="absolute top-0 w-full">
+      <div
+        class="bg-maomao-dark/60 mx-5 my-5 flex items-center justify-center rounded-xl py-3 backdrop-blur-sm"
+      >
+        <div class="mx-auto w-5/6 space-y-2.5 md:my-auto">
+          <!-- Header -->
+          <div class="mt-2 flex items-center justify-between text-white">
+            <button id="btn-back-edit-basic-info" class="btn-back">
+              &#11013; Close
+            </button>
+            <button
+              id="btn-back-edit-pertanyaan"
+              onclick="callFormEdit();
+  changePage('btn-back-edit-pertanyaan', 'btn-back-edit-basic-info');"
+              class="btn-back hidden"
+            >
+              &#11013; Close
+            </button>
+            <h1 class="font-dyna text-2xl font-bold md:text-4xl">Edit Quiz</h1>
+            <p class="hidden md:visible"></p>
+          </div>
+
+          <!-- Card Rules -->
+          <div class="card-create">
+            <h5 class="text-xl font-bold">Rules</h5>
+            <ul class="list-inside list-disc">
+              <li>Rule 1</li>
+              <li>Rule 2</li>
+              <li>Rule 3</li>
+              <li>Rule 4</li>
+              <li>Rule 5</li>
+            </ul>
+          </div>
+
+          <!-- Basic Info -->
+          <div class="card-create" id="edit-basic-info">
+            <form action="" method="post" class="space-y-4">
+              <h5 class="text-xl font-bold">Basic Info</h5>
+              <!-- Judul -->
+              <div>
+                <label for="judul" class="mb-1 block font-semibold"
+                  >Judul</label
+                >
+                <input
+                  type="text"
+                  id="edit_basic_info_judul"
+                  name="judul"
+                  maxlength="40"
+                  placeholder="Masukkan judul kuis"
+                  class="bg-maomao-light text-maomao-dark w-full rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                  required
+                />
+              </div>
+              <!-- Sub Judul -->
+              <div>
+                <label for="subjudul" class="mb-1 block font-semibold"
+                  >Sub Judul</label
+                >
+                <input
+                  type="text"
+                  id="edit_basic_info_subjudul"
+                  name="subjudul"
+                  maxlength="60"
+                  placeholder="Penjelasan pendek"
+                  class="text-maomao-dark bg-maomao-light w-full rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                />
+              </div>
+              <!-- Deskripsi -->
+              <div>
+                <label for="deskripsi" class="mb-1 block font-semibold"
+                  >Deskripsi</label
+                >
+                <textarea
+                  id="edit_basic_info_deskripsi"
+                  name="deskripsi"
+                  rows="4"
+                  placeholder="Penjelasan detail / Deskripsi level quiz"
+                  class="bg-maomao-light text-maomao-dark w-full resize-none rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                ></textarea>
+              </div>
+              <!-- Jumlah soal -->
+              <label
+                for="edit_basic_info_jumlah_soal"
+                class="mb-1 block font-semibold"
+                >Jumlah Soal</label
+              >
+              <input
+                type="number"
+                id="edit_basic_info_jumlah_soal"
+                name="edit_basic_info_jumlah_soal"
+                min="5"
+                value="5"
+                class="text-maomao-dark bg-maomao-light w-full rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                required
+                oninput="if(this.value < 5) this.value = 5;"
+              />
+              <!-- Button lanjut -->
+              <button
+                onclick="basic_info_to_pertanyaan('edit_basic_info_judul','edit_basic_info_subjudul','edit_basic_info_deskripsi','edit_basic_info_jumlah_soal','edit-basic-info','form-edit-pertanyaan','btn-back-edit-pertanyaan','btn-back-edit-basic-info','edit')"
+                type="button"
+                class="w-full rounded-md bg-emerald-700 py-2 font-bold text-white transition hover:bg-emerald-800"
+              >
+                Lanjut
+              </button>
+            </form>
+          </div>
+          <!-- Basic Info End -->
+
+          <!-- Isi Pertanyaa -->
+          <div class="card-create hidden" id="form-edit-pertanyaan">
+            <div id="card-edit-pertanyaan" class="">
+              <!-- isi page pertanyaan ada disini -->
+            </div>
+            <!-- Disini bakal muncuk button kirim -->
+          </div>
+          <!-- Isi Pertanyaan End -->
         </div>
       </div>
     </div>
@@ -165,8 +406,34 @@
         const cardHapus = document.getElementById("card-hapus");
         const pageProfile = document.getElementById("page-profile");
 
-        changePage('card-hapus','page-profile')        
+        cardHapus.classList.toggle("hidden");
+        pageProfile.classList.toggle("blur-sm");
       }
+
+      function submitDetele() {
+        console.log("Delete Kuis");
+      }
+
+      function callCardEdit() {
+        const cardEdit = document.getElementById("card-edit");
+        const pageProfile = document.getElementById("page-profile");
+
+        cardEdit.classList.toggle("hidden");
+        pageProfile.classList.toggle("blur-sm");
+      }
+
+      function callFormEdit() {
+        changePage("edit-kuis", "card-edit");
+      }
+
+      const btnBackBacic = document.getElementById("btn-back-edit-basic-info");
+      const btnBackPertanyaan = document.getElementById(
+        "btn-back-edit-pertanyaan",
+      );
+
+      btnBackBacic.addEventListener("click", () => {
+        console.log("TEsting Button");
+      });
     </script>
   </body>
 </html>

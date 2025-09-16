@@ -41,7 +41,7 @@
         <button
           id="btn-main-profile"
           onclick="mainToProfile();"
-          class="hidden font-sour mx-3 my-1 cursor-pointer rounded-full bg-emerald-600/80 px-3 py-1 text-center shadow-lg shadow-black/60 transition-shadow duration-400 ease-in-out hover:shadow-none active:bg-emerald-800/70 md:w-22"
+          class="font-sour mx-3 my-1 hidden cursor-pointer rounded-full bg-emerald-600/80 px-3 py-1 text-center shadow-lg shadow-black/60 transition-shadow duration-400 ease-in-out hover:shadow-none active:bg-emerald-800/70 md:w-22"
         >
           FinJr
         </button>
@@ -112,6 +112,7 @@
             </button>
             <h1 class="font-dyna text-2xl font-bold md:text-4xl">Quiz</h1>
             <button
+              id="btn-make-quiz"
               onclick="changePage('level','create-kuis');"
               class="btn-back"
             >
@@ -396,55 +397,7 @@
     <!-- This is the end -->
 
     <script src="style/js/script.js"></script>
-    <script>
-      const lvl_offcial = document.getElementById("official-level");
-      const lvl_custom = document.getElementById("custom-level");
-
-      // Ngambil data dari list ke page
-      data_quiz.forEach((lvl) => {
-        const card = document.createElement("div");
-        card.classList.add("card-level", "group");
-        card.innerHTML = `
-          <h2 class="title-card-level">${lvl.judul}</h2>
-          <div class="author-card-level">
-          <img
-            src="style/img/author.svg"
-            alt="by"
-            class="icon-card-level"
-          />
-          <p>${lvl.author} </p>
-          </div>
-          <button id="btn-like" class="btn-like-card-level">${lvl.like} &#10084;</button>
-          <div class="total-card-level">
-            <img src="style/img/book.svg" class="icon-card-level" />
-            <p>${lvl.pertanyaan.length} Soal</p>
-          </div>
-        `;
-
-        card.addEventListener("click", () => {
-          window.location.href = `quiz/?id=${lvl.id}`;
-        });
-
-        if (lvl.kategori == "official") {
-          lvl_offcial.appendChild(card);
-        } else if (lvl.kategori == "custom") {
-          lvl_custom.appendChild(card);
-        }
-      });
-
-      function mainToProfile() {
-        window.location.href = "profile/";
-      }
-
-      // const apiUrl = "http://localhost:3000/kuis";
-
-      // async function testing() {
-      //   const res = await fetch(apiUrl);
-      //   const data = await res.json();
-
-      //   console.log(data);
-      // }
-      // testing();
-    </script>
+    <script src="style/js/alert.js"></script>
+    <script src="backend/script.js"></script>
   </body>
 </html>

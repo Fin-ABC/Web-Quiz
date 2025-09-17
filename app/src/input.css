@@ -87,3 +87,20 @@
 .txt-box-pilgan {
   @apply text-maomao-dark bg-maomao-light w-full rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none;
 }
+
+/* List Card Profile Page */
+.profile-card-list {
+  @apply border-maomao-dark bg-maomao-light text-maomao-dark mt-4 mb-6 flex justify-between rounded-lg border p-4 shadow relative;
+}
+.profile-card-judul {
+  @apply font-dyna mb-2 text-xl font-bold;
+}
+.profile-btn-edit {
+  @apply mb-2 w-full rounded-md bg-emerald-700 py-2 font-bold text-white outline-offset-1 transition duration-400 ease-in-out select-none hover:bg-emerald-800 hover:shadow-none focus:outline-2 outline-emerald-900;
+}
+.profile-btn-hapus {
+  @apply w-full rounded-md bg-red-600 py-2 font-bold text-white outline-offset-1 transition duration-400 ease-in-out select-none hover:bg-red-700 hover:shadow-none focus:outline-2 outline-red-900;
+}
+.profile-card-date{
+  @apply absolute bottom-0 right-4 text-maomao-dark font-black;
+}

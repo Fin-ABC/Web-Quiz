@@ -82,10 +82,10 @@ app.post("/login", (req, res) => {
       }
 
       const token = jwt.sign(
-        { id: user.id, username: user.username },
+        { id: user.id_user, username: user.username },
         "SECRET_KEY",
         {
-          expiresIn: "1h",
+          expiresIn: "12h",
         },
       );
 
@@ -109,7 +109,10 @@ function verifyToken(req, res, next) {
 
 // Route yang butuh login
 app.get("/profile", verifyToken, (req, res) => {
-  res.json({ message: "Anda sudah login", user: req.user });
+  res.json({ 
+    message: "Anda sudah login", 
+    user: req.user,
+  });
 });
 
 // Ambil semua kuis
@@ -244,6 +247,29 @@ app.get("/kuis/:id", (req, res) => {
 
       res.json(kuis);
     });
+  });
+});
+
+// Route: Ambil semua kuis yang dibuat
+app.get("/my-kuis", verifyToken, (req, res) => {
+  const idUser = req.user.id; // pastikan waktu login, JWT menyimpan { id, username }
+
+  const sql = `
+    SELECT 
+      k.id_kuis, k.judul, DATE_FORMAT(k.created_at, '%d-%m-%Y') as created_at,
+      u.username AS author,
+      (SELECT COUNT(*) FROM tb_like l WHERE l.id_kuis = k.id_kuis) AS jumlah_like,
+      (SELECT COUNT(*) FROM tb_pertanyaan p WHERE p.id_kuis = k.id_kuis) AS jumlah_pertanyaan
+    FROM tb_kuis k
+    JOIN tb_user u ON k.id_author = u.id_user
+    WHERE k.id_author = ?
+    ORDER BY k.created_at DESC
+  `;
+
+  db.query(sql, [idUser], (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+
+    res.json(results);
   });
 });
 

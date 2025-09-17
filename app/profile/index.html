@@ -26,40 +26,41 @@
               Kembali
             </div>
             <h2 class="font-dyna text-2xl font-bold">
-              @<span>Refaldino</span>
+              @<span id="profile-username">Refaldino</span>
             </h2>
-            <p class="font-dyna ml-2">ID : <span>001</span></p>
+            <p class="font-dyna ml-2">ID : <span id="profile-id">001</span></p>
           </div>
 
           <!-- Info Bawah -->
           <div class="px-6 pt-8 pb-6 text-center">
             <p class="text-maomao-dark text-left text-xl font-bold">
-              Jumlah Kuis yang Dibuat : <span>15</span>
+              Jumlah Kuis yang Dibuat : <span id="profile-jumlah-kuis">15</span>
             </p>
             <!-- List Card KUis yg Dibuat User -->
             <div id="profile-list-kuis">
               <!-- Isi List -->
               <div
-                class="border-maomao-dark bg-maomao-light text-maomao-dark mt-4 mb-6 flex justify-between rounded-lg border p-4 shadow"
+                class="profile-card-list"
               >
                 <div class="text-left">
-                  <h3 class="font-dyna mb-2 text-xl font-bold">Kuis MyKisah</h3>
+                  <h3 class="profile-card-judul">Kuis MyKisah</h3>
                   <div class="flex">
                     <img src="../style/img/book.svg" class="icon-card-level" />
                     <p class="mb-1">10 Soal</p>
                   </div>
                   <p class="mb-3">7 &#10084;</p>
+                  <p class="profile-card-date">12-12-2024</p>
                 </div>
                 <div class="">
                   <button
                     onclick="callCardEdit();"
-                    class="mb-2 w-full rounded-md bg-emerald-700 py-2 font-bold text-white transition hover:bg-emerald-800"
+                    class="profile-btn-edit"
                   >
                     Edit
                   </button>
                   <button
                     onclick="callCardHapus();"
-                    class="w-full rounded-md bg-red-600 py-2 font-bold text-white transition hover:bg-red-700"
+                    class="profile-btn-hapus"
                   >
                     Hapus
                   </button>
@@ -68,6 +69,7 @@
 
               <!-- Isi List End -->
             </div>
+            <buttton class="btn bg-red-500" onclick="logout()">Logout</buttton>
           </div>
         </div>
       </div>
@@ -274,7 +276,7 @@
     </div>
 
     <!-- Form Edit -->
-    <div id="edit-kuis" class="absolute hidden top-0 w-full">
+    <div id="edit-kuis" class="absolute top-0 hidden w-full">
       <div
         class="bg-maomao-dark/60 mx-5 my-5 flex items-center justify-center rounded-xl py-3 backdrop-blur-sm"
       >
@@ -398,43 +400,6 @@
 
     <script src="../style/js/script.js"></script>
     <script src="../style/js/alert.js"></script>
-    <script>
-      function profileToMain() {
-        window.location.href = "../";
-      }
-
-      function callCardHapus() {
-        const cardHapus = document.getElementById("card-hapus");
-        const pageProfile = document.getElementById("page-profile");
-
-        cardHapus.classList.toggle("hidden");
-        pageProfile.classList.toggle("blur-sm");
-      }
-
-      function submitDetele() {
-        console.log("Delete Kuis");
-      }
-
-      function callCardEdit() {
-        const cardEdit = document.getElementById("card-edit");
-        const pageProfile = document.getElementById("page-profile");
-
-        cardEdit.classList.toggle("hidden");
-        pageProfile.classList.toggle("blur-sm");
-      }
-
-      function callFormEdit() {
-        changePage("edit-kuis", "card-edit");
-      }
-
-      const btnBackBacic = document.getElementById("btn-back-edit-basic-info");
-      const btnBackPertanyaan = document.getElementById(
-        "btn-back-edit-pertanyaan",
-      );
-
-      btnBackBacic.addEventListener("click", () => {
-        console.log("TEsting Button");
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>

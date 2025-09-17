@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Sep 2025 pada 06.37
+-- Waktu pembuatan: 17 Sep 2025 pada 17.07
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -79,7 +79,11 @@ INSERT INTO `tb_jawaban` (`id_jawaban`, `id_pertanyaan`, `id_kuis`, `teks_jawaba
 (37, 10, 2, 'Ayam', 0),
 (38, 10, 2, 'Ular', 0),
 (39, 10, 2, 'Katak', 0),
-(40, 10, 2, 'Kucing', 1);
+(40, 10, 2, 'Kucing', 1),
+(41, 11, 3, 'Kilimanjaro', 0),
+(42, 11, 3, 'Everest', 1),
+(43, 11, 3, 'Fuji', 0),
+(44, 11, 3, 'Elbrus', 0);
 
 -- --------------------------------------------------------
 
@@ -103,7 +107,8 @@ CREATE TABLE `tb_kuis` (
 
 INSERT INTO `tb_kuis` (`id_kuis`, `id_author`, `kategori`, `judul`, `subjudul`, `deskripsi`, `created_at`) VALUES
 (1, 2, 'official', 'Kuis Dummy', 'Hanya sample kuis', 'Apa? ini hanya sample alias cuman contoh kuis aja buat ngetes apakah jalan apa enggak fitur2nya, isinya juga palingan pertanyaan random dari admin. Sekian Terima Gaji.', '2025-09-17 01:59:13'),
-(2, 1, 'custom', 'My Kuis', 'Kuis sample dari user', 'Abang tukang timpa, mari, mari sini\r\nAku mau doksi\r\nAbang tukang timpa, cepat kasih doksi\r\nSudah tak tahan lagi', '2025-08-24 03:15:17');
+(2, 1, 'custom', 'My Kuis', 'Kuis sample dari user', 'Abang tukang timpa, mari, mari sini\r\nAku mau doksi\r\nAbang tukang timpa, cepat kasih doksi\r\nSudah tak tahan lagi', '2025-08-24 03:15:17'),
+(3, 2, 'official', 'Kisah Kuis', 'Kisah Kuis adalah kuis ', 'Kisah Kuis adalah kuis yang berkisah kasih', '2025-09-17 14:00:51');
 
 -- --------------------------------------------------------
 
@@ -152,7 +157,12 @@ INSERT INTO `tb_pertanyaan` (`id_pertanyaan`, `id_kuis`, `teks_pertanyaan`) VALU
 (7, 2, 'Siapa penulis novel Laskar Pelangi'),
 (8, 2, 'Bahasa pemograman apa yang logonya berupa cangkir kopi'),
 (9, 2, 'Ibu kota dari Jepang adalah...'),
-(10, 2, 'Hewan manakan yang termasuk mamalia?');
+(10, 2, 'Hewan manakan yang termasuk mamalia?'),
+(11, 3, 'Gunung tertinggi di dunia adalah...'),
+(12, 3, 'Unsur kimia dengan simbol \"Au\" adalah...'),
+(13, 3, 'Tahun berapa Indonesia merdeka?'),
+(14, 3, 'Organ manusia yang berfungsi memompa darah adalah...'),
+(15, 3, 'Penulis novel Laskar Pelangi adalah...');
 
 -- --------------------------------------------------------
 
@@ -173,7 +183,8 @@ CREATE TABLE `tb_skor` (
 
 INSERT INTO `tb_skor` (`id_skor`, `id_player`, `id_kuis`, `skor`) VALUES
 (6, 1, 1, 100),
-(7, 2, 1, 95);
+(7, 2, 1, 95),
+(16, 26, 2, 50);
 
 -- --------------------------------------------------------
 
@@ -194,8 +205,8 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `username`, `password`, `role`, `created_at`) VALUES
-(1, 'user', 'user', 'user', '2025-08-24 02:48:09'),
-(2, 'admin', 'admin', 'admin', '2025-08-24 02:48:09'),
+(1, 'user', '$2b$08$w3BWCoADEw9TlaGce6cPRO/fca7mk2y0RQMfInGleE8whearH7nYO', 'user', '2025-09-17 12:46:09'),
+(2, 'admin', '$2b$08$w3BWCoADEw9TlaGce6cPRO/fca7mk2y0RQMfInGleE8whearH7nYO', 'admin', '2025-09-17 12:46:16'),
 (25, 'fin1', '$2b$08$w3BWCoADEw9TlaGce6cPRO/fca7mk2y0RQMfInGleE8whearH7nYO', 'user', '2025-09-16 07:46:18'),
 (26, 'finAdmin', '$2b$08$yU5NGXLxDWvvhM1r8qkvPOtaZ/0pWsgAIcsCzfLIRla5kFO84kgIq', 'admin', '2025-09-16 08:11:27');
 
@@ -256,13 +267,13 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT untuk tabel `tb_jawaban`
 --
 ALTER TABLE `tb_jawaban`
-  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_kuis`
 --
 ALTER TABLE `tb_kuis`
-  MODIFY `id_kuis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kuis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_like`
@@ -274,13 +285,13 @@ ALTER TABLE `tb_like`
 -- AUTO_INCREMENT untuk tabel `tb_pertanyaan`
 --
 ALTER TABLE `tb_pertanyaan`
-  MODIFY `id_pertanyaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_pertanyaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_skor`
 --
 ALTER TABLE `tb_skor`
-  MODIFY `id_skor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_skor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_user`

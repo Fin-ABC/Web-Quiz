@@ -3,33 +3,59 @@ const params = new URLSearchParams(window.location.search);
 const idLvl = params.get("id");
 
 // Mencari data sesuai id
-const dt_level = data_quiz.find((lvl) => lvl.id === idLvl);
-// Load data for Detail Page
-if (dt_level) {
-  const id = document.getElementById("id");
-  const jdl = document.getElementById("judul");
-  const sub_jdl = document.getElementById("subjudul");
-  const author = document.getElementById("author");
-  const jml_soal = document.getElementById("jml-soal");
-  const like = document.getElementById("like");
-  const deskripsi = document.getElementById("desc");
+let dt_level;
 
-  id.textContent = `ID: ${dt_level.id}`;
-  jdl.textContent = `${dt_level.judul}`;
-  sub_jdl.textContent = `${dt_level.subjudul}`;
-  author.textContent = `${dt_level.author}`;
-  jml_soal.textContent = `${dt_level.jml_soal}`;
-  like.textContent = `${dt_level.like}`;
-  deskripsi.textContent = `${dt_level.deskripsi}`;
+fetch(`http://localhost:3000/kuis/${idLvl}`)
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data);
+    dt_level = {
+      id: data.id_kuis,
+      judul: data.judul,
+      subjudul: data.subjudul,
+      author: data.author,
+      jml_soal: data.pertanyaan.length,
+      like: data.like || "0",
+      deskripsi: data.deskripsi,
+      pertanyaan: data.pertanyaan.map((p) => p.teks_pertanyaan),
+    pilihan_ganda: data.pertanyaan.map((p) => p.jawaban.map((j) => j.teks_jawaban)),
+    jawaban: data.pertanyaan.map((p) => 
+      p.jawaban.find((j) => j.is_benar === 1)?.teks_jawaban || ""
+    ),
+      leaderboard: [data.leaderboard],
+    };
+    total_soal = dt_level.pertanyaan.length;
+    console.log(dt_level);
 
-  const soal = document.getElementById("soal");
-  const pg = document.getElementById("pg");
-  const jwb = document.getElementById("jwb");
+    const id = document.getElementById("id");
+    const jdl = document.getElementById("judul");
+    const sub_jdl = document.getElementById("subjudul");
+    const author = document.getElementById("author");
+    const jml_soal = document.getElementById("jml-soal");
+    const like = document.getElementById("like");
+    const deskripsi = document.getElementById("desc");
 
-  soal.textContent = `${dt_level.pertanyaan[0]}`;
-  pg.textContent = `${dt_level.pilihan_ganda[0]}`;
-  jwb.textContent = `${dt_level.jawaban[0]}`;
-}
+    id.textContent = `ID: ${dt_level.id}`;
+    jdl.textContent = `${dt_level.judul}`;
+    sub_jdl.textContent = `${dt_level.subjudul}`;
+    author.textContent = `${dt_level.author}`;
+    jml_soal.textContent = `${dt_level.jml_soal}`;
+    like.textContent = `${dt_level.like}`;
+    deskripsi.textContent = `${dt_level.deskripsi}`;
+
+    const soal = document.getElementById("soal");
+    const pg = document.getElementById("pg");
+    const jwb = document.getElementById("jwb");
+
+    soal.textContent = `${dt_level.pertanyaan[0]}`;
+    pg.textContent =
+      Array.isArray(dt_level.pilihan_ganda[0]) &&
+      dt_level.pilihan_ganda[0].length > 0
+        ? dt_level.pilihan_ganda[0].join(", ")
+        : "Pilihan tidak tersedia";
+    jwb.textContent = `${dt_level.jawaban[0]}`;
+  })
+  .catch((err) => console.error(err));
 
 //   Gameplay Kuis
 // Variable for gameplay
@@ -43,7 +69,7 @@ const g_soal = document.getElementById("gameplay-soal");
 const g_pilihan = document.getElementById("gameplay-pilihan");
 const g_hasil = document.getElementById("gameplay-hasil");
 const g_ldb = document.getElementById("gameplay-leaderboard");
-const total_soal = dt_level.pertanyaan.length;
+let total_soal = 0;
 
 // Load data untuk card soal dan card pilihan ganda
 function loadSoal() {
@@ -56,16 +82,20 @@ function loadSoal() {
   g_pilihan.innerHTML = "";
 
   const pilihan = dt_level.pilihan_ganda[indexSoal];
-  pilihan.forEach((opsi) => {
-    g_judul.textContent = `${dt_level.judul}`;
-    g_soalke.textContent = `${indexSoal + 1}/${total_soal}`;
+  if (Array.isArray(pilihan) && pilihan.length > 0) {
+    pilihan.forEach((opsi) => {
+      g_judul.textContent = `${dt_level.judul}`;
+      g_soalke.textContent = `${indexSoal + 1}/${total_soal}`;
 
-    const div = document.createElement("div");
-    div.textContent = opsi;
-    div.classList.add("gameplay-card");
-    div.addEventListener("click", () => cekJawaban(opsi));
-    g_pilihan.appendChild(div);
-  });
+      const div = document.createElement("div");
+      div.textContent = opsi;
+      div.classList.add("gameplay-card");
+      div.addEventListener("click", () => cekJawaban(opsi));
+      g_pilihan.appendChild(div);
+    });
+  } else {
+    g_pilihan.textContent = "Pilihan tidak tersedia";
+  }
 }
 
 // Untuk memeriksa jawaban user
@@ -119,7 +149,7 @@ function resetSoal() {
 
 function loadLeaderboard() {
   const lb_list = document.getElementById("leaderboard-list");
-  const data_leader = leader.filter((lb) => lb.id_lb === idLvl);
+  const data_leader = dt_level.leaderboard[0];
   lb_list.innerHTML = "";
 
   data_leader.forEach((player, i) => {
@@ -127,8 +157,8 @@ function loadLeaderboard() {
     div.className = "leaderboard-items";
     div.innerHTML = `
       <span class="leaderboard-items-rank">${i + 1}</span>
-      <span class="leaderboard-items-name">${player.name}</span>
-      <span class="leaderboard-items-skor">${player.score}</span>
+      <span class="leaderboard-items-name">${player.username}</span>
+      <span class="leaderboard-items-skor">${player.skor}</span>
     `;
     lb_list.appendChild(div);
   });

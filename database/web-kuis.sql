@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Waktu pembuatan: 15 Sep 2025 pada 09.33
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 17 Sep 2025 pada 06.37
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -90,7 +90,7 @@ INSERT INTO `tb_jawaban` (`id_jawaban`, `id_pertanyaan`, `id_kuis`, `teks_jawaba
 CREATE TABLE `tb_kuis` (
   `id_kuis` int(11) NOT NULL,
   `id_author` int(11) NOT NULL,
-  `kategori` enum('custom','offcial') NOT NULL,
+  `kategori` enum('custom','official') NOT NULL,
   `judul` varchar(20) NOT NULL,
   `subjudul` varchar(40) NOT NULL,
   `deskripsi` text NOT NULL,
@@ -102,8 +102,29 @@ CREATE TABLE `tb_kuis` (
 --
 
 INSERT INTO `tb_kuis` (`id_kuis`, `id_author`, `kategori`, `judul`, `subjudul`, `deskripsi`, `created_at`) VALUES
-(1, 2, 'offcial', 'Kuis Dummy', 'Hanya sample kuis', 'Apa? ini hanya sample alias cuman contoh kuis aja buat ngetes apakah jalan apa enggak fitur2nya, isinya juga palingan pertanyaan random dari admin. Sekian Terima Gaji.', '2025-08-24 02:52:08'),
+(1, 2, 'official', 'Kuis Dummy', 'Hanya sample kuis', 'Apa? ini hanya sample alias cuman contoh kuis aja buat ngetes apakah jalan apa enggak fitur2nya, isinya juga palingan pertanyaan random dari admin. Sekian Terima Gaji.', '2025-09-17 01:59:13'),
 (2, 1, 'custom', 'My Kuis', 'Kuis sample dari user', 'Abang tukang timpa, mari, mari sini\r\nAku mau doksi\r\nAbang tukang timpa, cepat kasih doksi\r\nSudah tak tahan lagi', '2025-08-24 03:15:17');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_like`
+--
+
+CREATE TABLE `tb_like` (
+  `id_like` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_kuis` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tb_like`
+--
+
+INSERT INTO `tb_like` (`id_like`, `id_user`, `id_kuis`, `created_at`) VALUES
+(1, 25, 1, '2025-09-17 02:00:21'),
+(2, 26, 1, '2025-09-17 02:00:21');
 
 -- --------------------------------------------------------
 
@@ -152,15 +173,7 @@ CREATE TABLE `tb_skor` (
 
 INSERT INTO `tb_skor` (`id_skor`, `id_player`, `id_kuis`, `skor`) VALUES
 (6, 1, 1, 100),
-(7, 2, 1, 95),
-(8, 3, 1, 90),
-(9, 4, 1, 95),
-(10, 5, 1, 80),
-(11, 6, 1, 70),
-(12, 7, 1, 75),
-(13, 8, 1, 50),
-(14, 9, 1, 60),
-(15, 10, 1, 65);
+(7, 2, 1, 95);
 
 -- --------------------------------------------------------
 
@@ -171,7 +184,7 @@ INSERT INTO `tb_skor` (`id_skor`, `id_player`, `id_kuis`, `skor`) VALUES
 CREATE TABLE `tb_user` (
   `id_user` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(16) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `role` enum('user','admin') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -183,15 +196,8 @@ CREATE TABLE `tb_user` (
 INSERT INTO `tb_user` (`id_user`, `username`, `password`, `role`, `created_at`) VALUES
 (1, 'user', 'user', 'user', '2025-08-24 02:48:09'),
 (2, 'admin', 'admin', 'admin', '2025-08-24 02:48:09'),
-(3, 'User2', '1771', 'user', '2025-08-24 03:32:24'),
-(4, 'User3', '1771', 'user', '2025-08-24 03:33:33'),
-(5, 'User4', '1771', 'user', '2025-08-24 03:33:33'),
-(6, 'User5', '1771', 'user', '2025-08-24 03:33:33'),
-(7, 'User6', '1771', 'user', '2025-08-24 03:33:33'),
-(8, 'User7', '1771', 'user', '2025-08-24 03:33:33'),
-(9, 'User8', '1771', 'user', '2025-08-24 03:33:33'),
-(10, 'User9', '1771', 'user', '2025-08-24 03:33:33'),
-(11, 'User10', '1771', 'user', '2025-08-24 03:33:33');
+(25, 'fin1', '$2b$08$w3BWCoADEw9TlaGce6cPRO/fca7mk2y0RQMfInGleE8whearH7nYO', 'user', '2025-09-16 07:46:18'),
+(26, 'finAdmin', '$2b$08$yU5NGXLxDWvvhM1r8qkvPOtaZ/0pWsgAIcsCzfLIRla5kFO84kgIq', 'admin', '2025-09-16 08:11:27');
 
 --
 -- Indexes for dumped tables
@@ -211,6 +217,14 @@ ALTER TABLE `tb_jawaban`
 ALTER TABLE `tb_kuis`
   ADD PRIMARY KEY (`id_kuis`),
   ADD KEY `fk_author` (`id_author`);
+
+--
+-- Indeks untuk tabel `tb_like`
+--
+ALTER TABLE `tb_like`
+  ADD PRIMARY KEY (`id_like`),
+  ADD UNIQUE KEY `id_user` (`id_user`,`id_kuis`),
+  ADD KEY `id_kuis` (`id_kuis`);
 
 --
 -- Indeks untuk tabel `tb_pertanyaan`
@@ -251,6 +265,12 @@ ALTER TABLE `tb_kuis`
   MODIFY `id_kuis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT untuk tabel `tb_like`
+--
+ALTER TABLE `tb_like`
+  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT untuk tabel `tb_pertanyaan`
 --
 ALTER TABLE `tb_pertanyaan`
@@ -266,7 +286,7 @@ ALTER TABLE `tb_skor`
 -- AUTO_INCREMENT untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -284,6 +304,13 @@ ALTER TABLE `tb_jawaban`
 --
 ALTER TABLE `tb_kuis`
   ADD CONSTRAINT `fk_author` FOREIGN KEY (`id_author`) REFERENCES `tb_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `tb_like`
+--
+ALTER TABLE `tb_like`
+  ADD CONSTRAINT `tb_like_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id_user`) ON DELETE CASCADE,
+  ADD CONSTRAINT `tb_like_ibfk_2` FOREIGN KEY (`id_kuis`) REFERENCES `tb_kuis` (`id_kuis`) ON DELETE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `tb_pertanyaan`

@@ -109,11 +109,7 @@ function verifyToken(req, res, next) {
 
 // Route yang butuh login
 app.get("/profile", verifyToken, (req, res) => {
-  res.json({ message: "Berhasil masuk profile", user: req.user });
-});
-
-app.get("/test", (req, res) => {
-res("Test berhasil, server berjalan lancar!");
+  res.json({ message: "Anda sudah login", user: req.user });
 });
 
 // Ambil semua kuis
@@ -123,14 +119,11 @@ app.get("/kuis", (req, res) => {
       k.id_kuis, k.judul, k.subjudul, k.deskripsi, k.kategori, k.created_at,
       u.username AS author,
       p.id_pertanyaan, p.teks_pertanyaan,
-      j.id_jawaban, j.teks_jawaban, j.is_benar,
-      s.id_skor, s.id_player, s.skor
+      (SELECT COUNT(*) FROM tb_like l WHERE l.id_kuis = k.id_kuis) AS jumlah_like
     FROM tb_kuis k
     JOIN tb_user u ON k.id_author = u.id_user
     LEFT JOIN tb_pertanyaan p ON k.id_kuis = p.id_kuis
-    LEFT JOIN tb_jawaban j ON p.id_pertanyaan = j.id_pertanyaan
-    LEFT JOIN tb_skor s ON k.id_kuis = s.id_kuis
-    ORDER BY k.id_kuis, p.id_pertanyaan, j.id_jawaban
+    ORDER BY k.id_kuis, p.id_pertanyaan
   `;
 
   db.query(sql, (err, results) => {
@@ -148,8 +141,8 @@ app.get("/kuis", (req, res) => {
           kategori: row.kategori,
           created_at: row.created_at,
           author: row.author,
+          like: row.jumlah_like || "0",
           pertanyaan: [],
-          skor: [],
         };
       }
 
@@ -161,32 +154,96 @@ app.get("/kuis", (req, res) => {
         pertanyaan = {
           id_pertanyaan: row.id_pertanyaan,
           teks_pertanyaan: row.teks_pertanyaan,
-          jawaban: [],
         };
         kuisMap[row.id_kuis].pertanyaan.push(pertanyaan);
-      }
-
-      // tambahin jawaban
-      if (pertanyaan && row.id_jawaban) {
-        pertanyaan.jawaban.push({
-          id_jawaban: row.id_jawaban,
-          teks_jawaban: row.teks_jawaban,
-          is_benar: row.is_benar,
-        });
-      }
-
-      // tambahin skor
-      if (row.id_skor) {
-        kuisMap[row.id_kuis].skor.push({
-          id_skor: row.id_skor,
-          id_player: row.id_player,
-          skor: row.skor,
-        });
       }
     });
 
     res.json(Object.values(kuisMap));
-    console.log(Object.values(kuisMap));
+  });
+});
+
+// Route ambil kuis berdasarkan ID
+app.get("/kuis/:id", (req, res) => {
+  const idKuis = req.params.id;
+  const sql = `
+    SELECT 
+      k.id_kuis, k.judul, k.subjudul, k.deskripsi, k.kategori, k.created_at,
+      u.username AS author,
+      p.id_pertanyaan, p.teks_pertanyaan,
+      jb.id_jawaban, jb.teks_jawaban, jb.is_benar,
+      (SELECT COUNT(*) FROM tb_like l WHERE l.id_kuis = k.id_kuis) AS jumlah_like
+    FROM tb_kuis k
+    JOIN tb_user u ON k.id_author = u.id_user
+    LEFT JOIN tb_pertanyaan p ON k.id_kuis = p.id_kuis
+    left JOIN tb_jawaban jb ON p.id_pertanyaan = jb.id_pertanyaan
+    WHERE k.id_kuis = ?
+  `;
+
+  db.query(sql, [idKuis], (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Kuis tidak ditemukan" });
+    }
+
+    const kuis = {
+      id_kuis: results[0].id_kuis,
+      judul: results[0].judul,
+      subjudul: results[0].subjudul,
+      deskripsi: results[0].deskripsi,
+      kategori: results[0].kategori,
+      created_at: results[0].created_at,
+      author: results[0].author,
+      like: results[0].jumlah_like || "0",
+      pertanyaan: [],
+      leaderboard: [],
+    };
+
+    const pertanyaanMap = {};
+
+    results.forEach((row) => {
+      if (row.id_pertanyaan) {
+        if (!pertanyaanMap[row.id_pertanyaan]) {
+          pertanyaanMap[row.id_pertanyaan] = {
+            id_pertanyaan: row.id_pertanyaan,
+            teks_pertanyaan: row.teks_pertanyaan,
+            jawaban: [],
+          };
+          kuis.pertanyaan.push(pertanyaanMap[row.id_pertanyaan]);
+        }
+
+        if (row.id_jawaban) {
+          pertanyaanMap[row.id_pertanyaan].jawaban.push({
+            id_jawaban: row.id_jawaban,
+            teks_jawaban: row.teks_jawaban,
+            is_benar: row.is_benar,
+          });
+        }
+      }
+    });
+
+    // ambil leaderboard
+    const sqlLeaderboard = `
+      SELECT s.id_skor, s.skor, u.username 
+      FROM tb_skor s
+      JOIN tb_user u ON s.id_player = u.id_user
+      WHERE s.id_kuis = ?
+      ORDER BY s.skor DESC
+      LIMIT 10
+    `;
+
+    db.query(sqlLeaderboard, [idKuis], (err, skorResults) => {
+      if (err) return res.status(500).json({ error: err.message });
+
+      kuis.leaderboard = skorResults.map((row) => ({
+        id_skor: row.id_skor,
+        username: row.username,
+        skor: row.skor,
+      }));
+
+      res.json(kuis);
+    });
   });
 });
 

@@ -1,38 +1,3 @@
-const lvl_offcial = document.getElementById("official-level");
-const lvl_custom = document.getElementById("custom-level");
-
-// Ngambil data dari list ke page
-data_quiz.forEach((lvl) => {
-  const card = document.createElement("div");
-  card.classList.add("card-level", "group");
-  card.innerHTML = `
-          <h2 class="title-card-level">${lvl.judul}</h2>
-          <div class="author-card-level">
-          <img
-            src="style/img/author.svg"
-            alt="by"
-            class="icon-card-level"
-          />
-          <p>${lvl.author} </p>
-          </div>
-          <button id="btn-like" class="btn-like-card-level">${lvl.like} &#10084;</button>
-          <div class="total-card-level">
-            <img src="style/img/book.svg" class="icon-card-level" />
-            <p>${lvl.pertanyaan.length} Soal</p>
-          </div>
-        `;
-
-  card.addEventListener("click", () => {
-    window.location.href = `quiz/?id=${lvl.id}`;
-  });
-
-  if (lvl.kategori == "official") {
-    lvl_offcial.appendChild(card);
-  } else if (lvl.kategori == "custom") {
-    lvl_custom.appendChild(card);
-  }
-});
-
 function mainToProfile() {
   window.location.href = "profile/";
 }
@@ -68,7 +33,7 @@ function getProfile() {
         return res.json();
       } else {
         beforeLogin();
-        throw new Error("Invalid token");
+        throw new Error("Belum login");
       }
     })
     .then((data) => console.log(data))
@@ -77,4 +42,63 @@ function getProfile() {
       console.error(err);
     });
 }
-getProfile();
+
+function showAllKuis() {
+  fetch("http://localhost:3000/kuis")
+  .then((res) => res.json())
+  .then((data) => {
+    const data_quiz = data.map((kuis) => ({
+      id: kuis.id_kuis,
+      kategori: kuis.kategori,
+      judul: kuis.judul,
+      subjudul: kuis.subjudul,
+      author: kuis.author,
+      like: kuis.like || "0", // jika ada
+      deskripsi: kuis.deskripsi,
+      pertanyaan: kuis.pertanyaan.map((p) => p.teks_pertanyaan),
+      // tambahkan pilihan_ganda dan jawaban jika backend sudah kirim
+    }));
+    // Sekarang data_quiz sudah sama formatnya dengan yang kamu pakai di frontend
+    console.log(data_quiz);
+    // Ngambil data dari list ke page
+    data_quiz.forEach((lvl) => {
+      const card = document.createElement("div");
+      card.classList.add("card-level", "group");
+      card.innerHTML = `
+          <h2 class="title-card-level">${lvl.judul}</h2>
+          <div class="author-card-level">
+          <img
+            src="style/img/author.svg"
+            alt="by"
+            class="icon-card-level"
+          />
+          <p>${lvl.author} </p>
+          </div>
+          <button id="btn-like" class="btn-like-card-level">${lvl.like} &#10084;</button>
+          <div class="total-card-level">
+            <img src="style/img/book.svg" class="icon-card-level" />
+            <p>${lvl.pertanyaan.length} Soal</p>
+          </div>
+        `;
+      const lvl_offcial = document.getElementById("official-level");
+      const lvl_custom = document.getElementById("custom-level");
+
+      card.addEventListener("click", () => {
+        window.location.href = `quiz/?id=${lvl.id}`;
+      });
+
+      if (lvl.kategori == "official") {
+        lvl_offcial.appendChild(card);
+      } else if (lvl.kategori == "custom") {
+        lvl_custom.appendChild(card);
+      }
+    });
+  });
+}
+
+function main(){
+  getProfile();
+  showAllKuis();  
+}
+
+main();

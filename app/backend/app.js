@@ -284,6 +284,22 @@ app.post("/add-kuis", verifyToken, (req, res) => {
   );
 });
 
+// Delete my kuis
+app.delete("/delete-kuis/:id", (req, res) => {
+  const id = req.params.id;
+  const sql = "Delete from tb_kuis where id_kuis = ?";
+
+  db.query(sql, [id], (err, hasil) => {
+    if (err) return res.status(500).json({ error: err.message });
+
+    if (hasil.affectedRows === 0) {
+      return res.status(404).json({ message: "Kuis tidak ditemukan" });
+    }
+
+    res.json({ message: "Kuis berhasil dihapus!" });
+  });
+});
+
 // Insert ke leaderboard
 app.post("/add-leaderboard", verifyToken, (req, res) => {
   const id_player = req.user.id;
@@ -350,7 +366,7 @@ app.get("/leaderboard/:id_kuis", (req, res) => {
       skor: row.skor,
     }));
 
-    res.json(leaderboard);  
+    res.json(leaderboard);
   });
 });
 
@@ -372,7 +388,7 @@ app.get("/my-kuis", verifyToken, (req, res) => {
 
   db.query(sql, [idUser], (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
-// 
+    //
     res.json(results);
   });
 });

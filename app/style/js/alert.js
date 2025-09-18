@@ -51,13 +51,12 @@ function showAlert(bgClass, iconSvg, message) {
 
   document.body.appendChild(alertDiv);
 
-  // hide setelah 3dtk
   setTimeout(() => {
     if (alertDiv) alertDiv.classList.add("animate-fadeOut");
     setTimeout(() => {
       if (alertDiv) alertDiv.remove();
     }, 500);
-  }, 3000);
+  }, 30000);
 }
 
 const style = document.createElement("style");

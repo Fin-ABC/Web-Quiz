@@ -109,8 +109,8 @@ function verifyToken(req, res, next) {
 
 // Route yang butuh login
 app.get("/profile", verifyToken, (req, res) => {
-  res.json({ 
-    message: "Anda sudah login", 
+  res.json({
+    message: "Anda sudah login",
     user: req.user,
   });
 });
@@ -200,7 +200,6 @@ app.get("/kuis/:id", (req, res) => {
       author: results[0].author,
       like: results[0].jumlah_like || "0",
       pertanyaan: [],
-      leaderboard: [],
     };
 
     const pertanyaanMap = {};
@@ -226,8 +225,114 @@ app.get("/kuis/:id", (req, res) => {
       }
     });
 
-    // ambil leaderboard
-    const sqlLeaderboard = `
+    res.json(kuis);
+  });
+});
+
+// Insert data kuis
+app.post("/add-kuis", verifyToken, (req, res) => {
+  console.log(req.user);
+  const id_author = req.user.id;
+  const { judul, subjudul, deskripsi, pertanyaan, kategori } = req.body;
+
+  const insertKuis = `
+    INSERT INTO tb_kuis (id_author, judul, subjudul, deskripsi, kategori) 
+    VALUES (?, ?, ?, ?, ?)
+  `;
+
+  db.query(
+    insertKuis,
+    [id_author, judul, subjudul, deskripsi, kategori],
+    (err, result) => {
+      if (err) return res.status(500).json({ error: err.message });
+
+      const idKuis = result.insertId; // dapet id_kuis otomatis
+
+      // lanjut insert pertanyaan
+      pertanyaan.forEach((p) => {
+        const sqlPertanyaan = `
+        INSERT INTO tb_pertanyaan (id_kuis, teks_pertanyaan)
+        VALUES (?, ?)
+      `;
+        db.query(
+          sqlPertanyaan,
+          [idKuis, p.teks_pertanyaan],
+          (err, resultPertanyaan) => {
+            if (err) return console.error(err);
+
+            const idPertanyaan = resultPertanyaan.insertId;
+
+            // insert jawaban untuk pertanyaan ini
+            p.jawaban.forEach((j) => {
+              const sqlJawaban = `
+            INSERT INTO tb_jawaban (id_kuis, id_pertanyaan, teks_jawaban, is_benar)
+            VALUES (?, ?, ?, ?)
+          `;
+              db.query(
+                sqlJawaban,
+                [idKuis, idPertanyaan, j.teks_jawaban, j.is_benar],
+                (err) => {
+                  if (err) return console.error(err);
+                },
+              );
+            });
+          },
+        );
+      });
+
+      res.json({ message: "Kuis berhasil disimpan!", idKuis });
+    },
+  );
+});
+
+// Insert ke leaderboard
+app.post("/add-leaderboard", verifyToken, (req, res) => {
+  const id_player = req.user.id;
+  const { id_kuis, skor } = req.body;
+
+  const checkSkor = `
+    SELECT * FROM tb_skor WHERE id_player = ? AND id_kuis = ?
+  `;
+
+  db.query(checkSkor, [id_kuis, id_player], (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+
+    if (results.length > 0) {
+      const skorSebelumnya = results[0].skor;
+
+      if (skor > skorSebelumnya) {
+        const updateSkor = `
+          UPDATE tb_skor 
+          SET skor = ? 
+          WHERE id_kuis = ? AND id_player = ?
+        `;
+        db.query(updateSkor, [skor, id_kuis, id_player], (err) => {
+          if (err) return res.status(500).json({ error: err.message });
+
+          res.json({ message: "Skor diperbarui karena lebih tinggi!" });
+        });
+      } else {
+        res.json({ message: "Skor tidak diupdate karena lebih kecil." });
+      }
+    } else {
+      const tambahSkor = `
+        INSERT INTO tb_skor (id_kuis, id_player, skor)
+        VALUES (?, ?, ?)
+      `;
+      db.query(tambahSkor, [id_kuis, id_player, skor], (err) => {
+        if (err) return res.status(500).json({ error: err.message });
+
+        res.json({ message: "Skor berhasil disimpan!" });
+      });
+    }
+  });
+});
+
+app.get("/leaderboard/:id_kuis", (req, res) => {
+  const idKuis = req.params.id_kuis;
+
+  // ambil leaderboard
+  const sqlLeaderboard = `
       SELECT s.id_skor, s.skor, u.username 
       FROM tb_skor s
       JOIN tb_user u ON s.id_player = u.id_user
@@ -236,21 +341,21 @@ app.get("/kuis/:id", (req, res) => {
       LIMIT 10
     `;
 
-    db.query(sqlLeaderboard, [idKuis], (err, skorResults) => {
-      if (err) return res.status(500).json({ error: err.message });
+  db.query(sqlLeaderboard, [idKuis], (err, hasil) => {
+    if (err) return res.status(500).json({ error: err.message });
 
-      kuis.leaderboard = skorResults.map((row) => ({
-        id_skor: row.id_skor,
-        username: row.username,
-        skor: row.skor,
-      }));
+    const leaderboard = hasil.map((row) => ({
+      id_skor: row.id_skor,
+      username: row.username,
+      skor: row.skor,
+    }));
 
-      res.json(kuis);
-    });
+    res.json(leaderboard);
+    5;
   });
 });
 
-// Route: Ambil semua kuis yang dibuat
+// Ambil semua mykuis
 app.get("/my-kuis", verifyToken, (req, res) => {
   const idUser = req.user.id; // pastikan waktu login, JWT menyimpan { id, username }
 

@@ -84,7 +84,6 @@ function register() {
     .catch(err => showAlertError(err.message));
 }
 
-// 🔹 Login
 function login() {
   fetch("http://localhost:3000/login", {
     method: "POST",

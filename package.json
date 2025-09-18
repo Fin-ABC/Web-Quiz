@@ -11,7 +11,8 @@
     "tailwindcss": "^4.1.12"
   },
   "scripts": {
-    "style": "npx @tailwindcss/cli -i ./app/src/input.css -o ./app/src/output.css --watch",
+    "style-watch": "npx @tailwindcss/cli -i ./app/src/input.css -o ./app/src/output.css --watch",
+    "style": "npx @tailwindcss/cli -i ./app/src/input.css -o ./app/src/output.css",
     "build": "npx @tailwindcss/cli -i ./app/src/input.css -o ./app/style/css/final.css --minify",
     "api": "nodemon app/backend/app.js"
   },

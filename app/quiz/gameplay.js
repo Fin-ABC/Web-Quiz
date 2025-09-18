@@ -116,6 +116,7 @@ function cekJawaban(pilihan) {
 function tampilHasil() {
   const persen = 100 / dt_level.pertanyaan.length;
   const point = jumlahBenar * persen;
+  const token = localStorage.getItem("token");
 
   textContent("total", `${total_soal}`);
   textContent("benar", `${jumlahBenar}`);
@@ -124,6 +125,17 @@ function tampilHasil() {
 
   g_hasil.classList.remove("hidden");
   g_page_soal.classList.add("hidden");
+
+  fetch("http://localhost:3000/add-leaderboard", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json", },
+    body: JSON.stringify({
+      id_kuis: dt_level.id,
+      skor: point,
+    }),
+  })
 }
 
 // Fungsi untuk mengreset page hasil dan pertanyaan
@@ -147,6 +159,7 @@ function resetSoal() {
   textContent("nilai", "0");
 }
 
+// ngambil data leaderboard
 function loadLeaderboard() {
   const lb_list = document.getElementById("leaderboard-list");
   const data_leader = dt_level.leaderboard[0];

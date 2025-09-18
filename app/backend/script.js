@@ -1,3 +1,214 @@
+// ################ Bagian Create
+// Fungsi yg berfungi untuk memunculkan form untuk membuat soal kuis dan pilihan gandanya sebanyak jumlah soal yg ditentuksn user
+function callFormPertanyaanCreate(index) {
+  const card_pertanyaan = document.getElementById("card-pertanyaan");
+
+  card_pertanyaan.innerHTML = "";
+  for (let i = 1; i <= index; i++) {
+    card_pertanyaan.innerHTML += `
+      <div class="mb-4 p-4 border rounded-lg border-white">
+        <label for="create_kuis_pertanyaan${i}" class="mb-1 block font-semibold">Pertanyaan ${i}</label>
+        <input
+          type="text"
+          id="create_kuis_pertanyaan${i}"
+          name="create_kuis_pertanyaan${i}"
+          maxlength="100"
+          placeholder="Masukkan pertanyaan"
+          class="txt-box-pertanyaan"
+          required
+        />
+        <div class="mt-3">
+          <label class="mb-1 block font-semibold">Pilihan Ganda</label>
+          <div class="grid grid-cols-2 gap-4">
+            ${[1, 2, 3, 4]
+              .map(
+                (j) => `
+              <div class="flex items-center">
+                <input
+                  type="text"
+                  name="create_kuis_pilihan${i}_${j}"
+                  maxlength="40"
+                  placeholder="Pilihan ${j}"
+                  class="txt-box-pilgan"
+                  required
+                />
+                <input
+                  type="checkbox"
+                  name="create_kuis_benar${i}_${j}"
+                  class="ml-2 h-5 w-5 accent-emerald-700"
+                  title="Jawaban Benar"
+                />
+              </div>
+            `,
+              )
+              .join("")}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Button kirim
+  card_pertanyaan.innerHTML += `
+    <div
+      onclick="cekFormCreateKuis()"
+      class="w-full mt-3 cursor-pointer rounded-md bg-emerald-700 py-2 text-center font-bold text-white transition hover:bg-emerald-800"
+      role="button"
+      tabindex="0"
+    >
+      Kirim
+    </div>
+  `;
+}
+
+// FUngsi yg berfungsi untuk mengecek apakah form kosong atau tidak.
+// Jika kosong maka system akan memunculkan alert
+function validasiFormPertanyaan(jml_soal) {
+  for (let i = 1; i <= jml_soal; i++) {
+    // Cek pertanyaan
+    const pertanyaan = document.getElementById(`create_kuis_pertanyaan${i}`);
+    if (!pertanyaan || pertanyaan.value.trim() === "") {
+      showAlertError(`Teks pertanyaan No.${i} tidak boleh kosong`);
+      return false;
+    }
+
+    // Cek pilihan ganda
+    let adaJawabanBenar = false;
+    for (let j = 1; j <= 4; j++) {
+      const pilihanInput = document.querySelector(
+        `input[name="create_kuis_pilihan${i}_${j}"]`,
+      );
+      const checkboxInput = document.querySelector(
+        `input[name="create_kuis_benar${i}_${j}"]`,
+      );
+
+      if (!pilihanInput || pilihanInput.value.trim() === "") {
+        showAlertError(`Pertanyaan No.${i} harus memiliki 4 pilihan ganda`);
+        return false;
+      }
+      if (checkboxInput && checkboxInput.checked) {
+        adaJawabanBenar = true;
+      }
+    }
+
+    // Cek apakah soal memiliki jawaban benar
+    if (!adaJawabanBenar) {
+      showAlertError(`Pilih 1 jawaban benar untuk pertanyaan No.${i}`);
+      return false;
+    }
+  }
+  return true;
+}
+
+function resetFormCreateKuis() {
+  document.getElementById("form-create-basic-info").reset();
+  document.getElementById("card-pertanyaan").innerHTML = "";
+
+  changePage("basic-info", "form-pertanyaan");
+  changePage("main", "create-kuis");
+}
+
+// FUngsi yg nanti akan digunakan untuk mengirim data dari form ke system lalu ke database
+function cekFormCreateKuis() {
+  const jumlahSoal = document.getElementById("basic_info_jumlah_soal").value;
+  if (!validasiFormPertanyaan(jumlahSoal)) {
+    return;
+  }
+  hasil = getQuizFormDataCreate(jumlahSoal);
+  console.log(hasil);
+  insertKuis();
+}
+
+// Fungsi yg berfungsi mengambil data dari setiap form
+function getQuizFormDataCreate(jml_soal) {
+  const quizData = [];
+  const dataPertanyaan = [];
+
+  const judul = document.getElementById("basic_info_judul").value;
+  const subjudul = document.getElementById("basic_info_subjudul").value;
+  const deskripsi = document.getElementById("basic_info_deskripsi").value;
+
+  for (let i = 1; i <= jml_soal; i++) {
+    // Ambil pertanyaan
+    const pertanyaan = document
+      .getElementById(`create_kuis_pertanyaan${i}`)
+      .value.trim();
+
+    // Ambil pilihan ganda dan jawaban benar
+    const pilihan_ganda = [];
+    let jawaban_benar = [];
+    for (let j = 1; j <= 4; j++) {
+      const pilihanInput = document.querySelector(
+        `input[name="create_kuis_pilihan${i}_${j}"]`,
+      );
+      const checkboxInput = document.querySelector(
+        `input[name="create_kuis_benar${i}_${j}"]`,
+      );
+      const pilihanValue = pilihanInput.value.trim();
+      pilihan_ganda.push(pilihanValue);
+
+      if (checkboxInput.checked) {
+        jawaban_benar.push(pilihanValue);
+      }
+    }
+
+    dataPertanyaan.push({
+      pertanyaan,
+      pilihan_ganda,
+      jawaban_benar,
+    });
+  }
+  quizData.push({
+    judul,
+    subjudul,
+    deskripsi,
+    dataPertanyaan,
+  });
+  return quizData;
+}
+
+function insertKuis() {
+  const token = localStorage.getItem("token");
+  const jumlahSoal = document.getElementById("basic_info_jumlah_soal").value;
+  const quizData = getQuizFormDataCreate(jumlahSoal)[0];
+  console.log(quizData);
+
+  const payload = {
+    judul: quizData.judul,
+    subjudul: quizData.subjudul,
+    deskripsi: quizData.deskripsi,
+    kategori: "custom",
+    pertanyaan: quizData.dataPertanyaan.map((q) => ({
+      teks_pertanyaan: q.pertanyaan,
+      jawaban: q.pilihan_ganda.map((pilihan) => ({
+        teks_jawaban: pilihan,
+        is_benar: q.jawaban_benar.includes(pilihan),
+      })),
+    })),
+  };
+
+  fetch("http://localhost:3000/add-kuis", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.message) {
+        showAlertSuccess(data.message);
+        resetFormCreateKuis();
+      } else {
+        showAlertError(data.error || "Gagal membuat kuis");
+      }
+    })
+    .catch((err) => showAlertError(err.message));
+}
+
+// ################ Bagian Create ENd
+
 function mainToProfile() {
   window.location.href = "profile/";
 }
@@ -37,7 +248,7 @@ function getProfile() {
       }
     })
     .then((data) => {
-      const { message, user} = data;
+      const { message, user } = data;
       console.log(message);
       document.getElementById("btn-main-profile").innerText = user.username;
       console.log(user);

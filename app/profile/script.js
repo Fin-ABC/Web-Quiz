@@ -2,16 +2,20 @@ function profileToMain() {
   window.location.href = "../";
 }
 
-function callCardHapus() {
+function callCardHapus(id, judul, subjudul, deskripsi) {
   const cardHapus = document.getElementById("card-hapus");
   const pageProfile = document.getElementById("page-profile");
 
   cardHapus.classList.toggle("hidden");
   pageProfile.classList.toggle("blur-sm");
+
+  document.getElementById("profile-hapus-judul").innerText = judul;
+  document.getElementById("profile-hapus-subjudul").innerText = subjudul;
+  document.getElementById("profile-hapus-deskripsi").innerText = deskripsi;
 }
 
-function submitDetele() {
-  console.log("Delete Kuis");
+function submitDetele(id) {
+  console.log("Delete Kuis " + id);
 }
 
 function callCardEdit() {
@@ -52,7 +56,6 @@ function getMyKuis() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("My Kuis : ", data);
       document.getElementById("profile-jumlah-kuis").innerText = data.length;
       data.forEach((kuis) => {
         const card = document.createElement("div");
@@ -71,7 +74,7 @@ function getMyKuis() {
           <button onclick="callCardEdit();" class="profile-btn-edit">
             Edit
           </button>
-          <button onclick="callCardHapus();" class="profile-btn-hapus">
+          <button onclick="callCardHapus('${kuis.id_kuis}', '${kuis.judul}', '${kuis.subjudul}', '${kuis.deskripsi}',);" class="profile-btn-hapus">
             Hapus
           </button>
         </div>`;
@@ -100,10 +103,7 @@ function getProfile() {
       }
     })
     .then((data) => {
-      console.log(data);
       const { message, user } = data;
-      console.log(message);
-      console.log(user);
       document.getElementById("profile-username").innerText = user.username;
       document.getElementById("profile-id").innerText = user.id;
     })

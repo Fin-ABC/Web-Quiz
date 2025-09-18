@@ -18,14 +18,14 @@ fetch(`http://localhost:3000/kuis/${idLvl}`)
       like: data.like || "0",
       deskripsi: data.deskripsi,
       pertanyaan: data.pertanyaan.map((p) => p.teks_pertanyaan),
-    pilihan_ganda: data.pertanyaan.map((p) => p.jawaban.map((j) => j.teks_jawaban)),
-    jawaban: data.pertanyaan.map((p) => 
-      p.jawaban.find((j) => j.is_benar === 1)?.teks_jawaban || ""
-    ),
-      leaderboard: [data.leaderboard],
+      pilihan_ganda: data.pertanyaan.map((p) =>
+        p.jawaban.map((j) => j.teks_jawaban),
+      ),
+      jawaban: data.pertanyaan.map(
+        (p) => p.jawaban.find((j) => j.is_benar === 1)?.teks_jawaban || "",
+      ),
     };
     total_soal = dt_level.pertanyaan.length;
-    console.log(dt_level);
 
     const id = document.getElementById("id");
     const jdl = document.getElementById("judul");
@@ -130,12 +130,39 @@ function tampilHasil() {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json", },
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       id_kuis: dt_level.id,
       skor: point,
     }),
-  })
+  });
+}
+
+// ngambil data leaderboard
+function loadLeaderboard() {
+  fetch(`http://localhost:3000/leaderboard/${idLvl}`)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Leaderboard:", data);
+
+      const lb_list = document.getElementById("leaderboard-list");
+      lb_list.innerHTML = "";
+
+      data.forEach((player, i) => {
+        const div = document.createElement("div");
+        div.className = "leaderboard-items";
+        div.innerHTML = `
+      <span class="leaderboard-items-rank">${i + 1}</span>
+      <span class="leaderboard-items-name">${player.username}</span>
+      <span class="leaderboard-items-skor">${player.skor}</span>
+    `;
+        lb_list.appendChild(div);
+      });
+    })
+    .catch((err) => {
+      console.error("Gagal ambil leaderboard:", err);
+    });
 }
 
 // Fungsi untuk mengreset page hasil dan pertanyaan
@@ -157,24 +184,6 @@ function resetSoal() {
   textContent("benar", "0");
   textContent("salah", "0");
   textContent("nilai", "0");
-}
-
-// ngambil data leaderboard
-function loadLeaderboard() {
-  const lb_list = document.getElementById("leaderboard-list");
-  const data_leader = dt_level.leaderboard[0];
-  lb_list.innerHTML = "";
-
-  data_leader.forEach((player, i) => {
-    const div = document.createElement("div");
-    div.className = "leaderboard-items";
-    div.innerHTML = `
-      <span class="leaderboard-items-rank">${i + 1}</span>
-      <span class="leaderboard-items-name">${player.username}</span>
-      <span class="leaderboard-items-skor">${player.skor}</span>
-    `;
-    lb_list.appendChild(div);
-  });
 }
 
 // Public Funcion

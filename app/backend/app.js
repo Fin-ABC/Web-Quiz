@@ -231,7 +231,6 @@ app.get("/kuis/:id", (req, res) => {
 
 // Insert data kuis
 app.post("/add-kuis", verifyToken, (req, res) => {
-  console.log(req.user);
   const id_author = req.user.id;
   const { judul, subjudul, deskripsi, pertanyaan, kategori } = req.body;
 
@@ -294,7 +293,7 @@ app.post("/add-leaderboard", verifyToken, (req, res) => {
     SELECT * FROM tb_skor WHERE id_player = ? AND id_kuis = ?
   `;
 
-  db.query(checkSkor, [id_kuis, id_player], (err, results) => {
+  db.query(checkSkor, [id_player, id_kuis], (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
 
     if (results.length > 0) {
@@ -328,6 +327,7 @@ app.post("/add-leaderboard", verifyToken, (req, res) => {
   });
 });
 
+// ambil data leaderboard
 app.get("/leaderboard/:id_kuis", (req, res) => {
   const idKuis = req.params.id_kuis;
 
@@ -350,18 +350,17 @@ app.get("/leaderboard/:id_kuis", (req, res) => {
       skor: row.skor,
     }));
 
-    res.json(leaderboard);
-    5;
+    res.json(leaderboard);  
   });
 });
 
 // Ambil semua mykuis
 app.get("/my-kuis", verifyToken, (req, res) => {
-  const idUser = req.user.id; // pastikan waktu login, JWT menyimpan { id, username }
+  const idUser = req.user.id;
 
   const sql = `
     SELECT 
-      k.id_kuis, k.judul, DATE_FORMAT(k.created_at, '%d-%m-%Y') as created_at,
+      k.id_kuis, k.judul, k.subjudul, k.deskripsi, DATE_FORMAT(k.created_at, '%d-%m-%Y') as created_at,
       u.username AS author,
       (SELECT COUNT(*) FROM tb_like l WHERE l.id_kuis = k.id_kuis) AS jumlah_like,
       (SELECT COUNT(*) FROM tb_pertanyaan p WHERE p.id_kuis = k.id_kuis) AS jumlah_pertanyaan
@@ -373,7 +372,7 @@ app.get("/my-kuis", verifyToken, (req, res) => {
 
   db.query(sql, [idUser], (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
-
+// 
     res.json(results);
   });
 });

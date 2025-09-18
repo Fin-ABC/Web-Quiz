@@ -171,7 +171,6 @@ function insertKuis() {
   const token = localStorage.getItem("token");
   const jumlahSoal = document.getElementById("basic_info_jumlah_soal").value;
   const quizData = getQuizFormDataCreate(jumlahSoal)[0];
-  console.log(quizData);
 
   const payload = {
     judul: quizData.judul,
@@ -200,6 +199,7 @@ function insertKuis() {
       if (data.message) {
         showAlertSuccess(data.message);
         resetFormCreateKuis();
+        showAllKuis();
       } else {
         showAlertError(data.error || "Gagal membuat kuis");
       }

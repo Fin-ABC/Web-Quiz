@@ -28,7 +28,6 @@ function submitDetele() {
     .then((res) => res.json())
     .then((data) => {
       callCardHapus();
-      refreshKuis();
       getMyKuis();
       showAlertSuccess(data.message);
     })
@@ -52,7 +51,13 @@ function callCardEdit(id, judul, subjudul, deskripsi) {
 }
 
 function callFormEdit() {
-  const id = document.getElementById("profile-edit-hapus").textContent;
+  const id = document.getElementById("profile-edit-id").textContent;
+  const inputJudul = document.getElementById("edit_basic_info_judul");
+  const inputSubjudul = document.getElementById("edit_basic_info_subjudul");
+  const inputDeskripsi = document.getElementById("edit_basic_info_deskripsi");
+  const inputJumlahSoal = document.getElementById(
+    "edit_basic_info_jumlah_soal",
+  );
 
   let dataKuis;
   fetch(`http://localhost:3000/kuis/${id}`)
@@ -71,14 +76,68 @@ function callFormEdit() {
           (p) => p.jawaban.find((j) => j.is_benar === 1)?.teks_jawaban || "",
         ),
       };
+      inputJudul.value = dataKuis.judul;
+      inputSubjudul.value = dataKuis.subjudul;
+      inputDeskripsi.value = dataKuis.deskripsi;
+      inputJumlahSoal.value = dataKuis.jml_soal;
 
-      const inputJudul = document.getElementById("edit_basic_info_judul")
-      const inputSubjudul = document.getElementById("edit_basic_info_subjudul")
-      const inputDeskripsi = document.getElementById("edit_basic_info_deskripsi")
-      const inputJumlahSoal = document.getElementById("edit_basic_info_jumlah_soal")
+      inputJumlahSoal.setAttribute("min", 5);
+      inputJumlahSoal.setAttribute("value", dataKuis.jml_soal);
+      inputJumlahSoal.setAttribute(
+        "oninput",
+        `if(this.value < 5) this.value = 5;`,
+      );
+
+      callFormPertanyaanEdit(dataKuis.jml_soal);
+
+      // Isi form pertanyaan dan pilihan ganda
+      for (let i = 0; i < dataKuis.jml_soal; i++) {
+        document.getElementById(`edit_kuis_pertanyaan${i + 1}`).value =
+          dataKuis.pertanyaan[i];
+
+        for (let j = 0; j < 4; j++) {
+          const pilihanInput = document.querySelector(
+            `input[name="edit_kuis_pilihan${i + 1}_${j + 1}"]`,
+          );
+          const checkboxInput = document.querySelector(
+            `input[name="edit_kuis_benar${i + 1}_${j + 1}"]`,
+          );
+
+          pilihanInput.value = dataKuis.pilihan_ganda[i][j] || "";
+          checkboxInput.checked =
+            dataKuis.pilihan_ganda[i][j] === dataKuis.jawaban[i];
+        }
+      }
+      changePage("edit-kuis", "card-edit");
+
+      // Event untuk update jumlah soal secara dinamis
+      inputJumlahSoal.addEventListener("input", () => {
+        let jumlahBaru = parseInt(inputJumlahSoal.value, 10);
+
+        callFormPertanyaanEdit(jumlahBaru);
+
+        for (let i = 0; i < jumlahBaru; i++) {
+          if (dataKuis.pertanyaan[i]) {
+            document.getElementById(`edit_kuis_pertanyaan${i + 1}`).value =
+              dataKuis.pertanyaan[i];
+          }
+          for (let j = 0; j < 4; j++) {
+            const pilihanInput = document.querySelector(
+              `input[name="edit_kuis_pilihan${i + 1}_${j + 1}"]`,
+            );
+            const checkboxInput = document.querySelector(
+              `input[name="edit_kuis_benar${i + 1}_${j + 1}"]`,
+            );
+
+            if (dataKuis.pilihan_ganda[i] && dataKuis.pilihan_ganda[i][j]) {
+              pilihanInput.value = dataKuis.pilihan_ganda[i][j];
+              checkboxInput.checked =
+                dataKuis.pilihan_ganda[i][j] === dataKuis.jawaban[i];
+            }
+          }
+        }
+      });
     });
-
-  changePage("edit-kuis", "card-edit");
 }
 
 // Fungsi untuk memanggil Form Pertanyaan Edit Kuis
@@ -155,9 +214,11 @@ function cekFormEditKuis() {
   console.log(hasil);
 
   changePage("edit-basic-info", "form-edit-pertanyaan");
+  document.getElementById("page-profile").classList.toggle("blur-sm");
   document.getElementById("edit-kuis").classList.toggle("hidden");
   // Tambah
   // Fungsi buat refresh list kuis
+  submitEdit();
 }
 
 // Fungsi untuk validasi form edit bagian petnyaan
@@ -245,6 +306,46 @@ function getQuizFormDataEdit(jml_soal) {
   });
   return quizData;
 }
+
+function submitEdit() {
+  const jumlahSoal = document.getElementById(
+    "edit_basic_info_jumlah_soal",
+  ).value;
+  const id = document.getElementById("profile-edit-id").textContent;
+  const token = localStorage.getItem("token");
+  const dataKuis = getQuizFormDataEdit(jumlahSoal)[0];
+
+  const payload = {
+    judul: dataKuis.judul,
+    subjudul: dataKuis.subjudul,
+    deskripsi: dataKuis.deskripsi,
+    pertanyaan: dataKuis.dataPertanyaan.map((item) => ({
+      teks_pertanyaan: item.pertanyaan,
+      jawaban: item.pilihan_ganda.map((pilihan) => ({
+        teks_jawaban: pilihan,
+        is_benar: item.jawaban_benar.includes(pilihan) ? 1 : 0,
+      })),
+    })),
+  };
+
+  fetch(`http://localhost:3000/edit-kuis/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      getMyKuis();
+      showAlertSuccess(data.message);
+    })
+    .catch((error) => {
+      console.error("Gagal: ", error);
+      showAlertError("Terjadi kesalahan saat mengedit kuis");
+    });
+}
 // Bagian Edit kuis end
 
 const btnBackBacic = document.getElementById("btn-back-edit-basic-info");
@@ -264,6 +365,8 @@ function logout() {
 function getMyKuis() {
   const token = localStorage.getItem("token");
   const cardList = document.getElementById("profile-list-kuis");
+
+  cardList.innerHTML = "";
 
   fetch("http://localhost:3000/my-kuis", {
     method: "GET",
@@ -302,13 +405,6 @@ function getMyKuis() {
     .catch((err) => console.error("Error : ", err));
 }
 
-// Refresh list kuis
-function refreshKuis() {
-  const cardList = document.getElementById("profile-list-kuis");
-
-  cardList.innerHTML = "";
-}
-
 // Fetch Profile
 function getProfile() {
   const token = localStorage.getItem("token");
@@ -338,7 +434,6 @@ function getProfile() {
 }
 
 function main() {
-  refreshKuis();
   getProfile();
   getMyKuis();
 }

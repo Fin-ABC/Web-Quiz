@@ -39,9 +39,7 @@
             <!-- List Card KUis yg Dibuat User -->
             <div id="profile-list-kuis">
               <!-- Isi List -->
-              <div
-                class="profile-card-list"
-              >
+              <div class="profile-card-list">
                 <div class="text-left">
                   <h3 class="profile-card-judul">Kuis MyKisah</h3>
                   <div class="flex">
@@ -52,16 +50,10 @@
                   <p class="profile-card-date">12-12-2024</p>
                 </div>
                 <div class="">
-                  <button
-                    onclick="callCardEdit();"
-                    class="profile-btn-edit"
-                  >
+                  <button onclick="callCardEdit();" class="profile-btn-edit">
                     Edit
                   </button>
-                  <button
-                    onclick="callCardHapus();"
-                    class="profile-btn-hapus"
-                  >
+                  <button onclick="callCardHapus();" class="profile-btn-hapus">
                     Hapus
                   </button>
                 </div>
@@ -132,14 +124,21 @@
                     Apakah kamu yakin ingin menghapus ini?
                   </p>
                   <p class="hidden" id="profile-hapus-id">1</p>
-                  <p class="text-slate-300 text-left">
+                  <p class="text-left text-slate-300">
                     Judul : <span id="profile-hapus-judul">My Kisah</span>
                   </p>
-                  <p class="text-slate-300 text-left">
-                    Subjudul : <span id="profile-hapus-subjudul">My Kisah dengan berbagai macam cerita</span>
+                  <p class="text-left text-slate-300">
+                    Subjudul :
+                    <span id="profile-hapus-subjudul"
+                      >My Kisah dengan berbagai macam cerita</span
+                    >
                   </p>
-                  <p class="text-slate-300 text-left">
-                    Deskripsi : <span id="profile-hapus-deskripsi">Kuis ini berisi berbagai macam kisah menarik tentang diriku dan dirimu.</span>
+                  <p class="text-left text-slate-300">
+                    Deskripsi :
+                    <span id="profile-hapus-deskripsi"
+                      >Kuis ini berisi berbagai macam kisah menarik tentang
+                      diriku dan dirimu.</span
+                    >
                   </p>
                 </div>
               </div>
@@ -242,14 +241,21 @@
                     Apakah kamu ingin mengedit kuis ini?
                   </p>
                   <p class="hidden" id="profile-edit-id">1</p>
-                  <p class="text-slate-300 text-left">
+                  <p class="text-left text-slate-300">
                     Judul : <span id="profile-edit-judul">My Kisah</span>
                   </p>
-                  <p class="text-slate-300 text-left">
-                    Subjudul : <span id="profile-edit-subjudul">My Kisah dengan berbagai macam cerita</span>
+                  <p class="text-left text-slate-300">
+                    Subjudul :
+                    <span id="profile-edit-subjudul"
+                      >My Kisah dengan berbagai macam cerita</span
+                    >
                   </p>
-                  <p class="text-slate-300 text-left">
-                    Deskripsi : <span id="profile-edit-deskripsi">Kuis ini berisi berbagai macam kisah menarik tentang diriku dan dirimu.</span>
+                  <p class="text-left text-slate-300">
+                    Deskripsi :
+                    <span id="profile-edit-deskripsi"
+                      >Kuis ini berisi berbagai macam kisah menarik tentang
+                      diriku dan dirimu.</span
+                    >
                   </p>
                 </div>
               </div>
@@ -386,26 +392,23 @@
                 type="number"
                 id="edit_basic_info_jumlah_soal"
                 name="edit_basic_info_jumlah_soal"
-                min="5"
-                value="5"
                 class="text-maomao-dark bg-maomao-light w-full rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none"
                 required
-                oninput="if(this.value < 5) this.value = 5;"
               />
               <!-- Button lanjut -->
-              <button
+              <!-- <button
                 onclick="basic_info_to_pertanyaan('edit_basic_info_judul','edit_basic_info_subjudul','edit_basic_info_deskripsi','edit_basic_info_jumlah_soal','edit-basic-info','form-edit-pertanyaan','btn-back-edit-pertanyaan','btn-back-edit-basic-info','edit')"
                 type="button"
                 class="w-full rounded-md bg-emerald-700 py-2 font-bold text-white transition hover:bg-emerald-800"
               >
                 Lanjut
-              </button>
+              </button> -->
             </form>
           </div>
           <!-- Basic Info End -->
 
           <!-- Isi Pertanyaa -->
-          <div class="card-create hidden" id="form-edit-pertanyaan">
+          <div class="card-create" id="form-edit-pertanyaan">
             <div id="card-edit-pertanyaan" class="">
               <!-- isi page pertanyaan ada disini -->
             </div>

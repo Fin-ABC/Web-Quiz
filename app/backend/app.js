@@ -284,6 +284,73 @@ app.post("/add-kuis", verifyToken, (req, res) => {
   );
 });
 
+// udaoeate kuis
+app.put("/edit-kuis/:id", verifyToken, (req, res) => {
+  const id_author = req.user.id;
+  const idKuis = req.params.id;
+  const { judul, subjudul, deskripsi, pertanyaan, kategori } = req.body;
+
+  // 1. Update info kuis utama
+  const updateKuis = `
+    UPDATE tb_kuis
+    SET judul = ?, subjudul = ?, deskripsi = ?, kategori = ?
+    WHERE id_kuis = ? AND id_author = ?
+  `;
+
+  db.query(
+    updateKuis,
+    [judul, subjudul, deskripsi, kategori, idKuis, id_author],
+    (err, result) => {
+      if (err) return res.status(500).json({ error: err.message });
+
+      // 2. Hapus pertanyaan & jawaban lama
+      const deleteJawaban = `DELETE FROM tb_jawaban WHERE id_kuis = ?`;
+      const deletePertanyaan = `DELETE FROM tb_pertanyaan WHERE id_kuis = ?`;
+
+      db.query(deleteJawaban, [idKuis], (err) => {
+        if (err) return res.status(500).json({ error: err.message });
+
+        db.query(deletePertanyaan, [idKuis], (err) => {
+          if (err) return res.status(500).json({ error: err.message });
+
+          // 3. Insert ulang pertanyaan & jawaban baru
+          pertanyaan.forEach((p) => {
+            const sqlPertanyaan = `
+              INSERT INTO tb_pertanyaan (id_kuis, teks_pertanyaan)
+              VALUES (?, ?)
+            `;
+            db.query(
+              sqlPertanyaan,
+              [idKuis, p.teks_pertanyaan],
+              (err, resultPertanyaan) => {
+                if (err) return console.error(err);
+
+                const idPertanyaan = resultPertanyaan.insertId;
+
+                p.jawaban.forEach((j) => {
+                  const sqlJawaban = `
+                  INSERT INTO tb_jawaban (id_kuis, id_pertanyaan, teks_jawaban, is_benar)
+                  VALUES (?, ?, ?, ?)
+                `;
+                  db.query(
+                    sqlJawaban,
+                    [idKuis, idPertanyaan, j.teks_jawaban, j.is_benar],
+                    (err) => {
+                      if (err) return console.error(err);
+                    },
+                  );
+                });
+              },
+            );
+          });
+
+          res.json({ message: "Kuis berhasil diperbarui!", idKuis });
+        });
+      });
+    },
+  );
+});
+
 // Delete my kuis
 app.delete("/delete-kuis/:id", (req, res) => {
   const id = req.params.id;

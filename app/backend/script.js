@@ -186,6 +186,8 @@ function insertKuis() {
     })),
   };
 
+  console.log(`Payload :`, payload);
+
   fetch("http://localhost:3000/add-kuis", {
     method: "POST",
     headers: {

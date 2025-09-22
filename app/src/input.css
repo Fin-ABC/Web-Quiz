@@ -36,10 +36,10 @@
   @apply absolute bottom-2 left-1 flex text-gray-700;
 }
 .btn-like-card-level {
-  @apply absolute top-1 right-1 rounded-full border border-red-600 bg-red-600/40 px-2 py-1 text-red-600 shadow-lg shadow-black/60;
+  @apply absolute top-1 right-1 flex justify-center gap-1 rounded-full border border-red-600 bg-red-600/40 px-2 py-1 align-middle text-red-600 shadow-lg shadow-black/60;
 }
 .btn-like-card-level-active {
-  @apply absolute top-1 right-1 rounded-full bg-red-600 px-2 py-1 text-white shadow-lg shadow-black/60;
+  @apply absolute top-1 right-1 flex justify-center gap-1 rounded-full border border-red-600 bg-red-600 px-2 py-1 align-middle text-white shadow-lg shadow-black/60;
 }
 .total-card-level {
   @apply absolute right-1 bottom-2 flex;
@@ -90,17 +90,20 @@
 
 /* List Card Profile Page */
 .profile-card-list {
-  @apply border-maomao-dark bg-maomao-light text-maomao-dark mt-4 mb-6 flex justify-between rounded-lg border p-4 shadow relative;
+  @apply border-maomao-dark bg-maomao-light text-maomao-dark relative mt-4 mb-6 flex justify-between rounded-lg border p-4 shadow;
 }
 .profile-card-judul {
   @apply font-dyna mb-2 text-xl font-bold;
 }
 .profile-btn-edit {
-  @apply mb-2 w-full rounded-md bg-emerald-700 py-2 font-bold text-white outline-offset-1 transition duration-400 ease-in-out select-none hover:bg-emerald-800 hover:shadow-none focus:outline-2 outline-emerald-900;
+  @apply mb-3 w-full rounded-md bg-emerald-700 py-2 font-bold text-white outline-offset-1 outline-emerald-900 transition duration-400 ease-in-out select-none hover:bg-emerald-800 hover:shadow-none focus:outline-2;
 }
 .profile-btn-hapus {
-  @apply w-full rounded-md bg-red-600 py-2 font-bold text-white outline-offset-1 transition duration-400 ease-in-out select-none hover:bg-red-700 hover:shadow-none focus:outline-2 outline-red-900;
+  @apply w-full rounded-md bg-red-600 py-2 font-bold text-white outline-offset-1 outline-red-900 transition duration-400 ease-in-out select-none hover:bg-red-700 hover:shadow-none focus:outline-2;
 }
-.profile-card-date{
-  @apply absolute bottom-0 right-4 text-maomao-dark font-black;
+.profile-card-date {
+  @apply text-maomao-dark absolute right-4 bottom-0 font-black;
+}
+.profile-card-like {
+  @apply flex h-1/3 w-1/2 items-center justify-center gap-1 rounded-md border-2 border-red-500 px-1 py-1 align-middle text-red-600 shadow-lg shadow-black/60;
 }

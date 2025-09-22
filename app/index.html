@@ -141,6 +141,61 @@
             </h1>
             <div id="official-level" class="grid-level">
               <!-- Isi card Official Level -->
+              <div class="card-level group">
+                <h2 class="title-card-level">Judul Kuis</h2>
+                <div class="author-card-level">
+                  <img
+                    src="style/img/author.svg"
+                    alt="by"
+                    class="icon-card-level"
+                  />
+                  <p>FinKece</p>
+                </div>
+                <button id="btn-like" class="btn-like-card-level">
+                  <p>10</p>
+                  <!-- SVG Heard Add -->
+                  <svg
+                    id="main-like-add"
+                    class="mt-1 fill-red-500 stroke-black stroke-1"
+                    height="20px"
+                    width="20px"
+                    viewBox="0 0 297 297"
+                    xml:space="preserve"
+                  >
+                    <g id="SVGRepo_iconCarrier">
+                      <g>
+                        <g>
+                          <path
+                            d="M185.088,256.439c-3.588-3.589-5.563-8.354-5.561-13.415l0.002-12.33l-12.264,0.002c-5.063,0-9.826-1.977-13.412-5.563 c-3.586-3.589-5.561-8.352-5.559-13.412l0.004-34.578c0.004-10.459,8.514-18.969,18.971-18.973l12.271-0.004l0.002-12.334 c0-10.461,8.51-18.973,18.973-18.976l34.451-0.004h0.002c10.461,0,18.971,8.511,18.971,18.976l-0.004,12.326l12.26-0.002 c5.063,0,9.826,1.977,13.412,5.563c0.648,0.65,1.227,1.35,1.768,2.072c11.68-20.365,17.625-41,17.625-61.471 c0-44.797-36.445-81.241-81.24-81.241c-20.066,0-39.498,12.444-57.756,36.988c-3.602,4.841-6.789,9.67-9.504,14.105 c-2.717-4.436-5.902-9.265-9.504-14.105C120.738,35.52,101.307,23.075,81.24,23.075C36.443,23.075,0,59.52,0,104.316 c0,23.211,7.6,46.641,22.588,69.641c11.531,17.692,27.478,35.195,47.396,52.021c33.406,28.219,66.408,44.855,67.797,45.547 c3.961,1.981,8.016,2.399,10.719,2.399c2.703,0,6.758-0.418,10.721-2.399c0.766-0.383,11.174-5.629,25.965-14.999 C185.154,256.495,185.119,256.47,185.088,256.439z"
+                          />
+                        </g>
+                        <g>
+                          <path
+                            d="M232.969,140.676h-0.002l-34.449,0.005c-2.746,0.001-4.994,2.248-4.994,4.994l-0.006,21.319 c0,2.746-2.246,4.994-4.994,4.995l-21.25,0.006c-2.746,0.001-4.992,2.249-4.994,4.995l-0.002,34.575 c-0.002,2.745,2.244,4.992,4.988,4.992c0.002,0,0.002,0,0.002,0l21.252-0.004h0.002c2.746,0,4.99,2.245,4.99,4.992l-0.004,21.323 c-0.002,2.747,2.246,4.992,4.992,4.992l34.443-0.008c2.746,0,4.994-2.248,4.994-4.994l0.006-21.321 c0-2.747,2.248-4.994,4.994-4.995l21.25-0.007c2.748-0.001,4.994-2.249,4.994-4.995l0.004-34.572c0-2.745-2.244-4.992-4.99-4.992 h-0.002l-21.25,0.005c-2.746,0-4.992-2.246-4.992-4.992l0.006-21.321C237.957,142.923,235.713,140.676,232.969,140.676z"
+                          />
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                  <!-- SVG Check Heart -->
+                  <svg
+                    id="main-like-check"
+                    class="mt-1 hidden fill-white stroke-black stroke-1"
+                    width="20px"
+                    height="20px"
+                    viewBox="0 0 159.797 159.797"
+                    xml:space="preserve"
+                  >
+                    <path
+                      d="M149.247,64.354c1.791-7.344,2.518-15.131,1.779-23.383C146.575-8.715,85.46,5.903,75.655,34.174 C65.852,5.903,4.737-8.715,0.29,40.971c-5.728,63.919,75.365,101.363,75.365,101.363s3.821-1.767,9.735-5.172l14.372,14.369 l60.036-79.184L149.247,64.354z M99.129,142.334l-37.631-37.621l12.838-12.839l22.901,22.904l39.607-52.23l14.47,10.977 L99.129,142.334z"
+                    />
+                  </svg>
+                </button>
+                <div class="total-card-level">
+                  <img src="style/img/book.svg" class="icon-card-level" />
+                  <p>10 Soal</p>
+                </div>
+              </div>
             </div>
           </div>
           <!-- Official Level End -->
@@ -321,23 +376,23 @@
                   placeholder="Penjelasan detail / Deskripsi level quiz"
                   class="bg-maomao-light text-maomao-dark w-full resize-none rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none"
                 ></textarea>
+                <!-- Jumlah soal -->
+                <label
+                  for="basic_info_jumlah_soal"
+                  class="mb-1 block font-semibold"
+                  >Jumlah Soal</label
+                >
+                <input
+                  type="number"
+                  id="basic_info_jumlah_soal"
+                  name="basic_info_jumlah_soal"
+                  min="5"
+                  value="5"
+                  class="text-maomao-dark bg-maomao-light w-full rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                  required
+                  oninput="if(this.value < 5) this.value = 5;"
+                />
               </div>
-              <!-- Jumlah soal -->
-              <label
-                for="basic_info_jumlah_soal"
-                class="mb-1 block font-semibold"
-                >Jumlah Soal</label
-              >
-              <input
-                type="number"
-                id="basic_info_jumlah_soal"
-                name="basic_info_jumlah_soal"
-                min="5"
-                value="5"
-                class="text-maomao-dark bg-maomao-light w-full rounded-md border border-black px-3 py-2 transition focus:ring-2 focus:ring-emerald-600 focus:outline-none"
-                required
-                oninput="if(this.value < 5) this.value = 5;"
-              />
               <!-- Button lanjut -->
               <button
                 name="tambah if kosong tidak bisa bisa diklik atau wajib diisi, kalo udh penuh maka bisa lanjut dan pindah page"
@@ -370,3 +425,19 @@
     <script src="backend/script.js"></script>
   </body>
 </html>
+<!-- 
+                  <svg
+                    class="mt-1 fill-red-500 stroke-white stroke-1"
+                    width="15px"
+                    height="15px"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g id="SVGRepo_iconCarrier">
+                      <path
+                        d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
+                      />
+                    </g>
+                  </svg>
+-->

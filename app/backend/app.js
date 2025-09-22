@@ -3,6 +3,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
+const { doc } = require("prettier");
 
 const app = express();
 const port = 3000;
@@ -457,6 +458,31 @@ app.get("/my-kuis", verifyToken, (req, res) => {
     if (err) return res.status(500).json({ error: err.message });
     //
     res.json(results);
+  });
+});
+
+// toogle like
+app.post("/toggle-like", verifyToken, (req, res) => {
+  const id_user = req.user.id;
+  const { id_kuis } = req.body;
+
+  const cekLike = "Select * from tb_like where id_user = ? and id_kuis = ?";
+  db.query(cekLike, [id_user, id_kuis], (err, hasil) => {
+    if (err) return res.status(500).json({ error: err.message });
+
+    if (hasil.length > 0) {
+      const hapusLike = "delete from tb_like where id_user = ? and id_kuis = ?";
+      db.query(hapusLike, [id_user, id_kuis], (err) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ liked: false, message: "Unline berhasil" });
+      });
+    } else {
+      const tambahLike = "insert into tb_like (id_user, id_kuis) values (?,?)";
+      db.query(tambahLike, [id_user, id_kuis], (err) => {
+        if (err) return res.status(500).json({ error: err.message });
+        res.json({ liked: true, message: "Like berhasil" });
+      });
+    }
   });
 });
 

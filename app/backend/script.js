@@ -1,6 +1,5 @@
 // ################ Bagian Create
 
-
 // Fungsi yg berfungi untuk memunculkan form untuk membuat soal kuis dan pilihan gandanya sebanyak jumlah soal yg ditentuksn user
 function callFormPertanyaanCreate(index) {
   const card_pertanyaan = document.getElementById("card-pertanyaan");
@@ -229,13 +228,17 @@ function mainLike() {
   });
 }
 function likeActive() {
-  document.getElementById("btn-like").classList.add("btn-like-card-level-active");
+  document
+    .getElementById("btn-like")
+    .classList.add("btn-like-card-level-active");
   document.getElementById("btn-like").classList.remove("btn-like-card-level");
   document.getElementById("main-like-add").classList.add("hidden");
   document.getElementById("main-like-check").classList.remove("hidden");
 }
 function likeNonActive() {
-  document.getElementById("btn-like").classList.remove("btn-like-card-level-active");
+  document
+    .getElementById("btn-like")
+    .classList.remove("btn-like-card-level-active");
   document.getElementById("btn-like").classList.add("btn-like-card-level");
   document.getElementById("main-like-add").classList.remove("hidden");
   document.getElementById("main-like-check").classList.add("hidden");
@@ -348,7 +351,7 @@ function showAllKuis() {
                   </g>
                 </g>
               </g>
-            </svg>;
+            </svg>
             <!-- SVG Check Heart -->
             <svg
             id="main-like-check-${lvl.id}"
@@ -371,26 +374,12 @@ function showAllKuis() {
         const lvl_offcial = document.getElementById("official-level");
         const lvl_custom = document.getElementById("custom-level");
         const btnLike = card.querySelector(`#btn-like-${lvl.id}`);
-        const mainLikeAdd = card.querySelector(`#main-like-add-${lvl.id}`);
-        const mainLikeCheck = card.querySelector(`#main-like-check-${lvl.id}`);
 
         btnLike.addEventListener("click", (event) => {
           event.stopPropagation();
-          if (btnLike.classList.contains("btn-like-card-level-active")) {
-            btnLike.classList.remove("btn-like-card-level-active");
-            btnLike.classList.add("btn-like-card-level");
-            mainLikeAdd.classList.remove("hidden");
-            mainLikeCheck.classList.add("hidden");
-            console.log("Like Non Active");
-          } else {
-            btnLike.classList.add("btn-like-card-level-active");
-            btnLike.classList.remove("btn-like-card-level");
-            mainLikeAdd.classList.add("hidden");
-            mainLikeCheck.classList.remove("hidden");
-            console.log("Like Active");
-          }
-
+          toggleLike(lvl.id);
         });
+
         card.addEventListener("click", () => {
           window.location.href = `quiz/?id=${lvl.id}`;
         });
@@ -404,25 +393,37 @@ function showAllKuis() {
     });
 }
 
-function toggleLike(idKuis){
+function toggleLike(idKuis) {
+  const token = localStorage.getItem("token");
+
   fetch(`http://localhost:3000/toggle-like`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
-    }, 
+    },
     body: JSON.stringify({ id_kuis: idKuis }),
   })
-  .then((res)=> res.json())
-  .then((data)=>{
-    console.log(data.message);
-    const btnLike = document.getElementById(`btn-like-${idKuis}`);
-    if(data.liked){
-      
-    } else{
-
-    }
-  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data.message);
+      const btnLike = document.getElementById(`btn-like-${idKuis}`);
+      const mainLikeAdd = document.querySelector(`#main-like-add-${idKuis}`);
+      const mainLikeCheck = document.querySelector(
+        `#main-like-check-${idKuis}`,
+      );
+      if (data.liked) {
+        btnLike.classList.add("btn-like-card-level-active");
+        btnLike.classList.remove("btn-like-card-level");
+        mainLikeAdd.classList.add("hidden");
+        mainLikeCheck.classList.remove("hidden");
+      } else {
+        btnLike.classList.remove("btn-like-card-level-active");
+        btnLike.classList.add("btn-like-card-level");
+        mainLikeAdd.classList.remove("hidden");
+        mainLikeCheck.classList.add("hidden");
+      }
+    });
 }
 
 function main() {

@@ -231,6 +231,59 @@ app.get("/kuis/:id", (req, res) => {
   });
 });
 
+// Search kuis
+app.get("/kuis/search/:kata", (req, res) => {
+  const kata = req.params.kata;
+  const sqlCari = `
+    SELECT 
+      k.id_kuis, k.judul, k.subjudul, k.deskripsi, k.kategori, k.created_at,
+      u.username AS author,
+      p.id_pertanyaan, p.teks_pertanyaan,
+      (SELECT COUNT(*) FROM tb_like l WHERE l.id_kuis = k.id_kuis) AS jumlah_like
+    FROM tb_kuis k
+    JOIN tb_user u ON k.id_author = u.id_user
+    LEFT JOIN tb_pertanyaan p ON k.id_kuis = p.id_kuis
+    where k.judul like ?
+    ORDER BY k.id_kuis, p.id_pertanyaan
+  `;
+
+
+  db.query(sqlCari, [`%${kata}%`], (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+
+    const kuisMap = {};
+
+    results.forEach((row) => {
+      if (!kuisMap[row.id_kuis]) {
+        kuisMap[row.id_kuis] = {
+          id_kuis: row.id_kuis,
+          judul: row.judul,
+          subjudul: row.subjudul,
+          deskripsi: row.deskripsi,
+          kategori: row.kategori,
+          created_at: row.created_at,
+          author: row.author,
+          like: row.jumlah_like || "0",
+          pertanyaan: [],
+        };
+      }
+
+      let pertanyaan = kuisMap[row.id_kuis].pertanyaan.find(
+        (p) => p.id_pertanyaan === row.id_pertanyaan,
+      );
+      if (!pertanyaan && row.id_pertanyaan) {
+        pertanyaan = {
+          id_pertanyaan: row.id_pertanyaan,
+          teks_pertanyaan: row.teks_pertanyaan,
+        };
+        kuisMap[row.id_kuis].pertanyaan.push(pertanyaan);
+      }
+    });
+
+    res.json(Object.values(kuisMap));
+  });
+});
+
 // Insert data kuis
 app.post("/add-kuis", verifyToken, (req, res) => {
   const id_author = req.user.id;
@@ -482,7 +535,7 @@ app.post("/toggle-like", verifyToken, (req, res) => {
           if (err) return res.status(500).json({ error: err.message });
           res.json({
             liked: false,
-            jmlLike: totalLike,
+            jmlLike: totalLike - 1,
             message: "Unline berhasil",
           });
         });
@@ -493,7 +546,7 @@ app.post("/toggle-like", verifyToken, (req, res) => {
           if (err) return res.status(500).json({ error: err.message });
           res.json({
             liked: true,
-            jmlLike: totalLike,
+            jmlLike: totalLike + 1,
             message: "Like berhasil",
           });
         });
@@ -502,8 +555,8 @@ app.post("/toggle-like", verifyToken, (req, res) => {
   });
 });
 
-app.get("/isLiked", verifyToken, (req, res) => {
-  const { id_kuis } = req.body;
+app.get("/isLiked/:id", verifyToken, (req, res) => {
+  const id_kuis = req.params.id;
   const id_user = req.user.id;
   const cekLike = "Select * from tb_like where id_user = ? and id_kuis = ?";
 

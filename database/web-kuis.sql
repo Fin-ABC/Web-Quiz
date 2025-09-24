@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Sep 2025 pada 14.17
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Generation Time: Sep 24, 2025 at 02:31 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_jawaban`
+-- Table structure for table `tb_jawaban`
 --
 
 CREATE TABLE `tb_jawaban` (
@@ -36,7 +36,7 @@ CREATE TABLE `tb_jawaban` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_jawaban`
+-- Dumping data for table `tb_jawaban`
 --
 
 INSERT INTO `tb_jawaban` (`id_jawaban`, `id_pertanyaan`, `id_kuis`, `teks_jawaban`, `is_benar`) VALUES
@@ -80,10 +80,6 @@ INSERT INTO `tb_jawaban` (`id_jawaban`, `id_pertanyaan`, `id_kuis`, `teks_jawaba
 (38, 10, 2, 'Ular', 0),
 (39, 10, 2, 'Katak', 0),
 (40, 10, 2, 'Kucing', 1),
-(41, 11, 3, 'Kilimanjaro', 0),
-(42, 11, 3, 'Everest', 1),
-(43, 11, 3, 'Fuji', 0),
-(44, 11, 3, 'Elbrus', 0),
 (85, 26, 6, 'Amerika Serikat', 0),
 (86, 26, 6, 'India', 1),
 (87, 26, 6, 'China', 0),
@@ -168,31 +164,51 @@ INSERT INTO `tb_jawaban` (`id_jawaban`, `id_pertanyaan`, `id_kuis`, `teks_jawaba
 (306, 81, 5, 'tes2', 1),
 (307, 81, 5, 'tes3', 1),
 (308, 81, 5, 'tes4', 1),
-(309, 82, 14, 'waioejhw', 1),
-(310, 82, 14, 'wewqe', 0),
-(311, 82, 14, 'rwdwdw', 0),
-(312, 82, 14, 'wdwd', 0),
-(313, 83, 14, 'wewr', 1),
-(314, 83, 14, 'fsdf', 0),
-(315, 83, 14, 'dggfed', 0),
-(316, 83, 14, 'fdgegf', 0),
-(317, 84, 14, 'fewf', 0),
-(318, 84, 14, 'wfwefwe', 0),
-(319, 84, 14, 'ewfewf', 1),
-(320, 84, 14, 'fwe', 0),
-(321, 85, 14, '6', 0),
-(322, 85, 14, 'pp', 0),
-(323, 85, 14, 'aa', 0),
-(324, 85, 14, '4', 1),
-(325, 86, 14, 'a', 0),
-(326, 86, 14, 'Danau Toba', 0),
-(327, 86, 14, 'Danau Kaspia', 1),
-(328, 86, 14, 'Mungkin', 0);
+(329, 87, 14, 'waioejhw', 1),
+(330, 87, 14, 'wewqe', 0),
+(331, 87, 14, 'rwdwdw', 0),
+(332, 87, 14, 'wdwd', 0),
+(333, 88, 14, 'wewr', 1),
+(334, 88, 14, 'fsdf', 0),
+(335, 88, 14, 'dggfed', 0),
+(336, 88, 14, 'fdgegf', 0),
+(337, 89, 14, 'fewf', 0),
+(338, 89, 14, 'wfwefwe', 0),
+(339, 89, 14, 'ewfewf', 1),
+(340, 89, 14, 'fwe', 0),
+(341, 90, 14, '6', 0),
+(342, 90, 14, 'pp', 0),
+(343, 90, 14, 'aa', 0),
+(344, 90, 14, '4', 1),
+(345, 91, 14, 'a', 0),
+(346, 91, 14, 'Danau Toba', 0),
+(347, 91, 14, 'Danau Kaspia', 1),
+(348, 91, 14, 'Mungkin', 0),
+(389, 102, 3, 'Kilimanjaro', 0),
+(390, 102, 3, 'Everest', 1),
+(391, 102, 3, 'Fuji', 0),
+(392, 102, 3, 'Elbrus', 0),
+(393, 103, 3, 'Jawaban 1', 1),
+(394, 103, 3, 'Jawaban 2', 0),
+(395, 103, 3, 'Jawaban 3', 0),
+(396, 103, 3, 'Jawaban 4', 0),
+(397, 104, 3, 'Jawaban 1', 1),
+(398, 104, 3, 'Jawaban 2', 0),
+(399, 104, 3, 'Jawaban 3', 0),
+(400, 104, 3, 'Jawaban 4', 0),
+(401, 105, 3, 'Jawaban 1', 0),
+(402, 105, 3, 'Jawaban 2', 0),
+(403, 105, 3, 'Jawaban 3', 1),
+(404, 105, 3, 'Jawaban 4', 0),
+(405, 106, 3, 'Jawaban 1', 0),
+(406, 106, 3, 'Jawaban 2', 1),
+(407, 106, 3, 'Jawaban 3', 0),
+(408, 106, 3, 'Jawaban 5', 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kuis`
+-- Table structure for table `tb_kuis`
 --
 
 CREATE TABLE `tb_kuis` (
@@ -206,22 +222,22 @@ CREATE TABLE `tb_kuis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_kuis`
+-- Dumping data for table `tb_kuis`
 --
 
 INSERT INTO `tb_kuis` (`id_kuis`, `id_author`, `kategori`, `judul`, `subjudul`, `deskripsi`, `created_at`) VALUES
 (1, 2, 'official', 'Kuis Dummy', 'Hanya sample kuis', 'Apa? ini hanya sample alias cuman contoh kuis aja buat ngetes apakah jalan apa enggak fitur2nya, isinya juga palingan pertanyaan random dari admin. Sekian Terima Gaji.', '2025-09-17 01:59:13'),
 (2, 1, 'custom', 'My Kuis', 'Kuis sample dari user', 'Abang tukang timpa, mari, mari sini\r\nAku mau doksi\r\nAbang tukang timpa, cepat kasih doksi\r\nSudah tak tahan lagi', '2025-08-24 03:15:17'),
-(3, 2, 'official', 'Kisah Kuis', 'Kisah Kuis adalah kuis ', 'Kisah Kuis adalah kuis yang berkisah kasih', '2025-09-17 14:00:51'),
-(5, 25, '', 'Editan Cuy', 'SubJudul', 'MyDeskripsi', '2025-09-22 05:20:09'),
+(3, 2, 'official', 'Kisah Kuis', 'Kisah Kuis adalah kuis ', 'Kisah Kuis adalah kuis yang berkisah kasih', '2025-09-24 03:01:52'),
+(5, 25, 'custom', 'Editan Cuy', 'SubJudul', 'MyDeskripsi', '2025-09-22 12:49:24'),
 (6, 25, 'custom', 'Geografi', 'Yah Geografi biasa', 'lalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalala', '2025-09-18 02:09:20'),
 (8, 27, 'custom', 'refal galon', 'refal pln', 'bbbef', '2025-09-18 06:46:51'),
-(14, 29, 'custom', 'hhs', '191', 'hss', '2025-09-22 11:46:27');
+(14, 29, 'custom', 'hayyuk', '191', 'hss', '2025-09-22 12:49:24');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_like`
+-- Table structure for table `tb_like`
 --
 
 CREATE TABLE `tb_like` (
@@ -232,17 +248,27 @@ CREATE TABLE `tb_like` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_like`
+-- Dumping data for table `tb_like`
 --
 
 INSERT INTO `tb_like` (`id_like`, `id_user`, `id_kuis`, `created_at`) VALUES
-(1, 25, 1, '2025-09-17 02:00:21'),
-(2, 26, 1, '2025-09-17 02:00:21');
+(2, 26, 1, '2025-09-17 02:00:21'),
+(4, 29, 1, '2025-09-22 12:37:47'),
+(27, 2, 3, '2025-09-24 03:01:40'),
+(28, 27, 3, '2025-09-24 03:01:40'),
+(29, 28, 3, '2025-09-24 03:01:40'),
+(31, 26, 3, '2025-09-24 03:01:40'),
+(32, 29, 3, '2025-09-24 03:01:40'),
+(33, 30, 3, '2025-09-24 03:01:40'),
+(34, 1, 3, '2025-09-24 03:01:40'),
+(61, 25, 1, '2025-09-24 06:22:34'),
+(65, 25, 5, '2025-09-24 06:36:50'),
+(68, 25, 2, '2025-09-24 06:43:39');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pertanyaan`
+-- Table structure for table `tb_pertanyaan`
 --
 
 CREATE TABLE `tb_pertanyaan` (
@@ -252,7 +278,7 @@ CREATE TABLE `tb_pertanyaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_pertanyaan`
+-- Dumping data for table `tb_pertanyaan`
 --
 
 INSERT INTO `tb_pertanyaan` (`id_pertanyaan`, `id_kuis`, `teks_pertanyaan`) VALUES
@@ -266,11 +292,6 @@ INSERT INTO `tb_pertanyaan` (`id_pertanyaan`, `id_kuis`, `teks_pertanyaan`) VALU
 (8, 2, 'Bahasa pemograman apa yang logonya berupa cangkir kopi'),
 (9, 2, 'Ibu kota dari Jepang adalah...'),
 (10, 2, 'Hewan manakan yang termasuk mamalia?'),
-(11, 3, 'Gunung tertinggi di dunia adalah...'),
-(12, 3, 'Unsur kimia dengan simbol \"Au\" adalah...'),
-(13, 3, 'Tahun berapa Indonesia merdeka?'),
-(14, 3, 'Organ manusia yang berfungsi memompa darah adalah...'),
-(15, 3, 'Penulis novel Laskar Pelangi adalah...'),
 (26, 6, 'Negara dengan jumlah penduduk terbanyak di dunia adalah...'),
 (27, 6, 'Sugai terpanjang di dunia adalah...'),
 (28, 6, 'Gurun terbesar di dunia adalah..'),
@@ -292,16 +313,21 @@ INSERT INTO `tb_pertanyaan` (`id_pertanyaan`, `id_kuis`, `teks_pertanyaan`) VALU
 (79, 5, 'Nafas kok manual'),
 (80, 5, 'Bukankah ini'),
 (81, 5, 'Myyy'),
-(82, 14, 'pertanyaan 1'),
-(83, 14, 'wleme'),
-(84, 14, 'wefewfe'),
-(85, 14, 'gjggjjg'),
-(86, 14, 'Danau terbesar di dunia berdasarkan luas permukaan adalah...');
+(87, 14, 'pertanyaan 1'),
+(88, 14, 'wleme'),
+(89, 14, 'wefewfe'),
+(90, 14, 'gjggjjg'),
+(91, 14, 'Danau terbesar di dunia berdasarkan luas permukaan adalah...'),
+(102, 3, 'Gunung tertinggi di dunia adalah...'),
+(103, 3, 'Unsur kimia dengan simbol \"Au\" adalah...'),
+(104, 3, 'Tahun berapa Indonesia merdeka?'),
+(105, 3, 'Organ manusia yang berfungsi memompa darah adalah...'),
+(106, 3, 'Penulis novel Laskar Pelangi adalah...');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_skor`
+-- Table structure for table `tb_skor`
 --
 
 CREATE TABLE `tb_skor` (
@@ -312,7 +338,7 @@ CREATE TABLE `tb_skor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_skor`
+-- Dumping data for table `tb_skor`
 --
 
 INSERT INTO `tb_skor` (`id_skor`, `id_player`, `id_kuis`, `skor`) VALUES
@@ -322,12 +348,13 @@ INSERT INTO `tb_skor` (`id_skor`, `id_player`, `id_kuis`, `skor`) VALUES
 (17, 26, 6, 100),
 (18, 25, 6, 40),
 (29, 27, 1, 60),
-(32, 29, 8, 80);
+(32, 29, 8, 80),
+(33, 25, 1, 40);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_user`
+-- Table structure for table `tb_user`
 --
 
 CREATE TABLE `tb_user` (
@@ -339,7 +366,7 @@ CREATE TABLE `tb_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_user`
+-- Dumping data for table `tb_user`
 --
 
 INSERT INTO `tb_user` (`id_user`, `username`, `password`, `role`, `created_at`) VALUES
@@ -349,14 +376,15 @@ INSERT INTO `tb_user` (`id_user`, `username`, `password`, `role`, `created_at`) 
 (26, 'finAdmin', '$2b$08$yU5NGXLxDWvvhM1r8qkvPOtaZ/0pWsgAIcsCzfLIRla5kFO84kgIq', 'admin', '2025-09-16 08:11:27'),
 (27, 'dino2123', '$2b$08$n3mLjceXpG2Jg4yl7qOpteX4oiaJ6XDAd3maeLzKAdYQpoNeI3QcK', 'user', '2025-09-18 04:13:03'),
 (28, 'fahri', '$2b$08$kbE.g.9dVU9gQxMK8iM4luwkKc/hWkxNL2EZM/2c5Re0Tqo7XZ9da', 'user', '2025-09-19 02:16:16'),
-(29, 'pahri', '$2b$08$X2xbBMP0oJ7btlQHn4vWpub9bhZif/2rLYBvNi67.mm.ic5JgN5s6', 'user', '2025-09-22 11:31:34');
+(29, 'pahri', '$2b$08$X2xbBMP0oJ7btlQHn4vWpub9bhZif/2rLYBvNi67.mm.ic5JgN5s6', 'user', '2025-09-22 11:31:34'),
+(30, 'tes1', '$2b$08$xnKLkDv4WrsM7xCySWkfVu6T5XWb.SbNfuJtpU9lgwiHH861EX956', 'user', '2025-09-23 06:29:40');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `tb_jawaban`
+-- Indexes for table `tb_jawaban`
 --
 ALTER TABLE `tb_jawaban`
   ADD PRIMARY KEY (`id_jawaban`),
@@ -364,14 +392,14 @@ ALTER TABLE `tb_jawaban`
   ADD KEY `id_kuis` (`id_kuis`);
 
 --
--- Indeks untuk tabel `tb_kuis`
+-- Indexes for table `tb_kuis`
 --
 ALTER TABLE `tb_kuis`
   ADD PRIMARY KEY (`id_kuis`),
   ADD KEY `fk_author` (`id_author`);
 
 --
--- Indeks untuk tabel `tb_like`
+-- Indexes for table `tb_like`
 --
 ALTER TABLE `tb_like`
   ADD PRIMARY KEY (`id_like`),
@@ -379,14 +407,14 @@ ALTER TABLE `tb_like`
   ADD KEY `id_kuis` (`id_kuis`);
 
 --
--- Indeks untuk tabel `tb_pertanyaan`
+-- Indexes for table `tb_pertanyaan`
 --
 ALTER TABLE `tb_pertanyaan`
   ADD PRIMARY KEY (`id_pertanyaan`),
   ADD KEY `fk_id_kuis` (`id_kuis`);
 
 --
--- Indeks untuk tabel `tb_skor`
+-- Indexes for table `tb_skor`
 --
 ALTER TABLE `tb_skor`
   ADD PRIMARY KEY (`id_skor`),
@@ -394,84 +422,84 @@ ALTER TABLE `tb_skor`
   ADD KEY `id_kuis` (`id_kuis`);
 
 --
--- Indeks untuk tabel `tb_user`
+-- Indexes for table `tb_user`
 --
 ALTER TABLE `tb_user`
   ADD PRIMARY KEY (`id_user`),
   ADD UNIQUE KEY `u_username` (`username`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `tb_jawaban`
+-- AUTO_INCREMENT for table `tb_jawaban`
 --
 ALTER TABLE `tb_jawaban`
-  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=329;
+  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=409;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_kuis`
+-- AUTO_INCREMENT for table `tb_kuis`
 --
 ALTER TABLE `tb_kuis`
-  MODIFY `id_kuis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_kuis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_like`
+-- AUTO_INCREMENT for table `tb_like`
 --
 ALTER TABLE `tb_like`
-  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_pertanyaan`
+-- AUTO_INCREMENT for table `tb_pertanyaan`
 --
 ALTER TABLE `tb_pertanyaan`
-  MODIFY `id_pertanyaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id_pertanyaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_skor`
+-- AUTO_INCREMENT for table `tb_skor`
 --
 ALTER TABLE `tb_skor`
-  MODIFY `id_skor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_skor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_user`
+-- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `tb_jawaban`
+-- Constraints for table `tb_jawaban`
 --
 ALTER TABLE `tb_jawaban`
   ADD CONSTRAINT `fk_id_pertanyaan` FOREIGN KEY (`id_pertanyaan`) REFERENCES `tb_pertanyaan` (`id_pertanyaan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_jawaban_ibfk_1` FOREIGN KEY (`id_kuis`) REFERENCES `tb_kuis` (`id_kuis`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `tb_kuis`
+-- Constraints for table `tb_kuis`
 --
 ALTER TABLE `tb_kuis`
   ADD CONSTRAINT `fk_author` FOREIGN KEY (`id_author`) REFERENCES `tb_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `tb_like`
+-- Constraints for table `tb_like`
 --
 ALTER TABLE `tb_like`
   ADD CONSTRAINT `tb_like_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id_user`) ON DELETE CASCADE,
   ADD CONSTRAINT `tb_like_ibfk_2` FOREIGN KEY (`id_kuis`) REFERENCES `tb_kuis` (`id_kuis`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `tb_pertanyaan`
+-- Constraints for table `tb_pertanyaan`
 --
 ALTER TABLE `tb_pertanyaan`
   ADD CONSTRAINT `fk_id_kuis` FOREIGN KEY (`id_kuis`) REFERENCES `tb_kuis` (`id_kuis`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `tb_skor`
+-- Constraints for table `tb_skor`
 --
 ALTER TABLE `tb_skor`
   ADD CONSTRAINT `fk_id_player` FOREIGN KEY (`id_player`) REFERENCES `tb_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,

@@ -7,7 +7,6 @@
     <title>Login Page</title>
   </head>
   <body class="bg-quiz-light bg-slate-800">
-    <!-- Login Section -->
     <div class="flex min-h-screen flex-col justify-center py-6 sm:py-12">
       <!-- Header -->
       <div class="flex items-center pl-5 text-white">
@@ -26,14 +25,14 @@
         <!-- Card Back (Register) -->
         <div
           id="registerCard"
-          class="from-maomao-light/60 to-maomao-dark pointer-events-none absolute inset-0 z-10 translate-x-0 transform bg-gradient-to-r to-10% shadow-lg transition-all duration-700 sm:-rotate-6 sm:skew-y-0 sm:rounded-3xl"
+          class="from-maomao-light/60 to-maomao-dark pointer-events-none absolute inset-0 z-10 translate-x-0 transform bg-gradient-to-tr to-5% shadow-lg transition-all duration-700 sm:-rotate-6 sm:skew-y-0 sm:rounded-3xl"
         >
           <!-- Form Register -->
           <div
-            class="from-maomao-light/60 to-maomao-dark relative hidden bg-gradient-to-r px-4 py-10 shadow-lg sm:rounded-3xl sm:p-20"
+            class="from-maomao-light/60 to-maomao-dark relative hidden bg-radial-[at_70%_20%] px-4 py-10 shadow-lg sm:rounded-3xl sm:p-20"
             id="registerForm"
           >
-            <div class="mx-auto max-w-md">
+            <div class="mx-auto max-w-md md:w-65">
               <div>
                 <h1 class="text-maomao-light text-2xl font-semibold">
                   Register
@@ -41,7 +40,7 @@
               </div>
               <div class="divide-y divide-gray-200">
                 <div
-                  class="space-y-4 py-8 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7"
+                  class="space-y-4 pt-8 pb-4 pl-4 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7 md:pl-0"
                 >
                   <!-- Reg Input Username -->
                   <div class="relative">
@@ -70,28 +69,28 @@
                       placeholder="Password"
                     />
                     <svg
-                    class="absolute top-2 right-2 size-6"
-                    id="eyeIcon1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="48px"
-                    viewBox="0 -960 960 960"
-                    width="48px"
-                    fill="#ffffff"
-                  >
-                    <path
-                      d="M480.12-330q70.88 0 120.38-49.62t49.5-120.5q0-70.88-49.62-120.38T479.88-670Q409-670 359.5-620.38T310-499.88q0 70.88 49.62 120.38t120.5 49.5Zm-.36-58q-46.76 0-79.26-32.74-32.5-32.73-32.5-79.5 0-46.76 32.74-79.26 32.73-32.5 79.5-32.5 46.76 0 79.26 32.74 32.5 32.73 32.5 79.5 0 46.76-32.74 79.26-32.73 32.5-79.5 32.5Zm.24 188q-146 0-264-83T40-500q58-134 176-217t264-83q146 0 264 83t176 217q-58 134-176 217t-264 83Zm0-300Zm-.17 240Q601-260 702.5-325.5 804-391 857-500q-53-109-154.33-174.5Q601.34-740 480.17-740T257.5-674.5Q156-609 102-500q54 109 155.33 174.5Q358.66-260 479.83-260Z"
-                    />
-                    <line
-                      id="eyeSlash1"
-                      x1="8"
-                      y1="40"
-                      x2="40"
-                      y2="8"
-                      stroke="#fff"
-                      stroke-width="4"
-                      opacity="0"
-                    />
-                  </svg>
+                      class="absolute top-2 right-2 size-6 z-20 cursor-pointer"
+                      id="eyeIcon1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="48px"
+                      viewBox="0 -960 960 960"
+                      width="48px"
+                      fill="#ffffff"
+                    >
+                      <path
+                        d="M480.12-330q70.88 0 120.38-49.62t49.5-120.5q0-70.88-49.62-120.38T479.88-670Q409-670 359.5-620.38T310-499.88q0 70.88 49.62 120.38t120.5 49.5Zm-.36-58q-46.76 0-79.26-32.74-32.5-32.73-32.5-79.5 0-46.76 32.74-79.26 32.73-32.5 79.5-32.5 46.76 0 79.26 32.74 32.5 32.73 32.5 79.5 0 46.76-32.74 79.26-32.73 32.5-79.5 32.5Zm.24 188q-146 0-264-83T40-500q58-134 176-217t264-83q146 0 264 83t176 217q-58 134-176 217t-264 83Zm0-300Zm-.17 240Q601-260 702.5-325.5 804-391 857-500q-53-109-154.33-174.5Q601.34-740 480.17-740T257.5-674.5Q156-609 102-500q54 109 155.33 174.5Q358.66-260 479.83-260Z"
+                      />
+                      <line
+                        id="eyeSlash1"
+                        x1="8"
+                        y1="40"
+                        x2="40"
+                        y2="8"
+                        stroke="#fff"
+                        stroke-width="4"
+                        opacity="0"
+                      />
+                    </svg>
                     <label
                       for="reg-password"
                       class="peer-placeholder-shown:text-gray-440 absolute -top-3.5 left-0 text-sm text-slate-300 transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-slate-200"
@@ -227,7 +226,6 @@
       </div>
       <!-- Card Login End -->
     </div>
-    <!-- Login Section End -->
   </body>
 </html>
 <script src="script.js"></script>

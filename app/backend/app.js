@@ -95,7 +95,7 @@ app.post("/login", (req, res) => {
   );
 });
 
-// Middleware verifikasi token
+// verifikasi token
 function verifyToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
@@ -111,6 +111,7 @@ function verifyToken(req, res, next) {
 // Route yang butuh login
 app.get("/profile", verifyToken, (req, res) => {
   res.json({
+    login: true,
     message: "Anda sudah login",
     user: req.user,
   });
@@ -289,18 +290,18 @@ app.post("/add-kuis", verifyToken, (req, res) => {
 app.put("/edit-kuis/:id", verifyToken, (req, res) => {
   const id_author = req.user.id;
   const idKuis = req.params.id;
-  const { judul, subjudul, deskripsi, pertanyaan, kategori } = req.body;
+  const { judul, subjudul, deskripsi, pertanyaan } = req.body;
 
   // 1. Update info kuis utama
   const updateKuis = `
     UPDATE tb_kuis
-    SET judul = ?, subjudul = ?, deskripsi = ?, kategori = ?
+    SET judul = ?, subjudul = ?, deskripsi = ?
     WHERE id_kuis = ? AND id_author = ?
   `;
 
   db.query(
     updateKuis,
-    [judul, subjudul, deskripsi, kategori, idKuis, id_author],
+    [judul, subjudul, deskripsi, idKuis, id_author],
     (err, result) => {
       if (err) return res.status(500).json({ error: err.message });
 
@@ -469,19 +470,49 @@ app.post("/toggle-like", verifyToken, (req, res) => {
   const cekLike = "Select * from tb_like where id_user = ? and id_kuis = ?";
   db.query(cekLike, [id_user, id_kuis], (err, hasil) => {
     if (err) return res.status(500).json({ error: err.message });
+    const jmlLike = "select count(*) total from tb_like where id_kuis = ?";
+    db.query(jmlLike, [id_kuis], (err, hasilJmllike) => {
+      if (err) return res.status(500).json({ error: err.message });
+      const totalLike = hasilJmllike[0].total;
 
+      if (hasil.length > 0) {
+        const hapusLike =
+          "delete from tb_like where id_user = ? and id_kuis = ?";
+        db.query(hapusLike, [id_user, id_kuis], (err) => {
+          if (err) return res.status(500).json({ error: err.message });
+          res.json({
+            liked: false,
+            jmlLike: totalLike,
+            message: "Unline berhasil",
+          });
+        });
+      } else {
+        const tambahLike =
+          "insert into tb_like (id_user, id_kuis) values (?,?)";
+        db.query(tambahLike, [id_user, id_kuis], (err) => {
+          if (err) return res.status(500).json({ error: err.message });
+          res.json({
+            liked: true,
+            jmlLike: totalLike,
+            message: "Like berhasil",
+          });
+        });
+      }
+    });
+  });
+});
+
+app.get("/isLiked", verifyToken, (req, res) => {
+  const { id_kuis } = req.body;
+  const id_user = req.user.id;
+  const cekLike = "Select * from tb_like where id_user = ? and id_kuis = ?";
+
+  db.query(cekLike, [id_user, id_kuis], (err, hasil) => {
+    if (err) return res.status(500).json({ error: err.message });
     if (hasil.length > 0) {
-      const hapusLike = "delete from tb_like where id_user = ? and id_kuis = ?";
-      db.query(hapusLike, [id_user, id_kuis], (err) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json({ liked: false, message: "Unline berhasil" });
-      });
+      res.json({ liked: true });
     } else {
-      const tambahLike = "insert into tb_like (id_user, id_kuis) values (?,?)";
-      db.query(tambahLike, [id_user, id_kuis], (err) => {
-        if (err) return res.status(500).json({ error: err.message });
-        res.json({ liked: true, message: "Like berhasil" });
-      });
+      res.json({ liked: false });
     }
   });
 });

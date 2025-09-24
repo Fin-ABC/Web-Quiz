@@ -29,6 +29,7 @@ fetch(`http://localhost:3000/kuis/${idLvl}`)
 
     const id = document.getElementById("id");
     const jdl = document.getElementById("judul");
+    const lvl_jdl = document.getElementById("level-judul");
     const sub_jdl = document.getElementById("subjudul");
     const author = document.getElementById("author");
     const jml_soal = document.getElementById("jml-soal");
@@ -37,6 +38,7 @@ fetch(`http://localhost:3000/kuis/${idLvl}`)
 
     id.textContent = `ID: ${dt_level.id}`;
     jdl.textContent = `${dt_level.judul}`;
+    lvl_jdl.textContent = `${dt_level.judul}`;
     sub_jdl.textContent = `${dt_level.subjudul}`;
     author.textContent = `${dt_level.author}`;
     jml_soal.textContent = `${dt_level.jml_soal}`;

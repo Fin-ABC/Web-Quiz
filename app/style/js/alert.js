@@ -56,7 +56,7 @@ function showAlert(bgClass, iconSvg, message) {
     setTimeout(() => {
       if (alertDiv) alertDiv.remove();
     }, 500);
-  }, 30000);
+  }, 3000);
 }
 
 const style = document.createElement("style");

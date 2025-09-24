@@ -212,39 +212,6 @@ function insertKuis() {
 
 // ################ Bagian Create ENd
 
-// ########## Sample fungsi Like
-function mainLike() {
-  console.log("Main Like Function Loaded");
-  const btnLike = document.getElementById("btn-like");
-  btnLike.addEventListener("click", (event) => {
-    event.stopPropagation();
-    if (btnLike.classList.contains("btn-like-card-level-active")) {
-      likeNonActive();
-      console.log("Like Non Active");
-    } else {
-      likeActive();
-      console.log("Like Active");
-    }
-  });
-}
-function likeActive() {
-  document
-    .getElementById("btn-like")
-    .classList.add("btn-like-card-level-active");
-  document.getElementById("btn-like").classList.remove("btn-like-card-level");
-  document.getElementById("main-like-add").classList.add("hidden");
-  document.getElementById("main-like-check").classList.remove("hidden");
-}
-function likeNonActive() {
-  document
-    .getElementById("btn-like")
-    .classList.remove("btn-like-card-level-active");
-  document.getElementById("btn-like").classList.add("btn-like-card-level");
-  document.getElementById("main-like-add").classList.remove("hidden");
-  document.getElementById("main-like-check").classList.add("hidden");
-}
-// ########## Sample fungsi Like
-
 function mainToProfile() {
   window.location.href = "profile/";
 }
@@ -295,10 +262,28 @@ function getProfile() {
     });
 }
 
+function isLiked(idKuis) {
+  const token = localStorage.getItem("token");
+  fetch(`http://localhost:3000/isLiked`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ id_kuis: idKuis }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      return data.liked;
+    });
+}
+
 function showAllKuis() {
   fetch("http://localhost:3000/kuis")
     .then((res) => res.json())
     .then((data) => {
+      const token = localStorage.getItem("token");
+
       const data_quiz = data.map((kuis) => ({
         id: kuis.id_kuis,
         kategori: kuis.kategori,
@@ -327,7 +312,7 @@ function showAllKuis() {
           <p>${lvl.author} </p>
           </div>
           <button id="btn-like-${lvl.id}" class="btn-like-card-level">
-            <p>${lvl.like}</p>
+            <p id="main-like-${lvl.id}">${lvl.like}</p>
             <!-- SVG Heard Add -->
             <svg
             id="main-like-add-${lvl.id}"
@@ -374,11 +359,36 @@ function showAllKuis() {
         const lvl_offcial = document.getElementById("official-level");
         const lvl_custom = document.getElementById("custom-level");
         const btnLike = card.querySelector(`#btn-like-${lvl.id}`);
+        const mainLikeAdd = document.querySelector(`#main-like-add-${lvl.id}`);
+        const mainLikeCheck = document.querySelector(
+          `#main-like-check-${lvl.id}`,
+        );
 
-        btnLike.addEventListener("click", (event) => {
-          event.stopPropagation();
-          toggleLike(lvl.id);
-        });
+        if (token) {
+          btnLike.addEventListener("click", (event) => {
+            event.stopPropagation();
+            toggleLike(lvl.id);
+          });
+        } else {
+          btnLike.addEventListener("click", (event) => {
+            event.stopPropagation();
+            showAlertError(
+              "Silahkan login terlebih dahulu untuk memberi like pada kuis",
+            );
+          });
+        }
+
+        if (token && isLiked(lvl.id)) {
+          btnLike.classList.add("btn-like-card-level-active");
+          btnLike.classList.remove("btn-like-card-level");
+          mainLikeAdd.classList.add("hidden");
+          mainLikeCheck.classList.remove("hidden");
+        } else {
+          btnLike.classList.remove("btn-like-card-level-active");
+          btnLike.classList.add("btn-like-card-level");
+          mainLikeAdd.classList.remove("hidden");
+          mainLikeCheck.classList.add("hidden");
+        }
 
         card.addEventListener("click", () => {
           window.location.href = `quiz/?id=${lvl.id}`;
@@ -406,18 +416,23 @@ function toggleLike(idKuis) {
   })
     .then((res) => res.json())
     .then((data) => {
+      like = data.jmlLike;
       console.log(data.message);
+      console.log(like);
       const btnLike = document.getElementById(`btn-like-${idKuis}`);
       const mainLikeAdd = document.querySelector(`#main-like-add-${idKuis}`);
       const mainLikeCheck = document.querySelector(
         `#main-like-check-${idKuis}`,
       );
+      const mainLikeCount = document.getElementById(`main-like-${idKuis}`);
       if (data.liked) {
+        mainLikeCount.innerText = like;
         btnLike.classList.add("btn-like-card-level-active");
         btnLike.classList.remove("btn-like-card-level");
         mainLikeAdd.classList.add("hidden");
         mainLikeCheck.classList.remove("hidden");
       } else {
+        mainLikeCount.innerText = like;
         btnLike.classList.remove("btn-like-card-level-active");
         btnLike.classList.add("btn-like-card-level");
         mainLikeAdd.classList.remove("hidden");
@@ -429,7 +444,6 @@ function toggleLike(idKuis) {
 function main() {
   getProfile();
   showAllKuis();
-  mainLike();
 }
 
 main();

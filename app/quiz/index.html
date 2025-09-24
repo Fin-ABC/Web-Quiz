@@ -20,12 +20,20 @@ gameplay-leaderboard add hidden (opsi)
   </head>
   <body class="font-sour bg-quiz-light bg-slate-800 text-white">
     <!-- Detail Page Start -->
-    <div id="detail-page" class="">
+    <div
+      id="detail-page"
+      class="mx-auto my-2 flex flex-col gap-6 px-3 md:my-5 md:max-w-3/5"
+    >
       <!-- Header -->
       <div
         class="card-detail card-w-full mx-auto my-1 mb-8 flex flex-col items-center justify-center gap-4 pt-3.5 pb-2.5"
       >
-        <h1 class="text-maomao-light font-dyna text-4xl font-bold">MyQuizz</h1>
+        <h1
+          id="level-judul"
+          class="text-maomao-light font-dyna text-4xl font-bold"
+        >
+          MyQuizz
+        </h1>
         <button
           onclick="window.location.href='../'"
           class="border-maomao-light cursor-pointer rounded-full border px-3 py-2 text-sm"
@@ -44,7 +52,7 @@ gameplay-leaderboard add hidden (opsi)
         <!-- Button Play -->
         <button
           onclick="changePage('detail-page','gameplay-page'); resetSoal(); loadSoal();"
-          class="card-w-full cursor-pointer rounded-lg bg-emerald-600 py-2 text-2xl font-bold"
+          class="card-w-full hover:ring-maomao-light cursor-pointer rounded-lg bg-emerald-600 py-2 text-2xl font-bold transition-all select-none hover:ring-2"
         >
           PLAY
         </button>
@@ -53,17 +61,46 @@ gameplay-leaderboard add hidden (opsi)
         <div class="center-center flex-col gap-2 md:flex-row">
           <!-- Card Jumlah Soal -->
           <div
-            class="card-detail center-center w-55 cursor-pointer flex-col transition-transform select-none hover:-translate-y-1"
+            class="card-detail center-center w-55 cursor-pointer flex-col transition-transform select-none"
           >
-            <p class="text-4xl">icon jumlah</p>
+            <svg
+            class="mt-1"
+              width="30px"
+              height="30px"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M4 19V6.2C4 5.0799 4 4.51984 4.21799 4.09202C4.40973 3.71569 4.71569 3.40973 5.09202 3.21799C5.51984 3 6.0799 3 7.2 3H16.8C17.9201 3 18.4802 3 18.908 3.21799C19.2843 3.40973 19.5903 3.71569 19.782 4.09202C20 4.51984 20 5.0799 20 6.2V17H6C4.89543 17 4 17.8954 4 19ZM4 19C4 20.1046 4.89543 21 6 21H20M9 7H15M9 11H15M19 17V21"
+                stroke="#ffff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
             <p id="jml-soal" class="text-lg font-black"></p>
             <p>SOAL</p>
           </div>
           <!-- Card Like -->
           <div
-            class="card-detail center-center w-55 cursor-pointer flex-col transition-transform select-none hover:-translate-y-1"
+            class="card-detail center-center w-55 cursor-pointer flex-col transition-transform select-none"
           >
-            <p class="text-4xl text-red-600">&#10084;</p>
+            <svg class="mt-1" width="30px" height="30px" viewBox="0 0 16 16">
+              <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z"
+                  fill="#ff0000"
+                />
+              </g>
+            </svg>
             <p id="like" class="text-lg font-black"></p>
             <p>LIKE</p>
           </div>
@@ -202,7 +239,10 @@ gameplay-leaderboard add hidden (opsi)
               <span class="w-1/4 text-center">Skor</span>
             </div>
             <!-- Content Card Table -->
-            <div id="leaderboard-list" class="max-h-100 overflow-y-scroll scroll-m-10">
+            <div
+              id="leaderboard-list"
+              class="max-h-100 scroll-m-10 overflow-y-scroll"
+            >
               <!-- Isi leaderboard disini -->
             </div>
           </div>

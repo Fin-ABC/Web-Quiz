@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/output.css" />
+    <title>Admin Panel</title>
+  </head>
+  <body class="bg-quiz-light bg-maomao-dark">
+    <div class="h-full bg-white">
+      <div
+        class="bg-maomao-dark relative container mx-auto flex justify-center overflow-hidden rounded-none px-4 md:my-10 md:rounded-xl md:px-0"
+      >
+        <!-- Nav -->
+        <nav
+          class="bg-maomao-dark fixed top-0 left-0 z-50 w-full max-w-7xl rounded-none shadow-lg md:fixed md:top-5 md:left-auto md:rounded-lg"
+        >
+          <div class="mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+              <!-- Logo -->
+              <div class="flex-shrink-0">
+                <a
+                  href="#"
+                  class="text-sm font-bold text-gray-700 capitalize md:text-lg lg:text-xl dark:text-white"
+                >
+                  Web Kuis
+                </a>
+              </div>
+
+              <!-- Desktop Menu -->
+              <div class="hidden space-x-8 text-gray-400 md:flex">
+                <a href="#home" class="text-green-400 dark:text-green-600"
+                  >Home</a
+                >
+                <a
+                  href="#kuis"
+                  class="hover:text-green-400 dark:hover:text-green-600"
+                  >List Kuis</a
+                >
+                <a
+                  href="#akun"
+                  class="hover:text-green-400 dark:hover:text-green-600"
+                  >List Akun</a
+                >
+              </div>
+
+              <!-- Mobile Menu Button -->
+              <div class="flex items-center md:hidden">
+                <button
+                  id="mobile-menu-button"
+                  class="text-green-400 hover:text-green-600 focus:outline-none dark:text-green-600"
+                >
+                  <svg
+                    class="h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 6h16M4 12h16m-7 6h7"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Menu -->
+          <div
+            id="mobile-menu"
+            class="bg-opacity-50 absolute inset-0 z-50 hidden bg-maomao-dark"
+          >
+            <div
+              class="fixed inset-y-0 left-0 w-64 -translate-x-full transform bg-maomao-dark p-6 transition-transform dark:bg-white"
+            >
+              <button
+                id="close-menu-button"
+                class="mb-4 text-green-400 hover:text-green-600 focus:outline-none dark:text-green-600"
+              >
+                <svg
+                  class="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+              <nav class="space-y-4 text-gray-400 dark:text-gray-700">
+                <a
+                  href="#about"
+                  class="block text-green-400 dark:text-green-600"
+                  >Home</a
+                >
+                <a
+                  href="#kuis"
+                  class="block hover:text-green-400 dark:hover:text-green-600"
+                  >List Kuis</a
+                >
+                <a
+                  href="#akun"
+                  class="block hover:text-green-400 dark:hover:text-green-600"
+                  >List Akun</a
+                >
+              </nav>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Konten 1 -->
+      <div
+        class="mx-auto mt-10 w-10/12 grid-cols-2 items-center overflow-x-hidden md:mt-5 md:py-14 lg:mt-3 lg:grid lg:py-24 xl:mt-5 xl:py-14"
+        data-aos="fade-right"
+        data-aos-duration="800"
+      >
+        <div class="py-14 pr-2 md:mb-14 md:py-0">
+          <h1
+            class="text-3xl font-semibold text-blue-900 lg:text-3xl xl:text-5xl"
+          >
+            <span class="block w-full">Get a financial experience</span> for
+            growing your business!
+          </h1>
+          <p class="py-4 text-lg text-gray-500 md:py-6 2xl:py-8 2xl:pr-5">
+            Empowering you to make better financial decisions, We truly are
+            professional money planners...
+          </p>
+          <div class="mt-4">
+            <a
+              href="#contact"
+              class="group rounded-lg bg-blue-500 px-5 py-3 text-lg tracking-wider text-white hover:bg-blue-600 md:px-8"
+              ><span>Explore More</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="overflow-hidden pb-10 sm:pb-0 md:p-10 lg:p-0">
+          <img
+            id="heroImg1"
+            class="transition-all duration-300 ease-in-out hover:scale-105 sm:mx-auto sm:w-4/6 sm:pb-12 lg:w-full lg:pb-0"
+            src="https://bootstrapmade.com/demo/templates/FlexStart/assets/img/hero-img.png"
+            alt="Awesome hero page image"
+            width="500"
+            height="488"
+          />
+        </div>
+      </div>
+
+      <!-- Konten 2 -->
+      <div
+        class="mx-auto w-10/12 grid-cols-2 items-center overflow-x-hidden md:py-14 lg:mt-3 lg:grid lg:py-24 xl:mt-5 xl:py-14"
+        data-aos="fade-right"
+        data-aos-duration="800"
+      >
+        <div class="py-14 pr-2 md:mb-14 md:py-0">
+          <h1
+            class="text-3xl font-semibold text-blue-900 lg:text-3xl xl:text-5xl"
+          >
+            <span class="block w-full">Get a financial experience</span> for
+            growing your business!
+          </h1>
+          <p class="py-4 text-lg text-gray-500 md:py-6 2xl:py-8 2xl:pr-5">
+            Empowering you to make better financial decisions, We truly are
+            professional money planners...
+          </p>
+          <div class="mt-4">
+            <a
+              href="#contact"
+              class="group rounded-lg bg-blue-500 px-5 py-3 text-lg tracking-wider text-white hover:bg-blue-600 md:px-8"
+              ><span>Explore More</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="overflow-hidden pb-10 sm:pb-0 md:p-10 lg:p-0">
+          <img
+            id="heroImg1"
+            class="transition-all duration-300 ease-in-out hover:scale-105 sm:mx-auto sm:w-4/6 sm:pb-12 lg:w-full lg:pb-0"
+            src="https://bootstrapmade.com/demo/templates/FlexStart/assets/img/hero-img.png"
+            alt="Awesome hero page image"
+            width="500"
+            height="488"
+          />
+        </div>
+      </div>
+
+      <!-- Konten 3 -->
+      <div
+        class="mx-auto w-10/12 grid-cols-2 items-center overflow-x-hidden md:py-14 lg:mt-3 lg:grid lg:py-24 xl:mt-5 xl:py-14"
+        data-aos="fade-right"
+        data-aos-duration="800"
+      >
+        <div class="py-14 pr-2 md:mb-14 md:py-0">
+          <h1
+            class="text-3xl font-semibold text-blue-900 lg:text-3xl xl:text-5xl"
+          >
+            <span class="block w-full">Get a financial experience</span> for
+            growing your business!
+          </h1>
+          <p class="py-4 text-lg text-gray-500 md:py-6 2xl:py-8 2xl:pr-5">
+            Empowering you to make better financial decisions, We truly are
+            professional money planners...
+          </p>
+          <div class="mt-4">
+            <a
+              href="#contact"
+              class="group rounded-lg bg-blue-500 px-5 py-3 text-lg tracking-wider text-white hover:bg-blue-600 md:px-8"
+              ><span>Explore More</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="overflow-hidden pb-10 sm:pb-0 md:p-10 lg:p-0">
+          <img
+            id="heroImg1"
+            class="transition-all duration-300 ease-in-out hover:scale-105 sm:mx-auto sm:w-4/6 sm:pb-12 lg:w-full lg:pb-0"
+            src="https://bootstrapmade.com/demo/templates/FlexStart/assets/img/hero-img.png"
+            alt="Awesome hero page image"
+            width="500"
+            height="488"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const closeMenuButton = document.getElementById("close-menu-button");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.remove("hidden");
+        mobileMenu.querySelector("div").classList.remove("-translate-x-full");
+      });
+
+      closeMenuButton.addEventListener("click", () => {
+        mobileMenu.querySelector("div").classList.add("-translate-x-full");
+        setTimeout(() => mobileMenu.classList.add("hidden"), 300);
+      });
+
+      mobileMenu.addEventListener("click", (e) => {
+        if (e.target === mobileMenu) {
+          closeMenuButton.click();
+        }
+      });
+    </script>
+  </body>
+</html>

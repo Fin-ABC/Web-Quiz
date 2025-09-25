@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 24, 2025 at 02:31 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost
+-- Waktu pembuatan: 25 Sep 2025 pada 16.13
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_jawaban`
+-- Struktur dari tabel `tb_jawaban`
 --
 
 CREATE TABLE `tb_jawaban` (
@@ -36,179 +36,115 @@ CREATE TABLE `tb_jawaban` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tb_jawaban`
+-- Dumping data untuk tabel `tb_jawaban`
 --
 
 INSERT INTO `tb_jawaban` (`id_jawaban`, `id_pertanyaan`, `id_kuis`, `teks_jawaban`, `is_benar`) VALUES
-(1, 1, 1, 'Ya', 0),
-(2, 1, 1, 'Tidak', 1),
-(3, 1, 1, 'Mungkin', 1),
-(4, 1, 1, 'Tidak Tau', 0),
-(5, 2, 1, 'Cepuluh', 0),
-(6, 2, 1, '4', 0),
-(7, 2, 1, 'Tiga', 1),
-(8, 2, 1, '3', 1),
-(9, 3, 1, 'Iya', 1),
-(10, 3, 1, 'Tak tau', 0),
-(11, 3, 1, 'Laut itu manis', 0),
-(12, 3, 1, 'Tentu Saja', 1),
-(13, 4, 1, 'Salah', 0),
-(14, 4, 1, 'Benar', 1),
-(15, 4, 1, 'Benar', 1),
-(16, 4, 1, 'Salah', 0),
-(17, 5, 1, 'Salah', 0),
-(18, 5, 1, 'Benar', 1),
-(19, 5, 1, 'Benar', 1),
-(20, 5, 1, 'Salah', 0),
-(21, 6, 2, 'Venus', 0),
-(22, 6, 2, 'Mars', 1),
-(23, 6, 2, 'Jupiter', 0),
-(24, 6, 2, 'Saturnus', 0),
-(25, 7, 2, 'Andrea Hirata', 1),
-(26, 7, 2, 'Tere Liye', 0),
-(27, 7, 2, 'Habiburrahman El Shirazy', 0),
-(28, 7, 2, 'Dee Lestari', 0),
-(29, 8, 2, 'C++', 0),
-(30, 8, 2, 'Java', 1),
-(31, 8, 2, 'Python', 0),
-(32, 8, 2, 'PHP', 0),
-(33, 9, 2, 'Beijing', 0),
-(34, 9, 2, 'Tokyo', 1),
-(35, 9, 2, 'Kyoto', 0),
-(36, 9, 2, 'Osaka', 0),
-(37, 10, 2, 'Ayam', 0),
-(38, 10, 2, 'Ular', 0),
-(39, 10, 2, 'Katak', 0),
-(40, 10, 2, 'Kucing', 1),
-(85, 26, 6, 'Amerika Serikat', 0),
-(86, 26, 6, 'India', 1),
-(87, 26, 6, 'China', 0),
-(88, 26, 6, 'Rusia', 0),
-(89, 27, 6, 'Amazon', 0),
-(90, 27, 6, 'Nil', 1),
-(91, 27, 6, 'Yangtze', 0),
-(92, 27, 6, 'Mississippi', 0),
-(93, 28, 6, 'Gobi', 0),
-(94, 28, 6, 'Sahara', 1),
-(95, 28, 6, 'Kalahari', 0),
-(96, 28, 6, 'Atacama', 0),
-(97, 29, 6, 'Torronto', 0),
-(98, 29, 6, 'Ottawa', 1),
-(99, 29, 6, 'Montreal', 0),
-(100, 29, 6, 'Vancouver', 0),
-(101, 30, 6, 'Danau Victoria', 0),
-(102, 30, 6, 'Danau Toba', 0),
-(103, 30, 6, 'Danau Kaspia', 1),
-(104, 30, 6, 'Danau Baikal', 0),
-(105, 31, 6, 'Eroap', 1),
-(106, 31, 6, 'Afrika', 0),
-(107, 31, 6, 'Asia', 0),
-(108, 31, 6, 'Australia', 0),
-(109, 32, 6, 'Gunung Kerinci', 0),
-(110, 32, 6, 'Gunung Jayawijaya', 1),
-(111, 32, 6, 'Gunung Semeru', 0),
-(112, 32, 6, 'Gunung Rinjani', 0),
-(113, 33, 6, 'Filipina', 0),
-(114, 33, 6, 'Jepang', 0),
-(115, 33, 6, 'Indonesia', 1),
-(116, 33, 6, 'Maladewa', 0),
-(117, 34, 6, 'Kapuas', 1),
-(118, 34, 6, 'Mahakam', 0),
-(119, 34, 6, 'Musi', 0),
-(120, 34, 6, 'Barito', 0),
-(121, 35, 6, 'Auckland', 0),
-(122, 35, 6, 'Christchurch', 0),
-(123, 35, 6, 'Wellington', 1),
-(124, 35, 6, 'Hamilton', 0),
-(145, 41, 8, '25k', 1),
-(146, 41, 8, '20k', 0),
-(147, 41, 8, '100k', 0),
-(148, 41, 8, '50k', 0),
-(149, 42, 8, '30k', 0),
-(150, 42, 8, '100k', 1),
-(151, 42, 8, '40k', 0),
-(152, 42, 8, '50k', 0),
-(153, 43, 8, 'iya', 1),
-(154, 43, 8, 'mungkin', 0),
-(155, 43, 8, 'tidak', 0),
-(156, 43, 8, 'iyaa sekali', 0),
-(157, 44, 8, 'hitam', 1),
-(158, 44, 8, 'merah', 0),
-(159, 44, 8, 'putih', 0),
-(160, 44, 8, 'kuning', 0),
-(161, 45, 8, 'padasuka', 1),
-(162, 45, 8, 'curug', 0),
-(163, 45, 8, 'tampomas', 0),
-(164, 45, 8, 'bandung', 0),
-(285, 76, 5, 'kk', 1),
-(286, 76, 5, 'kk', 1),
-(287, 76, 5, 'kk', 1),
-(288, 76, 5, 'kk', 1),
-(289, 77, 5, 'kk', 1),
-(290, 77, 5, 'kk', 1),
-(291, 77, 5, 'kk', 1),
-(292, 77, 5, 'kk', 1),
-(293, 78, 5, 'kk', 1),
-(294, 78, 5, 'kk', 1),
-(295, 78, 5, 'kk', 1),
-(296, 78, 5, 'kk', 1),
-(297, 79, 5, 'kk', 1),
-(298, 79, 5, 'kk', 1),
-(299, 79, 5, 'kk', 1),
-(300, 79, 5, 'kk', 1),
-(301, 80, 5, 'kk', 1),
-(302, 80, 5, 'kk', 1),
-(303, 80, 5, 'kk', 1),
-(304, 80, 5, 'kk', 1),
-(305, 81, 5, 'tes1', 1),
-(306, 81, 5, 'tes2', 1),
-(307, 81, 5, 'tes3', 1),
-(308, 81, 5, 'tes4', 1),
-(329, 87, 14, 'waioejhw', 1),
-(330, 87, 14, 'wewqe', 0),
-(331, 87, 14, 'rwdwdw', 0),
-(332, 87, 14, 'wdwd', 0),
-(333, 88, 14, 'wewr', 1),
-(334, 88, 14, 'fsdf', 0),
-(335, 88, 14, 'dggfed', 0),
-(336, 88, 14, 'fdgegf', 0),
-(337, 89, 14, 'fewf', 0),
-(338, 89, 14, 'wfwefwe', 0),
-(339, 89, 14, 'ewfewf', 1),
-(340, 89, 14, 'fwe', 0),
-(341, 90, 14, '6', 0),
-(342, 90, 14, 'pp', 0),
-(343, 90, 14, 'aa', 0),
-(344, 90, 14, '4', 1),
-(345, 91, 14, 'a', 0),
-(346, 91, 14, 'Danau Toba', 0),
-(347, 91, 14, 'Danau Kaspia', 1),
-(348, 91, 14, 'Mungkin', 0),
-(389, 102, 3, 'Kilimanjaro', 0),
-(390, 102, 3, 'Everest', 1),
-(391, 102, 3, 'Fuji', 0),
-(392, 102, 3, 'Elbrus', 0),
-(393, 103, 3, 'Jawaban 1', 1),
-(394, 103, 3, 'Jawaban 2', 0),
-(395, 103, 3, 'Jawaban 3', 0),
-(396, 103, 3, 'Jawaban 4', 0),
-(397, 104, 3, 'Jawaban 1', 1),
-(398, 104, 3, 'Jawaban 2', 0),
-(399, 104, 3, 'Jawaban 3', 0),
-(400, 104, 3, 'Jawaban 4', 0),
-(401, 105, 3, 'Jawaban 1', 0),
-(402, 105, 3, 'Jawaban 2', 0),
-(403, 105, 3, 'Jawaban 3', 1),
-(404, 105, 3, 'Jawaban 4', 0),
-(405, 106, 3, 'Jawaban 1', 0),
-(406, 106, 3, 'Jawaban 2', 1),
-(407, 106, 3, 'Jawaban 3', 0),
-(408, 106, 3, 'Jawaban 5', 0);
+(409, 107, 16, '80', 0),
+(410, 107, 16, '88', 0),
+(411, 107, 16, '96', 1),
+(412, 107, 16, '108', 0),
+(413, 108, 16, '10', 0),
+(414, 108, 16, '11', 0),
+(415, 108, 16, '12', 1),
+(416, 108, 16, '14', 0),
+(417, 109, 16, '25', 0),
+(418, 109, 16, '50', 1),
+(419, 109, 16, '75', 0),
+(420, 109, 16, '100', 0),
+(421, 110, 16, '1/2', 0),
+(422, 110, 16, '1/3', 0),
+(423, 110, 16, '1/4', 1),
+(424, 110, 16, '2/5', 0),
+(425, 111, 16, '50 cm²', 0),
+(426, 111, 16, '60 cm²', 1),
+(427, 111, 16, '100 cm²', 0),
+(428, 111, 16, '60 cm²', 1),
+(429, 112, 17, 'Sungai Amazon', 0),
+(430, 112, 17, 'Sungai Nil', 1),
+(431, 112, 17, 'Sungai Mussissippi', 0),
+(432, 112, 17, 'Sungai Yangtze', 0),
+(433, 113, 17, 'Amerika Serikat', 0),
+(434, 113, 17, 'India', 1),
+(435, 113, 17, 'Tiongkok', 0),
+(436, 113, 17, 'Indonesia', 0),
+(437, 114, 17, 'Kilimanjaro', 0),
+(438, 114, 17, 'Elbrus', 0),
+(439, 114, 17, 'Everest', 1),
+(440, 114, 17, 'Aconcagua', 0),
+(441, 115, 17, 'Sahara', 1),
+(442, 115, 17, 'Gobi', 0),
+(443, 115, 17, 'Kalahari', 0),
+(444, 115, 17, 'Atacama', 0),
+(445, 116, 17, 'Sydney', 0),
+(446, 116, 17, 'Melbourne', 0),
+(447, 116, 17, 'Canberra', 1),
+(448, 116, 17, 'Perth', 0),
+(449, 117, 18, 'Airani Iofifteen', 1),
+(450, 117, 18, 'Moona Hoshinova', 0),
+(451, 117, 18, 'Ayunda Risu', 0),
+(452, 117, 18, 'Kobo Kanaeru', 0),
+(453, 118, 18, 'Kureiji Ollie', 0),
+(454, 118, 18, 'Anya Melfissa', 0),
+(455, 118, 18, 'Pavolia Reine', 1),
+(456, 118, 18, 'Vestia Zeta', 0),
+(457, 119, 18, 'Generasi 1', 0),
+(458, 119, 18, 'Generasi 2', 0),
+(459, 119, 18, 'Generasi 3', 1),
+(460, 119, 18, 'Generasi 4', 0),
+(461, 120, 18, 'Moona Hoshinova', 0),
+(462, 120, 18, 'Vesria Zeta', 0),
+(463, 120, 18, 'Ayunda Risu', 1),
+(464, 120, 18, 'Kaela Kovalskia', 0),
+(465, 121, 18, 'Kobo Kanaeru', 0),
+(466, 121, 18, 'Vestia Zeta', 0),
+(467, 121, 18, 'Kaela Kovalskia', 1),
+(468, 121, 18, 'Anya Melfissa', 0),
+(469, 122, 19, 'Seoharto dan Bung Tomo', 0),
+(470, 122, 19, 'Soekarno dan Mohammad Hatta', 1),
+(471, 122, 19, 'Soekarno dan Jenderal Sudirman', 0),
+(472, 122, 19, 'Mohammad Hatta dan Tan Malaka', 0),
+(473, 123, 19, 'Jawa', 0),
+(474, 123, 19, 'Kalimantan', 1),
+(475, 123, 19, 'Sumatra', 0),
+(476, 123, 19, 'Papua', 0),
+(477, 124, 19, 'Tanah Airku', 0),
+(478, 124, 19, 'Indonesia Pusaka', 0),
+(479, 124, 19, 'Indonesia Raya', 1),
+(480, 124, 19, 'Rayuan Pulau Kelapa', 0),
+(481, 125, 19, 'Jawa Barat', 0),
+(482, 125, 19, 'Jawa Tengah', 1),
+(483, 125, 19, 'Jawa Timur', 0),
+(484, 125, 19, 'Yogyakarta', 0),
+(485, 126, 19, 'Abdurrahman Wahid', 0),
+(486, 126, 19, 'B.J. Habibie', 1),
+(487, 126, 19, 'Megawati Soekarnoputri', 0),
+(488, 126, 19, 'Susilo Bambang Yudhoyono', 0),
+(489, 127, 20, 'Osaka', 0),
+(490, 127, 20, 'Kyoto', 0),
+(491, 127, 20, 'Tokyo', 1),
+(492, 127, 20, 'Nagoya', 0),
+(493, 128, 20, 'Kairo', 1),
+(494, 128, 20, 'Alexandria', 0),
+(495, 128, 20, 'Giza', 0),
+(496, 128, 20, 'Luxor', 0),
+(497, 129, 20, 'Rio de Janeiro', 0),
+(498, 129, 20, 'Sao Paulo', 0),
+(499, 129, 20, 'Brasilia', 1),
+(500, 129, 20, 'Salvador', 0),
+(501, 130, 20, 'Sydney', 0),
+(502, 130, 20, 'Melbourne', 0),
+(503, 130, 20, 'Canberra', 1),
+(504, 130, 20, 'Brisbane', 0),
+(505, 131, 20, 'Toronto', 0),
+(506, 131, 20, 'Vancouver', 0),
+(507, 131, 20, 'Ottawa', 1),
+(508, 131, 20, 'Montreal', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_kuis`
+-- Struktur dari tabel `tb_kuis`
 --
 
 CREATE TABLE `tb_kuis` (
@@ -222,22 +158,20 @@ CREATE TABLE `tb_kuis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tb_kuis`
+-- Dumping data untuk tabel `tb_kuis`
 --
 
 INSERT INTO `tb_kuis` (`id_kuis`, `id_author`, `kategori`, `judul`, `subjudul`, `deskripsi`, `created_at`) VALUES
-(1, 2, 'official', 'Kuis Dummy', 'Hanya sample kuis', 'Apa? ini hanya sample alias cuman contoh kuis aja buat ngetes apakah jalan apa enggak fitur2nya, isinya juga palingan pertanyaan random dari admin. Sekian Terima Gaji.', '2025-09-17 01:59:13'),
-(2, 1, 'custom', 'My Kuis', 'Kuis sample dari user', 'Abang tukang timpa, mari, mari sini\r\nAku mau doksi\r\nAbang tukang timpa, cepat kasih doksi\r\nSudah tak tahan lagi', '2025-08-24 03:15:17'),
-(3, 2, 'official', 'Kisah Kuis', 'Kisah Kuis adalah kuis ', 'Kisah Kuis adalah kuis yang berkisah kasih', '2025-09-24 03:01:52'),
-(5, 25, 'custom', 'Editan Cuy', 'SubJudul', 'MyDeskripsi', '2025-09-22 12:49:24'),
-(6, 25, 'custom', 'Geografi', 'Yah Geografi biasa', 'lalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalalala', '2025-09-18 02:09:20'),
-(8, 27, 'custom', 'refal galon', 'refal pln', 'bbbef', '2025-09-18 06:46:51'),
-(14, 29, 'custom', 'hayyuk', '191', 'hss', '2025-09-22 12:49:24');
+(16, 31, 'official', 'Matematika', 'Basik Matematika', 'Kuis yg berisi soal-soal Matematika tingkat dasar', '2025-09-25 14:02:43'),
+(17, 31, 'official', 'Geografi', 'Kuis Geografi', 'Beberapa pertanyaan terkait mata pelajaran Geografi', '2025-09-25 14:02:43'),
+(18, 36, 'custom', 'HololiveID Edition', 'All about HoloID', 'Kuis tentang', '2025-09-25 14:03:41'),
+(19, 35, 'custom', 'Tentang Indonesia', 'Kuis yg berhubungan dengan Indonesia', 'Cakupan materi dari kuis ini mencakup banyak hal, seperti sejarah, geografi, dan masih banyak lagi', '2025-09-25 14:03:41'),
+(20, 35, 'custom', 'Tebak Ibu Kota', 'Apakah kamu bisa menebaknya', 'Apakah kamu bisa menebak ibu kota dari setiap negara?', '2025-09-25 14:03:41');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_like`
+-- Struktur dari tabel `tb_like`
 --
 
 CREATE TABLE `tb_like` (
@@ -247,28 +181,10 @@ CREATE TABLE `tb_like` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `tb_like`
---
-
-INSERT INTO `tb_like` (`id_like`, `id_user`, `id_kuis`, `created_at`) VALUES
-(2, 26, 1, '2025-09-17 02:00:21'),
-(4, 29, 1, '2025-09-22 12:37:47'),
-(27, 2, 3, '2025-09-24 03:01:40'),
-(28, 27, 3, '2025-09-24 03:01:40'),
-(29, 28, 3, '2025-09-24 03:01:40'),
-(31, 26, 3, '2025-09-24 03:01:40'),
-(32, 29, 3, '2025-09-24 03:01:40'),
-(33, 30, 3, '2025-09-24 03:01:40'),
-(34, 1, 3, '2025-09-24 03:01:40'),
-(61, 25, 1, '2025-09-24 06:22:34'),
-(65, 25, 5, '2025-09-24 06:36:50'),
-(68, 25, 2, '2025-09-24 06:43:39');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_pertanyaan`
+-- Struktur dari tabel `tb_pertanyaan`
 --
 
 CREATE TABLE `tb_pertanyaan` (
@@ -278,56 +194,40 @@ CREATE TABLE `tb_pertanyaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tb_pertanyaan`
+-- Dumping data untuk tabel `tb_pertanyaan`
 --
 
 INSERT INTO `tb_pertanyaan` (`id_pertanyaan`, `id_kuis`, `teks_pertanyaan`) VALUES
-(1, 1, 'Apakah bumi itu datar?'),
-(2, 1, 'Secara astronomi, dalam tata surya, planet Bumi merupakan planet urutan ke berapa?'),
-(3, 1, 'Apakah laut itu asin?'),
-(4, 1, 'NKRI merupakan singkatan dari?'),
-(5, 1, 'Au ah, bingung mau ngasih pertanyaan apa'),
-(6, 2, 'Planet apa yang dikenal dengan planet merah?'),
-(7, 2, 'Siapa penulis novel Laskar Pelangi'),
-(8, 2, 'Bahasa pemograman apa yang logonya berupa cangkir kopi'),
-(9, 2, 'Ibu kota dari Jepang adalah...'),
-(10, 2, 'Hewan manakan yang termasuk mamalia?'),
-(26, 6, 'Negara dengan jumlah penduduk terbanyak di dunia adalah...'),
-(27, 6, 'Sugai terpanjang di dunia adalah...'),
-(28, 6, 'Gurun terbesar di dunia adalah..'),
-(29, 6, 'Ibukota negara Kanada adalah...'),
-(30, 6, 'Danau terbesar di dunia berdasarkan luas permukaan adalah...'),
-(31, 6, 'Benua yang tidak memiliki gurun adalah...'),
-(32, 6, 'Gunung tertinggi di Indonesia adalah...'),
-(33, 6, 'Negara kepulauan terbesar di dunia adalah...'),
-(34, 6, 'Sungai terpanjang di Indonesia adalah...'),
-(35, 6, 'Ibukota negara Selandia Baru adalah...'),
-(41, 8, 'bereapa harga galon dari refal'),
-(42, 8, 'berapa harga bayar listrik kerefal'),
-(43, 8, 'apa refal gelo'),
-(44, 8, 'warna sepatu refal warna apa'),
-(45, 8, 'dimana rumah refal'),
-(76, 5, 'Apakah kamu bisa?'),
-(77, 5, 'Ada berapa versi epos Mahabarata'),
-(78, 5, 'Pertanyaan ke-3'),
-(79, 5, 'Nafas kok manual'),
-(80, 5, 'Bukankah ini'),
-(81, 5, 'Myyy'),
-(87, 14, 'pertanyaan 1'),
-(88, 14, 'wleme'),
-(89, 14, 'wefewfe'),
-(90, 14, 'gjggjjg'),
-(91, 14, 'Danau terbesar di dunia berdasarkan luas permukaan adalah...'),
-(102, 3, 'Gunung tertinggi di dunia adalah...'),
-(103, 3, 'Unsur kimia dengan simbol \"Au\" adalah...'),
-(104, 3, 'Tahun berapa Indonesia merdeka?'),
-(105, 3, 'Organ manusia yang berfungsi memompa darah adalah...'),
-(106, 3, 'Penulis novel Laskar Pelangi adalah...');
+(107, 16, 'Berapakah hasil dari 12 x 8?'),
+(108, 16, 'Hasil dari 144 / 12 adalah..'),
+(109, 16, 'Jika x = 5, maka nilai dari 2x² adalah'),
+(110, 16, 'Bentuk pecahan dari 0,25 adalah..'),
+(111, 16, 'Sebuah segitiga memiliki luas panjang alas 10 cm dan tinggi 12 cm. Luasnya adalah..'),
+(112, 17, 'Sungai terpanjang di dunia adalah..'),
+(113, 17, 'Negara dengan jumlah penduduk terbanyak di dunia adalah...'),
+(114, 17, 'Gunung tertinggi di dunia adalah...'),
+(115, 17, 'Gurun terbesar di dunia adalah'),
+(116, 17, 'Ibu kota negara Australia adalah...'),
+(117, 18, 'Siapakah VTuber pertama dari Hololive Indonesia Generasi 1'),
+(118, 18, 'Dari Generasi 2 HoloID, siapakah yang dikenal dengan tema burung merak?'),
+(119, 18, 'Kobo Kanaeru adalah VTuber dari generasi berapa?'),
+(120, 18, 'Siapakah VTuber HoloID yang terkenal suka bercanda dengan \"ara-ara~\"?'),
+(121, 18, 'Dari Generasi 3 HoloID, siapa yang bertema pandai besi (blacksmith)?'),
+(122, 19, 'Siapakah proklamator kemerdekaan Indonesia?'),
+(123, 19, 'Pulau terbesar di Indonesia adalah...'),
+(124, 19, 'Lagu kebangsaan Indonesia berjudul...'),
+(125, 19, 'Candi Borobudur terletak di provinsi...'),
+(126, 19, 'Siapakah presiden Indonesia ketiga'),
+(127, 20, 'Ibu kota Jepang adalah...'),
+(128, 20, 'Ibu kota Mesir adalah...'),
+(129, 20, 'Ibu kota Brasil adalah...'),
+(130, 20, 'Ibu kota Australia adalah...'),
+(131, 20, 'Ibu kota Kanada adalah...');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_skor`
+-- Struktur dari tabel `tb_skor`
 --
 
 CREATE TABLE `tb_skor` (
@@ -338,23 +238,24 @@ CREATE TABLE `tb_skor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tb_skor`
+-- Dumping data untuk tabel `tb_skor`
 --
 
 INSERT INTO `tb_skor` (`id_skor`, `id_player`, `id_kuis`, `skor`) VALUES
-(6, 1, 1, 100),
-(7, 2, 1, 95),
-(16, 26, 2, 50),
-(17, 26, 6, 100),
-(18, 25, 6, 40),
-(29, 27, 1, 60),
-(32, 29, 8, 80),
-(33, 25, 1, 40);
+(34, 31, 16, 100),
+(35, 38, 16, 95),
+(36, 35, 16, 80),
+(37, 33, 16, 78),
+(38, 34, 16, 70),
+(39, 36, 16, 60),
+(40, 39, 16, 50),
+(41, 37, 16, 60),
+(42, 32, 16, 70);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_user`
+-- Struktur dari tabel `tb_user`
 --
 
 CREATE TABLE `tb_user` (
@@ -366,25 +267,26 @@ CREATE TABLE `tb_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tb_user`
+-- Dumping data untuk tabel `tb_user`
 --
 
 INSERT INTO `tb_user` (`id_user`, `username`, `password`, `role`, `created_at`) VALUES
-(1, 'user', '$2b$08$w3BWCoADEw9TlaGce6cPRO/fca7mk2y0RQMfInGleE8whearH7nYO', 'user', '2025-09-17 12:46:09'),
-(2, 'admin', '$2b$08$w3BWCoADEw9TlaGce6cPRO/fca7mk2y0RQMfInGleE8whearH7nYO', 'admin', '2025-09-17 12:46:16'),
-(25, 'fin1', '$2b$08$w3BWCoADEw9TlaGce6cPRO/fca7mk2y0RQMfInGleE8whearH7nYO', 'user', '2025-09-16 07:46:18'),
-(26, 'finAdmin', '$2b$08$yU5NGXLxDWvvhM1r8qkvPOtaZ/0pWsgAIcsCzfLIRla5kFO84kgIq', 'admin', '2025-09-16 08:11:27'),
-(27, 'dino2123', '$2b$08$n3mLjceXpG2Jg4yl7qOpteX4oiaJ6XDAd3maeLzKAdYQpoNeI3QcK', 'user', '2025-09-18 04:13:03'),
-(28, 'fahri', '$2b$08$kbE.g.9dVU9gQxMK8iM4luwkKc/hWkxNL2EZM/2c5Re0Tqo7XZ9da', 'user', '2025-09-19 02:16:16'),
-(29, 'pahri', '$2b$08$X2xbBMP0oJ7btlQHn4vWpub9bhZif/2rLYBvNi67.mm.ic5JgN5s6', 'user', '2025-09-22 11:31:34'),
-(30, 'tes1', '$2b$08$xnKLkDv4WrsM7xCySWkfVu6T5XWb.SbNfuJtpU9lgwiHH861EX956', 'user', '2025-09-23 06:29:40');
+(31, 'admin', '$2b$08$dBKVMTsQ5SvmXE5xtxjK/eBA6AyJX2noOXGn5LvQeVOwTbb2ANRue', 'user', '2025-09-25 12:28:52'),
+(32, 'user', '$2b$08$ajaajMCu4v9ReKinalzbye/08OxMzfUefJA0.zOo4aAEcRFtCp6Ji', 'user', '2025-09-25 12:31:48'),
+(33, 'gawrguraa', '$2b$08$hy65kZ3buSmmbjUxg8AMheogs35aEZPJlKEdJT8/rnGdFdwZJecpi', 'user', '2025-09-25 12:32:19'),
+(34, 'kaelaela', '$2b$08$uPEJTdcHqrf/k7dV6b48Tek9xFnUydTdDZHbz1u7rHZ5Fa64aYTeu', 'user', '2025-09-25 12:32:55'),
+(35, 'finwidth', '$2b$08$390dnC4WgS2kWdllmwgXNOzHRyjvca9mvsMJ0ZYHLImX0BQUGlh0e', 'user', '2025-09-25 12:35:00'),
+(36, 'kobokers', '$2b$08$vqtSNFFGLRrw.wLr2nlVH.JbpYydkvGDhrhCFOzIez3lKOZpg8/ua', 'user', '2025-09-25 12:37:07'),
+(37, 'kolonimbus', '$2b$08$K0p.ZFXM0LuU3ejCdhpwluFzk4Bf0QTphOHlLPHigjx9fKzyE6gjC', 'user', '2025-09-25 12:38:29'),
+(38, 'fin172616', '$2b$08$SsWM875MKoS08A031L3/cuuv/4CQEe3z8izc1U8S8bocQhx517xma', 'user', '2025-09-25 12:38:46'),
+(39, 'mamang12', '$2b$08$/RtI8GHgU49ZncsuSQUFYOUrEh.qmPXQ84u6AwS06bRFNgtkRS3yi', 'user', '2025-09-25 12:39:15');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tb_jawaban`
+-- Indeks untuk tabel `tb_jawaban`
 --
 ALTER TABLE `tb_jawaban`
   ADD PRIMARY KEY (`id_jawaban`),
@@ -392,14 +294,14 @@ ALTER TABLE `tb_jawaban`
   ADD KEY `id_kuis` (`id_kuis`);
 
 --
--- Indexes for table `tb_kuis`
+-- Indeks untuk tabel `tb_kuis`
 --
 ALTER TABLE `tb_kuis`
   ADD PRIMARY KEY (`id_kuis`),
   ADD KEY `fk_author` (`id_author`);
 
 --
--- Indexes for table `tb_like`
+-- Indeks untuk tabel `tb_like`
 --
 ALTER TABLE `tb_like`
   ADD PRIMARY KEY (`id_like`),
@@ -407,14 +309,14 @@ ALTER TABLE `tb_like`
   ADD KEY `id_kuis` (`id_kuis`);
 
 --
--- Indexes for table `tb_pertanyaan`
+-- Indeks untuk tabel `tb_pertanyaan`
 --
 ALTER TABLE `tb_pertanyaan`
   ADD PRIMARY KEY (`id_pertanyaan`),
   ADD KEY `fk_id_kuis` (`id_kuis`);
 
 --
--- Indexes for table `tb_skor`
+-- Indeks untuk tabel `tb_skor`
 --
 ALTER TABLE `tb_skor`
   ADD PRIMARY KEY (`id_skor`),
@@ -422,84 +324,84 @@ ALTER TABLE `tb_skor`
   ADD KEY `id_kuis` (`id_kuis`);
 
 --
--- Indexes for table `tb_user`
+-- Indeks untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
   ADD PRIMARY KEY (`id_user`),
   ADD UNIQUE KEY `u_username` (`username`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tb_jawaban`
+-- AUTO_INCREMENT untuk tabel `tb_jawaban`
 --
 ALTER TABLE `tb_jawaban`
-  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=409;
+  MODIFY `id_jawaban` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=509;
 
 --
--- AUTO_INCREMENT for table `tb_kuis`
+-- AUTO_INCREMENT untuk tabel `tb_kuis`
 --
 ALTER TABLE `tb_kuis`
-  MODIFY `id_kuis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_kuis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `tb_like`
+-- AUTO_INCREMENT untuk tabel `tb_like`
 --
 ALTER TABLE `tb_like`
   MODIFY `id_like` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
--- AUTO_INCREMENT for table `tb_pertanyaan`
+-- AUTO_INCREMENT untuk tabel `tb_pertanyaan`
 --
 ALTER TABLE `tb_pertanyaan`
-  MODIFY `id_pertanyaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id_pertanyaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
--- AUTO_INCREMENT for table `tb_skor`
+-- AUTO_INCREMENT untuk tabel `tb_skor`
 --
 ALTER TABLE `tb_skor`
-  MODIFY `id_skor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_skor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT for table `tb_user`
+-- AUTO_INCREMENT untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `tb_jawaban`
+-- Ketidakleluasaan untuk tabel `tb_jawaban`
 --
 ALTER TABLE `tb_jawaban`
   ADD CONSTRAINT `fk_id_pertanyaan` FOREIGN KEY (`id_pertanyaan`) REFERENCES `tb_pertanyaan` (`id_pertanyaan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_jawaban_ibfk_1` FOREIGN KEY (`id_kuis`) REFERENCES `tb_kuis` (`id_kuis`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tb_kuis`
+-- Ketidakleluasaan untuk tabel `tb_kuis`
 --
 ALTER TABLE `tb_kuis`
   ADD CONSTRAINT `fk_author` FOREIGN KEY (`id_author`) REFERENCES `tb_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tb_like`
+-- Ketidakleluasaan untuk tabel `tb_like`
 --
 ALTER TABLE `tb_like`
   ADD CONSTRAINT `tb_like_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `tb_user` (`id_user`) ON DELETE CASCADE,
   ADD CONSTRAINT `tb_like_ibfk_2` FOREIGN KEY (`id_kuis`) REFERENCES `tb_kuis` (`id_kuis`) ON DELETE CASCADE;
 
 --
--- Constraints for table `tb_pertanyaan`
+-- Ketidakleluasaan untuk tabel `tb_pertanyaan`
 --
 ALTER TABLE `tb_pertanyaan`
   ADD CONSTRAINT `fk_id_kuis` FOREIGN KEY (`id_kuis`) REFERENCES `tb_kuis` (`id_kuis`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tb_skor`
+-- Ketidakleluasaan untuk tabel `tb_skor`
 --
 ALTER TABLE `tb_skor`
   ADD CONSTRAINT `fk_id_player` FOREIGN KEY (`id_player`) REFERENCES `tb_user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,

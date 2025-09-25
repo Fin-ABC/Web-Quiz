@@ -1,3 +1,5 @@
+let wadahIdKuis = [];
+
 // ################ Bagian Create
 
 // Fungsi yg berfungi untuk memunculkan form untuk membuat soal kuis dan pilihan gandanya sebanyak jumlah soal yg ditentuksn user
@@ -279,7 +281,7 @@ function showAllKuis() {
   fetch("http://localhost:3000/kuis")
     .then((res) => res.json())
     .then((data) => {
-      const token = localStorage.getItem("token");
+      let token = localStorage.getItem("token");
 
       const data_quiz = data.map((kuis) => ({
         id: kuis.id_kuis,
@@ -296,6 +298,7 @@ function showAllKuis() {
       console.log(data_quiz);
       // Ngambil data dari list ke page
       data_quiz.forEach((lvl) => {
+        wadahIdKuis.push(lvl.id);
         const card = document.createElement("div");
         card.classList.add("card-level", "group");
         card.innerHTML = `
@@ -563,6 +566,11 @@ function toggleLike(idKuis) {
     });
 }
 
+function randomIdKuis() {
+  let randomIndex = Math.floor(Math.random() * wadahIdKuis.length);
+  return wadahIdKuis[randomIndex];
+}
+
 function main() {
   getProfile();
   showAllKuis();
@@ -570,7 +578,7 @@ function main() {
   const searchBar = document.getElementById("main-search-bar");
   searchBar.addEventListener("input", (event) => {
     const kata = searchBar.value.trim();
-    if (kata.length > 0){
+    if (kata.length > 0) {
       document.getElementById("official-level").innerHTML = "";
       document.getElementById("custom-level").innerHTML = "";
       searchKuis(kata);
@@ -579,7 +587,12 @@ function main() {
       document.getElementById("custom-level").innerHTML = "";
       showAllKuis();
     }
-  })
+  });
+
+  const btnRandom = document.getElementById("btn-random-quiz");
+  btnRandom.addEventListener("click", () => {
+    window.location.href = `quiz/?id=${randomIdKuis()}`;
+  });
 }
 
 main();

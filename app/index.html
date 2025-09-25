@@ -68,23 +68,22 @@
               onclick="changePage('level','main')"
               class="btn rounded-xl bg-emerald-900/70 hover:bg-emerald-950/80 active:bg-lime-800/70 md:h-20 md:w-1/5 md:rounded-3xl"
             >
-              Start
+              Mulai
             </button>
             <div class="flex flex-col gap-4 md:h-1/10 md:w-1/5">
               <!-- Button Random Quiz Muncul jika user login -->
               <button
                 id="btn-random-quiz"
-                onclick=""
                 class="btn rounded-xl bg-red-700/70 hover:bg-red-800/80 active:bg-emerald-600 md:rounded-full"
               >
-                Random Quiz
+                Random Kuis
               </button>
               <!-- Button How to Play -->
               <button
                 onclick="changePage('main','how-to-play')"
                 class="btn rounded-xl bg-emerald-700/70 hover:bg-emerald-800/80 active:bg-emerald-600 md:rounded-full"
               >
-                How to Play
+                Cara Bermain
               </button>
             </div>
           </div>
@@ -93,7 +92,7 @@
             onclick="changePage('main','about')"
             class="btn mx-auto mt-4 w-1/3 rounded-xl bg-emerald-700/70 hover:bg-emerald-800/70 active:bg-emerald-700 md:h-12 md:w-1/8 md:rounded-full"
           >
-            About
+            Tentang
           </button>
         </div>
       </div>
@@ -108,7 +107,7 @@
           <!-- Header -->
           <div class="mt-2 flex items-center justify-between text-white">
             <button onclick="changePage('level','main')" class="btn-back">
-              &#11013; Close
+              &#11013; Kembali
             </button>
             <h1 class="font-dyna text-2xl font-bold md:text-4xl">Quiz</h1>
             <button
@@ -116,7 +115,7 @@
               onclick="changePage('level','create-kuis');"
               class="btn-back"
             >
-              Make Quiz
+              Buat Kuis
             </button>
           </div>
 
@@ -163,7 +162,7 @@
     <div id="about" class="hidden text-white">
       <div class="mx-6 mt-4 space-y-16">
         <button class="btn-back" onclick="changePage('main','about')">
-          &#11013; Balik
+          &#11013; Kembali
         </button>
         <div class="h-full w-full">
           <div
@@ -172,19 +171,39 @@
             <h1
               class="font-dyna text-left text-3xl font-bold text-shadow-black text-shadow-md"
             >
-              About Quiss
+              Tentang Kuis
             </h1>
             <p class="text-sm md:text-base">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequuntur vitae eaque adipisci cumque delectus accusamus, ad
-              exercitationem repellat ex natus nemo quod, obcaecati unde.
+              Web ini dibuat untuk memenuhi tugas projek Praktek Kerja Lapangan
+              kami. Web ini juga dibuat sebagai sarana kami dalam mempelajari
+              teknologi-teknologi yang digunakan untuk membuat web.
             </p>
             <p class="text-sm md:text-base">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Distinctio minima atque ab corporis ad, assumenda alias nulla
-              temporibus consectetur sed facilis quod. Nesciunt officiis
-              necessitatibus repudiandae temporibus tenetur quod reiciendis
-              aliquam dicta laudantium.
+              Web ini dibuat dibuat dengan menggunakan beberapa teknologi
+              seperti untuk bagian frontend kami menggunakan framework Tailwind
+              CSS untuk styling dan vanilla JavaScript untuk interaktifitasnya.
+              Sedangkan untuk bagian backend kami menggunakan Node.js dengan
+              frameword Express.js dan database MySQL.
+            </p>
+            <p class="text-sm md:text-base">
+              Adapun fitur-fitur yang ada pada web ini antara lain:
+            </p>
+
+            <ul class="list-inside list-disc">
+              <li>Login & Register</li>
+              <li>CRUD Kuis</li>
+              <li>Kotak Pencarian</li>
+              <li>Like untuk Kuis favoritmu</li>
+              <li>Leaderboard</li>
+            </ul>
+            <p class="pl-10 text-left text-sm md:text-base">
+              Github Repository:
+              <a
+                href="https://github.com/Fin-ABC/Web-Quiz"
+                target="_blank"
+                class="outline-maomao-dark hover:outline-1"
+                >Web Kuis</a
+              >
             </p>
 
             <!-- Tambah animasi saat hover setelah 1 detik bakal turun dikit trus keluar efek, untuk lampu bakal keluar efek garis2 sebagai cahaya, sedangkan untuk piala bakal keluar item dari dalam piala -->
@@ -208,7 +227,7 @@
     <div id="how-to-play" class="hidden text-white">
       <div class="mx-6 mt-4 space-y-16">
         <button class="btn-back" onclick="changePage('main','how-to-play')">
-          &#11013; Balik
+          &#11013; Kembali
         </button>
         <div class="h-full w-full">
           <div
@@ -219,7 +238,7 @@
             >
               Cara Bermain
             </h1>
-            <!-- <p class="text-sm md:text-base"> -->
+            <p class="text-sm md:text-base">Realya</p>
             <p class="text-maomao-light text-base md:text-lg">
               Dikarenakan devnya sedang
               <span class="line-through">scroll fesnuk</span> sibuk dengan
@@ -245,7 +264,7 @@
               onclick="changePage('create-kuis','main');"
               class="btn-back"
             >
-              &#11013; Close
+              &#11013; Kembali
             </button>
             <button
               id="btn-back-pertanyaan"
@@ -253,15 +272,15 @@
   changePage('btn-back-pertanyaan', 'btn-back-basic-info');"
               class="btn-back hidden"
             >
-              &#11013; Close
+              &#11013; Kembali
             </button>
-            <h1 class="font-dyna text-2xl font-bold md:text-4xl">Make Quiz</h1>
+            <h1 class="font-dyna text-2xl font-bold md:text-4xl">Buat Kuis</h1>
             <p class="hidden md:visible"></p>
           </div>
 
           <!-- Card Rules -->
           <div class="card-create">
-            <h5 class="text-xl font-bold">Rules</h5>
+            <h5 class="text-xl font-bold">Peraturan</h5>
             <ul class="list-inside list-disc">
               <li>Rule 1</li>
               <li>Rule 2</li>
@@ -279,7 +298,7 @@
               method="post"
               class="space-y-4"
             >
-              <h5 class="text-xl font-bold">Basic Info</h5>
+              <h5 class="text-xl font-bold">Informasi Umum</h5>
               <!-- Judul -->
               <div>
                 <label for="judul" class="mb-1 block font-semibold"

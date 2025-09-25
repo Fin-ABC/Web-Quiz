@@ -278,6 +278,10 @@ function isLiked(idKuis) {
 }
 
 function showAllKuis() {
+  const lvl_offcial = document.getElementById("official-level");
+  const lvl_custom = document.getElementById("custom-level");
+  lvl_offcial.innerHTML = "";
+  lvl_custom.innerHTML = "";
   fetch("http://localhost:3000/kuis")
     .then((res) => res.json())
     .then((data) => {
@@ -289,13 +293,10 @@ function showAllKuis() {
         judul: kuis.judul,
         subjudul: kuis.subjudul,
         author: kuis.author,
-        like: kuis.like || "0", // jika ada
+        like: kuis.like || "0",
         deskripsi: kuis.deskripsi,
         pertanyaan: kuis.pertanyaan.map((p) => p.teks_pertanyaan),
-        // tambahkan pilihan_ganda dan jawaban jika backend sudah kirim
       }));
-      // Sekarang data_quiz sudah sama formatnya dengan yang kamu pakai di frontend
-      console.log(data_quiz);
       // Ngambil data dari list ke page
       data_quiz.forEach((lvl) => {
         wadahIdKuis.push(lvl.id);
@@ -356,8 +357,7 @@ function showAllKuis() {
             <p>${lvl.pertanyaan.length} Soal</p>
           </div>
         `;
-        const lvl_offcial = document.getElementById("official-level");
-        const lvl_custom = document.getElementById("custom-level");
+
         const btnLike = card.querySelector(`#btn-like-${lvl.id}`);
         const mainLikeAdd = card.querySelector(`#main-like-add-${lvl.id}`);
         const mainLikeCheck = card.querySelector(`#main-like-check-${lvl.id}`);

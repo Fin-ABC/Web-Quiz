@@ -1,4 +1,3 @@
-// Alert & Notification
 function showAlertSuccess(message) {
   showAlert(
     "bg-green-200 text-green-800",

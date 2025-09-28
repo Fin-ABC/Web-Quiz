@@ -4,7 +4,6 @@ const idLvl = params.get("id");
 
 // Mencari data sesuai id
 let dt_level;
-
 fetch(`http://localhost:3000/kuis/${idLvl}`)
   .then((res) => res.json())
   .then((data) => {
@@ -98,6 +97,27 @@ function loadSoal() {
   } else {
     g_pilihan.textContent = "Pilihan tidak tersedia";
   }
+
+  timerSoal(15);
+}
+
+// timer soal
+function timerSoal(waktu) {
+  const teksTimer = document.getElementById("gameplay-timer");
+
+  teksTimer.textContent = waktu;
+
+  const interval = setInterval(() => {
+    waktu--;
+    teksTimer.textContent = waktu;
+    console.log(waktu)
+    if (waktu <= 0) {
+      setTimeout(() => {
+        clearInterval(interval);
+        cekJawaban(null);
+      }, 1000);
+    }
+  }, 1000);
 }
 
 // Untuk memeriksa jawaban user

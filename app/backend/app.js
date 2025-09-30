@@ -73,13 +73,13 @@ app.post("/login", (req, res) => {
     (err, results) => {
       if (err) return res.status(500).json({ error: err.message });
       if (results.length === 0)
-        return res.status(400).json({ error: "User tidak ditemukan!" });
+        return res.status(400).json({ error: "Username atau Password salah!" });
 
       const user = results[0];
       const validPassword = bcrypt.compareSync(password, user.password);
 
-      if (!validPassword) {
-        return res.status(400).json({ error: "Password salah!" });
+      if (results.length === 0 || !validPassword) {
+        return res.status(400).json({ error: "Username atau Password salah!" });
       }
 
       const token = jwt.sign(

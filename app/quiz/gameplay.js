@@ -72,6 +72,8 @@ const g_hasil = document.getElementById("gameplay-hasil");
 const g_ldb = document.getElementById("gameplay-leaderboard");
 let total_soal = 0;
 
+let timerSoal;
+
 // Load data untuk card soal dan card pilihan ganda
 function loadSoal() {
   // Untuk ngecek jika user sudah menjawab lebih dari jumlah pertanyaan maka return tampilHasil
@@ -98,22 +100,24 @@ function loadSoal() {
     g_pilihan.textContent = "Pilihan tidak tersedia";
   }
 
-  timerSoal(15);
+  fungsiTimerSoal(15);
 }
 
 // timer soal
-function timerSoal(waktu) {
+function fungsiTimerSoal(waktu) {
+  clearInterval(timerSoal);
+  siswaWaktu = waktu;
+
   const teksTimer = document.getElementById("gameplay-timer");
+  teksTimer.textContent = siswaWaktu;
 
-  teksTimer.textContent = waktu;
-
-  const interval = setInterval(() => {
-    waktu--;
-    teksTimer.textContent = waktu;
-    console.log(waktu)
-    if (waktu <= 0) {
+  timerSoal = setInterval(() => {
+    siswaWaktu--;
+    teksTimer.textContent = siswaWaktu;
+    console.log(siswaWaktu);
+    if (siswaWaktu <= 0) {
       setTimeout(() => {
-        clearInterval(interval);
+        clearInterval(timerSoal);
         cekJawaban(null);
       }, 1000);
     }
@@ -136,6 +140,7 @@ function cekJawaban(pilihan) {
 
 // Fungsi untuk menghitung dan menampilkan hasil dari kuis yg dimainkan user
 function tampilHasil() {
+  clearInterval(timerSoal);
   const persen = 100 / dt_level.pertanyaan.length;
   const point = jumlahBenar * persen;
   const token = localStorage.getItem("token");
@@ -192,6 +197,7 @@ function resetSoal() {
   indexSoal = 0;
   jumlahBenar = 0;
   jumlahSalah = 0;
+  clearInterval(timerSoal);
   if (!g_hasil.classList.contains("hidden")) {
     g_hasil.classList.add("hidden");
   }

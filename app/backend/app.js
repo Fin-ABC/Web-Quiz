@@ -3,10 +3,23 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
+const { v4: uuidv4 } = require("uuid");
+const multer = require("multer");
+const path = require("path");
 const { doc } = require("prettier");
 
 const app = express();
 const port = 3000;
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    const uniqueName = uuidv4() + path.extname(file.originalname);
+    cb(null, uniqueName);
+  },
+});
+const upload = multer({ storage });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -246,7 +259,6 @@ app.get("/kuis/search/:kata", (req, res) => {
     where k.judul like ?
     ORDER BY k.id_kuis, p.id_pertanyaan
   `;
-
 
   db.query(sqlCari, [`%${kata}%`], (err, results) => {
     if (err) return res.status(500).json({ error: err.message });

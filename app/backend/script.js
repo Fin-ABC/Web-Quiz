@@ -20,6 +20,19 @@ function callFormPertanyaanCreate(index) {
           class="txt-box-pertanyaan"
           required
         />
+        <div class="flex flex-col mt-2.5">
+           <label for="create_kuis_gambar${i}"
+           class="font-semibold text-sm md:text-base"
+             >Gambar Pertanyaan ${i} (opsional)</label
+           >
+           <input
+            accept="image/*"
+            type="file"
+            name="create_kuis_gambar${i}"
+            id="create_kuis_gambar${i}"
+            class="file:bg-maomao-light file:text-maomao-dark file:rounded-md file:px-2 file:py-1 focus:file:ring-2 focus:file:ring-emerald-600 focus:file:outline-none file:my-1 mx-0.5"
+           />
+         </div>
         <div class="mt-3">
           <label class="mb-1 block font-semibold">Pilihan Ganda</label>
           <div class="grid grid-cols-2 gap-4">
@@ -124,8 +137,8 @@ function cekFormCreateKuis() {
 
 // Fungsi yg berfungsi mengambil data dari setiap form
 function getQuizFormDataCreate(jml_soal) {
-  const quizData = [];
   const dataPertanyaan = [];
+  const formData = new FormData();
 
   const judul = document.getElementById("basic_info_judul").value;
   const subjudul = document.getElementById("basic_info_subjudul").value;
@@ -137,9 +150,16 @@ function getQuizFormDataCreate(jml_soal) {
       .getElementById(`create_kuis_pertanyaan${i}`)
       .value.trim();
 
+    const inputGambar = document.getElementById(`create_kuis_gambar${i}`);
+    let gambar = "";
+    if (inputGambar && inputGambar.files.length > 0) {
+      const fileName = `gambarPertanyaan_${i - 1}`;
+      gambar = `pertanyaan_${i}_${inputGambar.files[0].name}`;
+      formData.append(fileName, inputGambar.files[0]);
+    }
+    const jawaban = [];
+
     // Ambil pilihan ganda dan jawaban benar
-    const pilihan_ganda = [];
-    let jawaban_benar = [];
     for (let j = 1; j <= 4; j++) {
       const pilihanInput = document.querySelector(
         `input[name="create_kuis_pilihan${i}_${j}"]`,
@@ -147,57 +167,44 @@ function getQuizFormDataCreate(jml_soal) {
       const checkboxInput = document.querySelector(
         `input[name="create_kuis_benar${i}_${j}"]`,
       );
-      const pilihanValue = pilihanInput.value.trim();
-      pilihan_ganda.push(pilihanValue);
 
-      if (checkboxInput.checked) {
-        jawaban_benar.push(pilihanValue);
-      }
+      jawaban.push({
+        teks_jawaban: pilihanInput.value.trim(),
+        is_benar: checkboxInput.checked,
+      });
     }
 
     dataPertanyaan.push({
       pertanyaan,
-      pilihan_ganda,
-      jawaban_benar,
+      gambar,
+      jawaban,
     });
   }
-  quizData.push({
+
+  const dataKuis = {
     judul,
     subjudul,
     deskripsi,
+    kategori: "custom",
     dataPertanyaan,
-  });
-  return quizData;
+  };
+
+  formData.append("data", JSON.stringify(dataKuis));
+  console.log(formData);
+  return formData;
 }
 
 function insertKuis() {
   const token = localStorage.getItem("token");
   const jumlahSoal = document.getElementById("basic_info_jumlah_soal").value;
-  const quizData = getQuizFormDataCreate(jumlahSoal)[0];
-
-  const payload = {
-    judul: quizData.judul,
-    subjudul: quizData.subjudul,
-    deskripsi: quizData.deskripsi,
-    kategori: "custom",
-    pertanyaan: quizData.dataPertanyaan.map((q) => ({
-      teks_pertanyaan: q.pertanyaan,
-      jawaban: q.pilihan_ganda.map((pilihan) => ({
-        teks_jawaban: pilihan,
-        is_benar: q.jawaban_benar.includes(pilihan),
-      })),
-    })),
-  };
-
-  console.log(`Payload :`, payload);
+  const quizData = getQuizFormDataCreate(jumlahSoal);
 
   fetch("http://localhost:3000/add-kuis", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(payload),
+    body: quizData,
   })
     .then((res) => res.json())
     .then((data) => {

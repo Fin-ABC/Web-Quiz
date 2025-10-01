@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 const { doc } = require("prettier");
 
 const app = express();
@@ -188,7 +189,7 @@ app.get("/kuis/:id", (req, res) => {
     SELECT 
       k.id_kuis, k.judul, k.subjudul, k.deskripsi, k.kategori, k.created_at,
       u.username AS author,
-      p.id_pertanyaan, p.teks_pertanyaan,
+      p.id_pertanyaan, p.teks_pertanyaan, p.gambar,
       jb.id_jawaban, jb.teks_jawaban, jb.is_benar,
       (SELECT COUNT(*) FROM tb_like l WHERE l.id_kuis = k.id_kuis) AS jumlah_like
     FROM tb_kuis k
@@ -225,6 +226,7 @@ app.get("/kuis/:id", (req, res) => {
           pertanyaanMap[row.id_pertanyaan] = {
             id_pertanyaan: row.id_pertanyaan,
             teks_pertanyaan: row.teks_pertanyaan,
+            gambar: row.gambar,
             jawaban: [],
           };
           kuis.pertanyaan.push(pertanyaanMap[row.id_pertanyaan]);
@@ -297,12 +299,25 @@ app.get("/kuis/search/:kata", (req, res) => {
 });
 
 // Insert data kuis
-app.post("/add-kuis", verifyToken, (req, res) => {
+app.post("/add-kuis", verifyToken, upload.any(), (req, res) => {
   const id_author = req.user.id;
-  const { judul, subjudul, deskripsi, pertanyaan, kategori } = req.body;
+
+  const gambarMap = {};
+  req.files.forEach((f) => {
+    gambarMap[f.fieldname] = f.filename;
+  });
+
+  let parsed;
+  try {
+    parsed = JSON.parse(req.body.data);
+  } catch (e) {
+    return res.status(400).json({ error: "Data JSON tidak valid" });
+  }
+
+  const { judul, subjudul, deskripsi, dataPertanyaan, kategori } = parsed;
 
   const insertKuis = `
-    INSERT INTO tb_kuis (id_author, judul, subjudul, deskripsi, kategori) 
+    INSERT INTO tb_kuis (id_author, judul, subjudul, deskripsi, kategori)
     VALUES (?, ?, ?, ?, ?)
   `;
 
@@ -310,23 +325,33 @@ app.post("/add-kuis", verifyToken, (req, res) => {
     insertKuis,
     [id_author, judul, subjudul, deskripsi, kategori],
     (err, result) => {
-      if (err) return res.status(500).json({ error: err.message });
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ error: err.message });
+      }
 
-      const idKuis = result.insertId; // dapet id_kuis otomatis
+      const idKuis = result.insertId;
 
       // lanjut insert pertanyaan
-      pertanyaan.forEach((p) => {
+      dataPertanyaan.forEach((p, i) => {
+        const gambar = gambarMap[`gambarPertanyaan_${i}`] || null;
+
         const sqlPertanyaan = `
-        INSERT INTO tb_pertanyaan (id_kuis, teks_pertanyaan)
-        VALUES (?, ?)
+        INSERT INTO tb_pertanyaan (id_kuis, teks_pertanyaan, gambar)
+        VALUES (?, ?, ?)
       `;
         db.query(
           sqlPertanyaan,
-          [idKuis, p.teks_pertanyaan],
+          [idKuis, p.pertanyaan, gambar],
           (err, resultPertanyaan) => {
-            if (err) return console.error(err);
+            if (err) {
+              console.log("tb_pertanyaan");
+              console.error(err);
+              return console.error(err);
+            }
 
             const idPertanyaan = resultPertanyaan.insertId;
+            console.log(p.jawaban);
 
             // insert jawaban untuk pertanyaan ini
             p.jawaban.forEach((j) => {
@@ -338,7 +363,11 @@ app.post("/add-kuis", verifyToken, (req, res) => {
                 sqlJawaban,
                 [idKuis, idPertanyaan, j.teks_jawaban, j.is_benar],
                 (err) => {
-                  if (err) return console.error(err);
+                  if (err) {
+                    console.log("tb_jawban");
+                    console.error(err);
+                    return console.error(err);
+                  }
                 },
               );
             });
@@ -346,6 +375,7 @@ app.post("/add-kuis", verifyToken, (req, res) => {
         );
       });
 
+      console.log(parsed);
       res.json({ message: "Kuis berhasil disimpan!", idKuis });
     },
   );
@@ -410,7 +440,6 @@ app.put("/edit-kuis/:id", verifyToken, (req, res) => {
               },
             );
           });
-
           res.json({ message: "Kuis berhasil diperbarui!", idKuis });
         });
       });

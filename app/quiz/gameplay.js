@@ -17,6 +17,7 @@ fetch(`http://localhost:3000/kuis/${idLvl}`)
       like: data.like || "0",
       deskripsi: data.deskripsi,
       pertanyaan: data.pertanyaan.map((p) => p.teks_pertanyaan),
+      gambar: data.pertanyaan.map((p)=> p.gambar),
       pilihan_ganda: data.pertanyaan.map((p) =>
         p.jawaban.map((j) => j.teks_jawaban),
       ),
@@ -67,6 +68,7 @@ const g_page_soal = document.getElementById("gameplay-soal-page");
 const g_judul = document.getElementById("gameplay-judul");
 const g_soalke = document.getElementById("gameplay-soalke");
 const g_soal = document.getElementById("gameplay-soal");
+const g_gambar_soal = document.getElementById("gameplay-soal-gambar");
 const g_pilihan = document.getElementById("gameplay-pilihan");
 const g_hasil = document.getElementById("gameplay-hasil");
 const g_ldb = document.getElementById("gameplay-leaderboard");
@@ -82,6 +84,12 @@ function loadSoal() {
   }
 
   g_soal.textContent = dt_level.pertanyaan[indexSoal];
+  if(dt_level.gambar[indexSoal]){
+    g_gambar_soal.classList.remove("hidden");
+    g_gambar_soal.src = `../../uploads/${dt_level.gambar[indexSoal]}`;
+  }else{
+    g_gambar_soal.classList.add("hidden");
+  }
   g_pilihan.innerHTML = "";
 
   const pilihan = dt_level.pilihan_ganda[indexSoal];
